@@ -1,8 +1,8 @@
 ---
-layout: post
-title: .NET 8 Development Container Setup Guide
-date: 2025-10-18
----
+layout: default_c
+RefPages:
+ - Setup
+--- 
 
 # .NET 8 Development Container Setup Guide
 
