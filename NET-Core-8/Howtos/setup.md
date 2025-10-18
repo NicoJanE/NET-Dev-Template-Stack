@@ -4,6 +4,14 @@ RefPages:
  - Setup
 --- 
 
+<small>
+<br><br>
+_This file is part of: **Net-Core-Template Stack**_
+_Copyright (c) 2025 Nico Jan Eelhart_
+_This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._
+</small>
+<br><br>
+
 # .NET 8 Development Container Setup Guide
 
 > **🚀 In a hurry?** Jump to the [Quick Start Guide](#appendix-i-quick-start-guide) for immediate setup.

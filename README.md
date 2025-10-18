@@ -17,17 +17,15 @@ Each .NET version template typically contains:
 
 ```text
 NET-Dev-Template-Stack/
-├── NET-Core-8/            # .NET 8.0 development environment
-│   ├── Net8-Service/      # Main service container
-│   │   ├── script-templates/  # Project creation scripts
-│   │   ├── Dockerfile_netcore_cont  # Container definition
-│   │   └── compose_netcore_cont.yml # Docker Compose
-│   ├── Howtos/            # Documentation and guides
-│   └── README.md          # .NET 8.0 specific documentation
-├── _NET core 7.0/         # .NET 7.0 development environment
-├── _Older NET versions/   # Legacy .NET versions
-├── assets/                # Documentation assets
-└── README.md              # This file
+├── NET-Core-8/                         # .NET 8.0 development environment
+│   ├── Net8-Service/                   # Main service container
+│   │   ├── script-templates/           # Project creation scripts
+│   │   ├── Dockerfile_netcore_cont     # Container definition
+│   │   └── compose_netcore_cont.yml    # Docker Compose
+│   ├── Howtos/                         # Documentation and guides
+│   └── README.md                       # .NET 8.0 specific documentation
+├── assets/                             # Documentation assets
+└── README.md                           # This file
 ```
 
 ## ⚡ Quick Links
