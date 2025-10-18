@@ -1,0 +1,57 @@
+# Base image
+FROM ubuntu:24.04
+
+# 1.1 Install system packages including ICU libraries for .NET globalization
+RUN apt-get update && apt-get install -y \
+    curl nano wget \
+    libicu74 \
+    && rm -rf /var/lib/apt/lists/*
+    #   We don't use the 'frozen' .NET version from Ubuntu because it is quite a bit behind
+    #	dotnet-sdk-8.0
+
+
+# 1.2 Install latest .NET 8 SDK and runtimes, as of now
+RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
+    && chmod +x dotnet-install.sh \
+    && ./dotnet-install.sh --channel 8.0 --install-dir /usr/share/dotnet \
+    && ./dotnet-install.sh --channel 8.0 --runtime dotnet --install-dir /usr/share/dotnet \
+    && ./dotnet-install.sh --channel 8.0 --runtime aspnetcore --install-dir /usr/share/dotnet \
+    && rm dotnet-install.sh
+ENV PATH="/usr/share/dotnet:$PATH"
+
+
+
+
+# 1.3 Create 'cworkspace' directory for scripts that must be copied to the container
+# Note: 'hostmount/workspace' is the 'mount bind' into Windows. and 'cworkspace' is a directory in the container 
+RUN mkdir -p /cworkspace
+COPY ./script-templates/ /cworkspace/
+RUN chmod +x /cworkspace/*.sh
+
+# 1.4 Create simple entrypoint script to create symbolic link in the 'hostmount/workspace' of the bind mount directory
+# The name 'script' brings us to the /cworkspace directory in the container where the scripts are that generate the 
+# different types of .NET application. Note that the scripts will create the application  in the: 'hostmount/workspace'
+# of the host system, this makes them easily accessible from both the Window host and from the WSL container.
+# When performance is an issue you can decide to simple copy the created app back to /cworkspace in the container
+#   I.e: cp -r ./nameapp /cworkspace
+#
+RUN echo '#!/bin/bash\n\
+# Create symbolic link to cworkspace in hostmount/workspace after bind mount is established\n\
+if [ -d "/hostmount/workspace" ] && [ -d "/cworkspace" ]; then\n\
+    ln -sf /cworkspace /hostmount/workspace/scripts\n\
+fi\n\
+# Execute the original command\n\
+exec "$@"' > /entrypoint.sh && chmod +x /entrypoint.sh
+
+# 1.5 Set working directory to the bind mount host  for subsequent commands
+WORKDIR /hostmount/workspace
+
+# 1.6 Default .NET port
+EXPOSE 5000
+
+# 1.7 Use entrypoint to set up navigation helpers (see also 1.3)
+ENTRYPOINT ["/entrypoint.sh"]
+
+# 1.8 Keep container running with this
+CMD ["tail", "-f", "/dev/null"]
+

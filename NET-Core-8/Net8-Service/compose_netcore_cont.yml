@@ -1,0 +1,38 @@
+# The External Network settings
+#=================================
+
+networks:
+  dev1-net:      # Define a network, change this in case of external: true
+    external: true          # See explanation below
+    name: dev1-net
+    driver: bridge 
+    ipam:
+      config:
+        - subnet: ${FIXED_SUBNET}
+#
+# Manual ()re)create this network if not exist see the file: .env
+
+
+volumes:
+  nje-shared_container-vol:         # named volumes, for: sharing data between containers, persistent data
+                                    # can be used in service volumes, like: nje-shared_container-vol:./workspace/shared 
+services:
+  net-core8-img:                    # Our .NET service
+    networks:    
+      dev1-net:                     # Use this network
+          ipv4_address: ${FIXED_IP} # Use a fixed IP address for this container service
+    build: 	    
+      context: .
+      dockerfile: Dockerfile_netcore_cont 
+#     command: bash
+    ports:
+      - "5000:5000"                         # host:cont
+#    networks:    
+#        - nje-net                          # default network not used 
+    volumes:
+        - ../workspace:/hostmount/workspace # Bind mount to .Net 8.0 workspace directory
+
+
+# Create and start: docker-compose -f compose_netcore_cont.yml up -d --build --force-recreate
+# Or
+#                   docker-compose -f compose_netcore_cont.yml build --no-cache

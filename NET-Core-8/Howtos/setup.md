@@ -1,0 +1,262 @@
+---
+layout: post
+title: .NET 8 Development Container Setup Guide
+date: 2025-10-18
+---
+
+# .NET 8 Development Container Setup Guide
+
+> **🚀 In a hurry?** Jump to the [Quick Start Guide](#appendix-i-quick-start-guide) for immediate setup.
+
+## Table of Contents
+
+- [Setup](#setup)
+  - [Create and Use a .NET Container](#create-and-use-a-net-container)
+  - [Troubleshooting](#troubleshooting)
+  - [Creating Applications with CLI](#creating-applications-in-the-container-with-cli)
+- [Quick Start Guide](#appendix-i-quick-start-guide)
+
+## Setup
+
+### Create and Use a .NET Container
+
+To start the container in Docker Desktop, execute this command from the **`.\Net8-Service>`** directory:
+
+### Prerequisites
+
+1. **External network**
+   Because this service uses an **external network**, you must ensure that the network is created **before** you create the container. All commands can be found in the `.env` file. The command to create the network is displayed below for convenience:
+
+   ```bash
+   docker network create --subnet=172.40.0.0/24 dev1-net
+   ```
+
+   If you get an error message that the network already exists, you're probably good to go!
+
+2. **Create the container**
+
+   ```yaml
+   docker-compose -f compose_netcore_cont.yml up -d
+   docker-compose -f compose_netcore_cont.yml up -d --build --force-recreate
+   ```
+
+After that, you should have a Docker Desktop container called: **`net8-service-net-core8-img-1`**.
+
+**To start a CLI in this container:**
+
+```bash
+docker exec -it net8-service-net-core8-img-1 bash
+```
+
+## Troubleshooting
+
+### Container Issues
+
+When the container is not starting or exiting unexpectedly, check the logs:
+
+```bash
+# Get ID of container
+docker ps           # Only returns running containers!
+docker ps -a        # Includes stopped containers! (-a => all)
+docker logs [ID]    # See what's going on
+```
+
+### Verify .NET Installation
+
+To check which version of .NET is available, start a CLI in the container and run these commands:
+
+```bash
+docker exec -it net8-service-net-core8-img-1 bash
+```
+
+Then inside the container:
+
+```bash
+dotnet --list-sdks 
+dotnet --list-runtimes 
+```
+
+## Creating Applications in the Container with CLI
+
+### Quick Start with Script Templates
+
+This container includes **11 ready-to-use script templates** for creating different types of .NET 8 applications. When you start the container CLI, you automatically enter the **host mount workspace** (`/hostmount/workspace`).
+
+**To access the scripts:**
+
+```bash
+# Container CLI starts in: /hostmount/workspace
+cd scripts                    # Navigate to script templates
+ls -la                       # List all available scripts
+```
+
+### Available Script Templates
+
+| Script | Creates | Use For |
+|--------|---------|---------|
+| `create_console.sh` | Console Application | CLI tools, utilities, learning |
+| `create_webapi.sh` | REST API Service | Backend services, microservices |
+| `create_webapiaot.sh` | High-Performance API | Ultra-fast APIs, cloud-native |
+| `create_mvc.sh` | MVC Web Application | Traditional websites, admin panels |
+| `create_webapp.sh` | Razor Pages App | Content-heavy sites, blogs |
+| `create_blazorserver.sh` | Blazor Server App | Interactive web apps (server-side) |
+| `create_blazorwasm.sh` | Blazor WebAssembly | Client-side web apps (browser) |
+| `create_grpc.sh` | gRPC Service | High-performance service communication |
+| `create_worker.sh` | Background Service | Scheduled tasks, message processing |
+| `create_classlib.sh` | Class Library (DLL) | Reusable code, NuGet packages |
+| `create_xunit.sh` | Unit Test Project | Testing your applications |
+
+### Using the Scripts
+
+**Basic Usage:**
+
+```bash
+cd scripts
+./create_console.sh                    # Creates 'app-console' in workspace
+./create_webapi.sh my-api              # Creates 'my-api' in workspace  
+./create_mvc.sh my-site /custom/path   # Creates 'my-site' in custom location
+```
+
+**Script Parameters:**
+
+- **First parameter**: Application name (optional, uses default if omitted)
+- **Second parameter**: Target directory (optional, defaults to `/hostmount/workspace`)
+
+### Why Applications are Created in Host Workspace
+
+**By default, all applications are created in `/hostmount/workspace`** because:
+
+- ✅ **Accessible from both Windows host and container**
+- ✅ **Persistent** - survives container restarts
+- ✅ **Easy editing** - use Windows tools (VS Code, Visual Studio)
+- ✅ **Source control** - git repositories work seamlessly
+
+**Performance Note:** For CPU-intensive builds, you can copy projects to the container:
+
+```bash
+cp -r ./my-app /cworkspace/
+```
+
+### Manual Application Creation
+
+If your preferred template isn't scripted, use the official .NET CLI:
+
+**ASP.NET Core Example:**
+To create an ASP.NET Core program manually, follow these steps:
+
+> **Note:** The resulting application will be created in the host mount folder: **`/hostmount/workspace`**
+
+- Create the app
+
+```bash
+dotnet new web -n MyAspNetApp
+```
+
+- Get the NuGet packages required
+
+```bash
+cd MyAspNetApp
+dotnet restore
+```
+
+- Run the app
+
+```bash
+# Start the application server
+dotnet run --urls "http://0.0.0.0:5000" &
+```
+
+- Access the app on the host
+  Because in the previous command we specified 0.0.0.0 as the listening IP address, we can reach the web page on the **host** via localhost! (see also 'Note 1' below) So from the host, open a browser and navigate to:
+
+```url
+http://localhost:5000/
+```
+
+> **Note 1: Getting Container IP Address**
+>
+> If you need the IP address of the container to access the page via the host:
+>
+> - Get the name or ID of the container:
+>
+>   ```bash
+>   docker ps
+>   ```
+>
+> - Execute this to get the IP:
+>
+>   ```bash
+>   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_id_or_name>
+>   # For this specific container:
+>   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' net8-service-net-core8-img-1
+>   ```
+>
+> Use the found IP to access the web page on the host.
+> Start your browser on the **host** and navigate to: `http://[found_IP]:5000`
+
+---
+
+<br>
+
+## Appendix I Quick Start Guide
+
+**🚀 Get up and running with .NET 8 development in under 5 minutes!**
+
+### Prerequisites (2 minutes)
+
+1. **Create network:**
+
+   ```bash
+   docker network create --subnet=172.40.0.0/24 dev1-net
+   ```
+
+2. **Start container:**
+
+   ```bash
+   docker-compose -f compose_netcore_cont.yml up -d
+   ```
+
+### Create Your First App (1 minute)
+
+1. **Enter container:**
+
+   ```bash
+   docker exec -it net8-service-net-core8-img-1 bash
+   ```
+
+2. **Create an application** (choose one):
+
+   ```bash
+   cd scripts
+   ./create_console.sh my-first-app      # Console application
+   ./create_webapi.sh my-api             # REST API
+   ./create_mvc.sh my-website            # Web application
+   ./create_blazorwasm.sh my-spa         # Single Page App
+   ```
+
+3. **Run your application:**
+
+   ```bash
+   cd ../my-first-app    # or whatever you named it
+   dotnet run
+   ```
+
+### That's It! 🎉
+
+- **Your code is in:** `/hostmount/workspace/` (accessible from Windows)
+- **Available scripts:** 11 different .NET 8 project templates
+- **Need help?** Check the full [documentation above](#setup)
+
+### Quick Reference - All Available Templates
+
+| Command | Creates | Perfect For |
+|---------|---------|-------------|
+| `create_console.sh` | Console App | Learning, CLI tools |
+| `create_webapi.sh` | REST API | Backend services |
+| `create_mvc.sh` | Web App | Traditional websites |
+| `create_blazorwasm.sh` | SPA | Modern web apps |
+| `create_classlib.sh` | Library | Reusable code |
+| `create_xunit.sh` | Tests | Testing your apps |
+
+**Happy coding!** 🚀
+
