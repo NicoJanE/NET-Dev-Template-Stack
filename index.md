@@ -45,9 +45,10 @@ NET-Dev-Template-Stack/
 
 ## ⚡ Quick Links
 
-- 📚 **The index file for .NET 8.0:** [index](./NET-Core-8/index)
-- 🚀 **Get coding in 5 minutes with .NET 8.0:** [Quick Start Guide](./NET-Core-8/Howtos/setup.md#appendix-i-quick-start-guide)
-- 📚 **Complete Setup Guide for .NET 8.0:** [Setup Documentation](./NET-Core-8/Howtos/setup.md)
+- 📚 **The index file for .NET 8.0:** [index](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)
+- 🚀 **Get coding in 5 minutes with .NET 8.0:** [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#appendix-i-quick-start-guide)
+- 📚 **Complete Setup Guide for .NET 8.0:** [Setup Documentation](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup)
+
 
 ---
 
