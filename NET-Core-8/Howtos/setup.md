@@ -35,26 +35,21 @@ To start the container in Docker Desktop, execute this command from the **`.\Net
 1. **External network**
    Because this service uses an **external network**, you must ensure that the network is created **before** you create the container. All commands can be found in the `.env` file. The command to create the network is displayed below for convenience:
 
-   ```bash
-   docker network create --subnet=172.40.0.0/24 dev1-net
-   ```
+   <pre class="nje-cmd-one-line"> docker network create --subnet=172.40.0.0/24 dev1-net </pre>
 
    If you get an error message that the network already exists, you're probably good to go!
 
 2. **Create the container**
 
-   ```yaml
-   docker-compose -f compose_netcore_cont.yml up -d
-   docker-compose -f compose_netcore_cont.yml up -d --build --force-recreate
-   ```
+   <pre class="nje-cmd-multi-line">
+    docker-compose -f compose_netcore_cont.yml up -d
+    docker-compose -f compose_netcore_cont.yml up -d --build --force-recreate
+   </pre>
+   After that, you should have a Docker Desktop container called: **`net8-service-net-core8-img-1`**.
 
-After that, you should have a Docker Desktop container called: **`net8-service-net-core8-img-1`**.
+3. **To start a CLI in this container:**
+   <pre class="nje-cmd-one-line"> docker exec -it net8-service-net-core8-img-1 bash </pre>
 
-**To start a CLI in this container:**
-
-```bash
-docker exec -it net8-service-net-core8-img-1 bash
-```
 
 ## Troubleshooting
 
@@ -62,27 +57,26 @@ docker exec -it net8-service-net-core8-img-1 bash
 
 When the container is not starting or exiting unexpectedly, check the logs:
 
-```bash
+<pre class="nje-cmd-multi-line">
 # Get ID of container
 docker ps           # Only returns running containers!
 docker ps -a        # Includes stopped containers! (-a => all)
 docker logs [ID]    # See what's going on
-```
+</pre>	
 
 ### Verify .NET Installation
 
 To check which version of .NET is available, start a CLI in the container and run these commands:
 
-```bash
+<pre class="nje-cmd-one-line">
 docker exec -it net8-service-net-core8-img-1 bash
-```
+</pre>
 
 Then inside the container:
-
-```bash
-dotnet --list-sdks 
-dotnet --list-runtimes 
-```
+<pre class="nje-cmd-multi-line">
+dotnet --list-sdks
+dotnet --list-runtimes
+</pre>
 
 ## Creating Applications in the Container with CLI
 
@@ -90,18 +84,17 @@ dotnet --list-runtimes
 
 This container includes **11 ready-to-use script templates** for creating different types of .NET 8 applications. When you start the container CLI, you automatically enter the **host mount workspace** (`/hostmount/workspace`).
 
-**To access the scripts:**
-
-```bash
-# Container CLI starts in: /hostmount/workspace
-cd scripts                    # Navigate to script templates
+**To access the scripts:**  
+Note: the scripts will create the application directory: `/hostmount/workspace`
+<pre class="nje-cmd-multi-line">
+cd scripts                   # Navigate to script templates
 ls -la                       # List all available scripts
-```
+</pre>
 
 ### Available Script Templates
 
-| Script | Creates | Use For |
-|--------|---------|---------|
+|**Script** | **Creates** | **Use For** |
+|:--------|:---------|:---------|
 | `create_console.sh` | Console Application | CLI tools, utilities, learning |
 | `create_webapi.sh` | REST API Service | Backend services, microservices |
 | `create_webapiaot.sh` | High-Performance API | Ultra-fast APIs, cloud-native |
@@ -118,12 +111,12 @@ ls -la                       # List all available scripts
 
 **Basic Usage:**
 
-```bash
+<pre class="nje-cmd-multi-line">
 cd scripts
 ./create_console.sh                    # Creates 'app-console' in workspace
 ./create_webapi.sh my-api              # Creates 'my-api' in workspace  
 ./create_mvc.sh my-site /custom/path   # Creates 'my-site' in custom location
-```
+</pre>
 
 **Script Parameters:**
 
@@ -141,9 +134,9 @@ cd scripts
 
 **Performance Note:** For CPU-intensive builds, you can copy projects to the container:
 
-```bash
+<pre class="nje-cmd-one-line">
 cp -r ./my-app /cworkspace/
-```
+</pre>
 
 ### Manual Application Creation
 
@@ -156,51 +149,50 @@ To create an ASP.NET Core program manually, follow these steps:
 
 - Create the app
 
-```bash
+<pre class="nje-cmd-one-line">
 dotnet new web -n MyAspNetApp
-```
+</pre>
 
 - Get the NuGet packages required
 
-```bash
+<pre class="nje-cmd-multi-line">
 cd MyAspNetApp
 dotnet restore
-```
+</pre>
 
 - Run the app
 
-```bash
+<pre class="nje-cmd-multi-line">
 # Start the application server
 dotnet run --urls "http://0.0.0.0:5000" &
-```
+</pre>
 
 - Access the app on the host
   Because in the previous command we specified 0.0.0.0 as the listening IP address, we can reach the web page on the **host** via localhost! (see also 'Note 1' below) So from the host, open a browser and navigate to:
 
-```url
+<pre class="nje-cmd-one-line">
 http://localhost:5000/
-```
+</pre><br>
 
-> **Note 1: Getting Container IP Address**
+>**Note 1: Getting Container IP Address**
+>If you need the IP address of the container to access the page via the host:
+>- Get the name or ID of the container:
 >
-> If you need the IP address of the container to access the page via the host:
+>  <pre class="nje-cmd-one-line">
+>  docker ps
+>  </pre>
+>- Execute this to get the IP:
+>  <pre class="nje-cmd-multi-line">
+>  {% raw %}
+>  <small>docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [container_id_or_name]
+> # For this specific container:
+> docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' net8-service-net-core8-img-1 </small>
+>  {% endraw %}
+>  </pre>
 >
-> - Get the name or ID of the container:
->
->   ```bash
->   docker ps
->   ```
->
-> - Execute this to get the IP:
->
->   ```bash
->   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_id_or_name>
->   # For this specific container:
->   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' net8-service-net-core8-img-1
->   ```
->
-> Use the found IP to access the web page on the host.
-> Start your browser on the **host** and navigate to: `http://[found_IP]:5000`
+>Use the found IP to access the web page on the host.
+>Start your browser on the **host** and navigate to: 
+><pre class="nje-cmd-one-line">http://[found_IP]:5000</pre>
 
 ---
 
@@ -214,40 +206,40 @@ http://localhost:5000/
 
 1. **Create network:**
 
-   ```bash
+   <pre class="nje-cmd-one-line">
    docker network create --subnet=172.40.0.0/24 dev1-net
-   ```
+   </pre>
 
 2. **Start container:**
 
-   ```bash
+   <pre class="nje-cmd-one-line">
    docker-compose -f compose_netcore_cont.yml up -d
-   ```
+   </pre>
 
 ### Create Your First App (1 minute)
 
 1. **Enter container:**
 
-   ```bash
+   <pre class="nje-cmd-one-line">
    docker exec -it net8-service-net-core8-img-1 bash
-   ```
+   </pre>
 
 2. **Create an application** (choose one):
 
-   ```bash
+    <pre class="nje-cmd-multi-line">
    cd scripts
    ./create_console.sh my-first-app      # Console application
    ./create_webapi.sh my-api             # REST API
    ./create_mvc.sh my-website            # Web application
    ./create_blazorwasm.sh my-spa         # Single Page App
-   ```
+   </pre>
 
 3. **Run your application:**
 
-   ```bash
+   <pre class="nje-cmd-multi-line">
    cd ../my-first-app    # or whatever you named it
    dotnet run
-   ```
+   </pre>
 
 ### That's It! 🎉
 
@@ -257,14 +249,11 @@ http://localhost:5000/
 
 ### Quick Reference - All Available Templates
 
-| Command | Creates | Perfect For |
-|---------|---------|-------------|
+| **Command** | **Creates** | **Perfect For** |
+|:---------|:---------|:-------------|
 | `create_console.sh` | Console App | Learning, CLI tools |
 | `create_webapi.sh` | REST API | Backend services |
 | `create_mvc.sh` | Web App | Traditional websites |
 | `create_blazorwasm.sh` | SPA | Modern web apps |
 | `create_classlib.sh` | Library | Reusable code |
 | `create_xunit.sh` | Tests | Testing your apps |
-
-**Happy coding!** 🚀
-
