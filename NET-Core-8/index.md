@@ -4,13 +4,6 @@ RefPages:
  - Setup
 --- 
 
-<small>
-<br><br>
-_This file is part of: **Net-Core-Template Stack**_
-_Copyright (c) 2025 Nico Jan Eelhart_
-_This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._
-</small>
-<br><br>
 
 # .NET 8 Development Container
 
@@ -42,10 +35,8 @@ cd scripts
 ./create_mvc.sh my-website       # Create web app
 ```
 
----
+<span style="color: #6d757dff; font-size: 10px; font-style: italic;"> <br>
+This file is part of: **Net-Core-Template Stack**
+Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.</span>
 
-<small><small><small>
-
-Version: 1.04 • Released: October 2025
-
-</small></small></small>
+<center>─── ✦ ───</center>

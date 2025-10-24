@@ -28,10 +28,15 @@ cd scripts
 ./create_mvc.sh my-website       # Create web app
 ```
 
----
+<br>
+<p align="center">
+  <a href="http/s://nicojane.github.io/Docker-Template-Stacks-Home/">
+    <img src="../assets/images/DTSfooter.svg" alt="WSL Template Stacks" width="400" />
+  </a>
+</p>
 
 <small><small><small>
-
-Version: 1.04 • Released: October 2025
-
-</small></small></small>
+This file is part of: **Net-Core-Template Stack**
+Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
+</small></small></small> 
+<center>─── ✦ ───</center> 
