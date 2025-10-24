@@ -4,14 +4,6 @@ RefPages:
  - Setup
 --- 
 
-<small>
-<br><br>
-_This file is part of: **Net-Core-Template Stack**_
-_Copyright (c) 2025 Nico Jan Eelhart_
-_This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._
-</small>
-<br><br>
-
 # .NET Development Container Templates
 
 This repository contains Docker-based development environments for different .NET versions. Currently we have included .NET 8.0 in the sub-folder `NET-Core-8`, with support for additional .NET versions planned for future releases.
@@ -47,9 +39,8 @@ NET-Dev-Template-Stack/
 - 🚀 **Get coding in 5 minutes with .NET 8.0:** [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#appendix-i-quick-start-guide)
 - 📚 **Complete Setup Guide for .NET 8.0:** [Setup Documentation](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup)
 
+<span style="color: #6d757dff; font-size: 10px; font-style: italic;"> <br>
+This file is part of: **Net-Core-Template Stack**
+Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.</span>
 
----
-
-<small><small><small>
-Version: 1.04 • Released: October 2025
-</small></small></small>
+<center>─── ✦ ───</center>

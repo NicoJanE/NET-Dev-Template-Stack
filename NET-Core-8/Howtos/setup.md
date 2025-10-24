@@ -35,7 +35,8 @@ To start the container in Docker Desktop, execute this command from the **`.\Net
 1. **External network**
    Because this service uses an **external network**, you must ensure that the network is created **before** you create the container. All commands can be found in the `.env` file. The command to create the network is displayed below for convenience:
 
-   <pre class="nje-cmd-one-line"> docker network create --subnet=172.40.0.0/24 dev1-net </pre>
+   <pre class="nje-cmd-multi-line"> docker network create --subnet=172.40.0.0/24 dev1-net
+    # This subnet is defined in `.env`</pre>
 
    If you get an error message that the network already exists, you're probably good to go!
 

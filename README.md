@@ -34,9 +34,15 @@ NET-Dev-Template-Stack/
 - 🚀 **Get coding in 5 minutes with .NET 8.0:** [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#appendix-i-quick-start-guide)
 - 📚 **Complete Setup Guide for .NET 8.0:** [Setup Documentation](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup)
 
----
+<br>
+<p align="center">
+  <a href="https://nicojane.github.io/Docker-Template-Stacks-Home/">
+    <img src="assets/images/DTSfooter.svg" alt="WSL Template Stacks" width="400" />
+  </a>
+</p>
 
 <small><small><small>
-Version: 1.04 • Released: October 2025
-</small></small></small>
-
+This file is part of: **Net-Core-Template Stack**
+Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
+</small></small></small> 
+<center>─── ✦ ───</center> 
