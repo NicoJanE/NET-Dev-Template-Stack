@@ -44,5 +44,6 @@ NET-Dev-Template-Stack/
 <small><small><small>
 This file is part of: **Net-Core-Template Stack**
 Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
-</small></small></small> 
+</small></small></small>
+
 <center>─── ✦ ───</center> 
