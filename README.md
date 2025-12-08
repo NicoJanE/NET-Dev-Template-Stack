@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains Docker-based development environments for different .NET container environments. Currently we have only the latest **.NET 8.0** included (see sub-folder `NET-Core-8` with support for additional .NET versions planned for future as needed.
+This repository contains Docker-based development environments for different .NET container environments. Currently we have only the latest **.NET 8.0** included (see sub-folder `NET-Core-8`) with support for additional .NET versions planned for future as needed.
 
 ### 🎯 What's Included
 
@@ -30,13 +30,13 @@ NET-Dev-Template-Stack/
 
 ## Setup
 
-This refers to the .NET 8.0 development container, the only .Net Container Currently. To setup refer to this page:
+For setup, choose between the quick setup and full documentation:
 
-- **🚀 .NET core 8.0**  
-  <span class="nje-indent1">Installation  instructions for the [.NET 8.0 container service](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)
+- **🚀 .NET Core 8.0**  
+  <span class="nje-indent1">Installation instructions for the [.NET 8.0 container service](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)
   </span>
-- **🚀 Site page**  
-  <span class="nje-indent1">Main page [this site](https://nicojane.github.io/NET-Dev-Template-Stack/)
+- **📖 Enhanced Documentation**  
+  <span class="nje-indent1">View full documentation with better navigation: [Documentation Site](https://nicojane.github.io/NET-Dev-Template-Stack/)
   </span>
 
 <br>
