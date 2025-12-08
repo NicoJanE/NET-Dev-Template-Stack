@@ -47,10 +47,10 @@ NET-Dev-Template-Stack/
 
 ## Setup
 
-This refers to the .NET 8.0 development container, the only .Net Container Currently. To setup refer to this page:
+This refers to the .NET 8.0 development container, the only .Net Container currently. To setup refer to this page:
 
-- **🚀 .NET core 8.0**  
-  <span class="nje-indent1">Installation  instructions for the [.NET 8.0 container service](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)
+- **📖🚀 Enhanced Documentation .NET core 8.0**  
+  <span class="nje-indent1">View full documentation with better navigation: [Documentation Site](https://nicojane.github.io/NET-Dev-Template-Stack//NET-Core-8/)
   </span>
 
 <span style="color: #6d757dff; font-size: 10px; font-style: italic;"> <br>

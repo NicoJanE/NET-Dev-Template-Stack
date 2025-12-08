@@ -4,7 +4,7 @@
 
 The  **.NET 8 development environment** Docker environment with **11 ready-to-use project templates** for rapid application development within Docker and Visual Studio Code
 
-| <div align="left" style="width:250px;">📚 <sub>Direct Link</sub> <br><sub> &nbsp; &nbsp; &nbsp; 🔶 [To the Main .NET 8.0 page](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)</sub></div> |
+| <div align="left" style="width:330px;">📚 <sub>Direct Link</sub> <br><sub> &nbsp; &nbsp; &nbsp; 🔶 [Enhanced Documentation .NET core 8.0 site](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)</sub></div> |
 |------------------------|
 
 ### 🎯 What's Included
