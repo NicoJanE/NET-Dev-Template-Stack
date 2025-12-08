@@ -18,9 +18,9 @@
 
   <body>
     <header>
-      <div class="inner" >
-        <a  href="{{ '/' | absolute_url }}">
-          <h1 style="min-width: 720px;"  >{{ site.title | default: site.github.repository_name }}</h1>
+      <div class="inner">
+        <a href="{{ '/' | absolute_url }}">
+          <h1>{{ site.title | default: site.github.repository_name }}</h1>
         </a>
         <h2>{{ site.description | default: site.github.project_tagline }}</h2>
         {% if site.github.is_project_page %}
@@ -32,19 +32,70 @@
       </div>
     </header>
 	
+
+	<!--
+	
+	In your markdown file's front matter, you can configure:
+	
+	1. RefPages - Creates 'Site Links' navigation items
+	2. TableCont - Creates 'Content' section links (table of contents)
+	
+	For TableCont, each item links to a corresponding anchor in the page.
+	Define anchors using: <a id="exact-name-here"></a>
+	Note: Anchor IDs must match TableCont names exactly (including spaces/capitalization)
+	
+	Example front matter:
+	---
+	layout: default_c
+	RefPages:
+	  - setup_linux
+	  - setup_win
+	  - building_project
+	
+	TableCont:
+	  - Introduction
+	  - Library Setup
+	  - More GLFW & Skia
+	  - Project Architecture
+	---
+	
+	Then in your markdown content, add matching anchors for the TableCont items:
+	<a id="Introduction"></a>
+	<a id="Library Setup"></a>
+	<a id="More GLFW & Skia"></a>
+	<a id="Project Architecture"></a>
+
+	-->
+
+
+
     <div id="content-wrapper">     
 	  <!-- Added a left content bar(NJE)  --> 	 	
 	  <div id="sidebarL"  style="text-align: left;">
         <nav>
-         <!-- Create the relevant HTML links for the left panel -->
-         <h3 class="sq style="--font-style: bold;" >Quick links</h3>
+
+		<!-- Table of contents -->
+		 {% if page.TableCont and page.TableCont.size > 0 %}
+			<h3 class="sq" style="--font-style: bold;" >Content</h3>
+			<ul class="sq">
+				{% for RefPage in page.TableCont %}			  				
+					<!-- <li class="sm1"><a href="{{ page.url }}#{{ RefPage }}">{{ RefPage }} </a> </li>				-->
+					<li class="sm1"><a href="{{ page.url | relative_url }}#{{ RefPage }}">{{ RefPage }}</a> </li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		<br>
+		<!-- Table of contents ()END) -->
+
+         <!-- Create the relevant HTML 'Site Links' for the left panel -->
+         <h3 class="sq" style="--font-style: bold;" >Site Links</h3>
           <ul class="sq">
           	{% if page.name == "index.md" %}
 				{% if site.index_hide_home == true %}
 					<li class="sm1"><a href="./index.html"><span class="sel"> Home (SubSite)</span></a> </li>		
 				{% endif %}	
 				{% for RefPage in page.RefPages %}			  
-					<li class="sm1"><a href="./{{site.BaseDir}}/{{RefPage}}.html">{{ RefPage }}</a> </li>			
+					<li class="sm1"><a href="./{{site.BaseDir}}/{{RefPage}}.html">{{ RefPage }}</a> </li>					
 				{% endfor %}			
 			{% else %}
 				<li class="sm1"><a href="../index.html"> Home (SubSite)</a> </li>	
@@ -67,12 +118,9 @@
 			{% else %}
 			  <li class="sm1 disabled"><a class="disabled"  href="#">Discussions (Not available)</a></li>
 			{% endif %}		  		  
-          </ul>
-		  
-		  
-		  
-		  
+          </ul>  
 		  <!-- Create the relevant HTML links for the left panel (END) -->
+
         </nav>
       </div>
 	  <!-- Added a left content bar(NJE) END -->		

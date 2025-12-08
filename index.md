@@ -1,17 +1,27 @@
 ---
 layout: default_c
+
 RefPages:
- - Setup
+  - Setup
+
+TableCont:
+  - Introduction
+  - Setup
+
 --- 
 <br>
 
-# .NET Development Container Templates
+# .NET Development Container <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker Container</span>
 
-This repository contains Docker-based development environments for different .NET versions. Currently we have included .NET 8.0 in the sub-folder `NET-Core-8`, with support for additional .NET versions planned for future releases.
+<a id="Introduction"></a>
 
-## 🎯 What's Included
+## Introduction
 
-Each .NET version template typically contains:
+This repository contains Docker-based development environments for different .NET container environments. Currently we have only the latest **.NET 8.0** included (see sub-folder <span class="nje-cmd-inline-sm">NET-Core-8</span>) with support for additional .NET versions planned for future as needed.
+
+### 🎯 What's Included
+
+Each .NET development environment provides:
 
 - **.NET SDK** with all runtimes (console, web, desktop)
 - **Project templates:** Console, Web API, MVC, Blazor, gRPC, Tests, and more
@@ -19,7 +29,7 @@ Each .NET version template typically contains:
 - **Instant project creation** with pre-configured scripts
 - **Development tools** and utilities for streamlined workflows
 
-## 📁 Repository Structure
+### 📁 Repository Structure
 
 ```text
 NET-Dev-Template-Stack/
@@ -34,11 +44,17 @@ NET-Dev-Template-Stack/
 └── README.md                           # This file
 ```
 
-## ⚡ Quick Links
+<a id="Setup"></a>
 
-- 📚 **The index file for .NET 8.0:** [index](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)
-- 🚀 **Get coding in 5 minutes with .NET 8.0:** [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#appendix-i-quick-start-guide)
-- 📚 **Complete Setup Guide for .NET 8.0:** [Setup Documentation](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup)
+## Setup
+
+For setup, choose between the quick setup and the full setup instructions.
+
+- **🚀 Quick Links**  
+  <span class="nje-indent1">Get coding in 5 minutes with .NET 8.0: [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#appendix-i-quick-start-guide)
+  </span>
+- **📚 Full Setup**  
+  <span class="nje-indent1">Complete Setup Guide for .NET 8.0: [Setup Documentation](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup) </span>
 
 <span style="color: #6d757dff; font-size: 10px; font-style: italic;"> <br>
 This file is part of: **Net-Core-Template Stack**
