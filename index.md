@@ -11,7 +11,7 @@ TableCont:
 --- 
 <br>
 
-# .NET Development Container <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker Container</span>
+# .NET Development Containers <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker Container</span>
 
 <a id="Introduction"></a>
 
@@ -24,10 +24,9 @@ This repository contains Docker-based development environments for different .NE
 Each .NET development environment provides:
 
 - **.NET SDK** with all runtimes (console, web, desktop)
-- **Project templates:** Console, Web API, MVC, Blazor, gRPC, Tests, and more
+- **Project templates generation scripts:** Console, Web API, MVC, Blazor, gRPC, Tests, and more
 - **Cross-platform development** (Windows ↔ Linux containers)
-- **Instant project creation** with pre-configured scripts
-- **Development tools** and utilities for streamlined workflows
+- **Development tools** and utilities for streamlined workflows, including Visual Studio code task and launch files
 
 ### 📁 Repository Structure
 
@@ -48,7 +47,7 @@ NET-Dev-Template-Stack/
 
 ## Setup
 
-For setup, choose between the quick setup and the full setup instructions.
+This refers to the .NET 8.o development container, the only .Net Container Currently. To setup, choose between the quick setup and the full setup instructions.
 
 - **🚀 Quick Links**  
   <span class="nje-indent1">Get coding in 5 minutes with .NET 8.0: [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#appendix-i-quick-start-guide)

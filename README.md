@@ -41,7 +41,7 @@ For setup, choose between the quick setup and the full setup instructions.
 <br>
 <p align="center">
   <a href="https://nicojane.github.io/Docker-Template-Stacks-Home/">
-    <img src="assets/images/DTSfooter.svg" alt="WSL Template Stacks" width="400" />
+    <img src="assets/images/DTSfooter.svg" alt="DTS Template Stacks" width="400" />
   </a>
 </p>
 
