@@ -49,4 +49,4 @@ For setup, choose between the quick setup and the full setup instructions.
 Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.</i>
 </sub>
 
-<center>─── ✦ ───</center> 
+<p align="center">─── ✦ ───</p>
