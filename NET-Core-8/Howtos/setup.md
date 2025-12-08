@@ -2,28 +2,32 @@
 layout: default_c
 RefPages:
  - Setup
+
+TableCont:
+ - Setup
+ - Create\use .NET container
+ - Troubleshooting
+ - Create the Sample Apps
+ - Quick install
+
 --- 
-
 <br>
-# .NET 8 Development Container Setup Guide
 
-> **🚀 In a hurry?** Jump to the [Quick Start Guide](#appendix-i-quick-start-guide) for immediate setup.
+# NET 8.0 Development Container <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker Setup & Usage Guide</span>
 
-## Table of Contents
-
-- [Setup](#setup)
-  - [Create and Use a .NET Container](#create-and-use-a-net-container)
-  - [Troubleshooting](#troubleshooting)
-  - [Creating Applications with CLI](#creating-applications-in-the-container-with-cli)
-- [Quick Start Guide](#appendix-i-quick-start-guide)
+<a id="Setup"></a>
 
 ## Setup
+
+<span style="color: #ea7602ff; font-size: 1.0em; font-style: italic;"> *Document is: Work In Progress</span>
+
+<a id="Create\use .NET container"></a>
 
 ### Create and Use a .NET Container
 
 To start the container in Docker Desktop, execute this command from the **`.\Net8-Service>`** directory:
 
-### Prerequisites
+#### Prerequisites
 
 1. **External network**
    Because this service uses an **external network**, you must ensure that the network is created **before** you create the container. All commands can be found in the `.env` file. The command to create the network is displayed below for convenience:
@@ -44,10 +48,11 @@ To start the container in Docker Desktop, execute this command from the **`.\Net
 3. **To start a CLI in this container:**
    <pre class="nje-cmd-one-line"> docker exec -it net8-service-net-core8-img-1 bash </pre>
 
+<a id="Troubleshooting"></a>
 
-## Troubleshooting
+### Troubleshooting
 
-### Container Issues
+#### Container Issues
 
 When the container is not starting or exiting unexpectedly, check the logs:
 
@@ -56,9 +61,9 @@ When the container is not starting or exiting unexpectedly, check the logs:
 docker ps           # Only returns running containers!
 docker ps -a        # Includes stopped containers! (-a => all)
 docker logs [ID]    # See what's going on
-</pre>	
+</pre>
 
-### Verify .NET Installation
+#### Verify .NET Installation
 
 To check which version of .NET is available, start a CLI in the container and run these commands:
 
@@ -72,9 +77,11 @@ dotnet --list-sdks
 dotnet --list-runtimes
 </pre>
 
-## Creating Applications in the Container with CLI
+<a id="Create the Sample Apps"></a>
 
-### Quick Start with Script Templates
+### Creating Applications in the Container with CLI
+
+#### Quick Start with Script Templates
 
 This container includes **11 ready-to-use script templates** for creating different types of .NET 8 applications. When you start the container CLI, you automatically enter the **host mount workspace** (`/hostmount/workspace`).
 
@@ -85,7 +92,7 @@ cd scripts                   # Navigate to script templates
 ls -la                       # List all available scripts
 </pre>
 
-### Available Script Templates
+#### Available Script Templates
 
 |**Script** | **Creates** | **Use For** |
 |:--------|:---------|:---------|
@@ -101,7 +108,7 @@ ls -la                       # List all available scripts
 | `create_classlib.sh` | Class Library (DLL) | Reusable code, NuGet packages |
 | `create_xunit.sh` | Unit Test Project | Testing your applications |
 
-### Using the Scripts
+#### Using the Scripts
 
 **Basic Usage:**
 
@@ -132,7 +139,7 @@ cd scripts
 cp -r ./my-app /cworkspace/
 </pre>
 
-### Manual Application Creation
+#### Manual Application Creation
 
 If your preferred template isn't scripted, use the official .NET CLI:
 
@@ -192,6 +199,8 @@ http://localhost:5000/
 
 <br>
 
+
+<a id="Quick install"></a>
 ## Appendix I Quick Start Guide
 
 **🚀 Get up and running with .NET 8 development in under 5 minutes!**
