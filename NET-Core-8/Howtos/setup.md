@@ -8,6 +8,7 @@ TableCont:
  - Create\use .NET container
  - Troubleshooting
  - Create the Sample Apps
+ - Use with VS Code
  - Quick install
 
 --- 
@@ -196,6 +197,13 @@ http://localhost:5000/
 ><pre class="nje-cmd-one-line">http://[found_IP]:5000</pre>
 
 ---
+
+<a id="Use with VS Code"></a>
+
+## Build Apps with Visual Studio Code
+
+<span style="color: #ea7602ff; font-size: 1.0em; font-style: italic;"> *Work In Progress</span>
+
 
 <br>
 
