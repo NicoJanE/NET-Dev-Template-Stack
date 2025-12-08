@@ -1,43 +1,40 @@
-# .NET 8 Development Container
+# NET 8.0 Development Container <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker Container</span>
 
-A complete .NET 8 development environment with **11 ready-to-use project templates** for rapid application development.
+## Introduction
 
-## ⚡ Quick Start
+The  **.NET 8 development environment** Docker environment with **11 ready-to-use project templates** for rapid application development within Docker and Visual Studio Code
 
-🚀 **Get coding in 5 minutes:** [Quick Start Guide](./Howtos/setup.md#appendix-i-quick-start-guide)
+| <div align="left" style="width:250px;">📚 <sub>Direct Link</sub> <br><sub> &nbsp; &nbsp; &nbsp; 🔶 [To the Main .NET 8.0 page](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)</sub></div> |
+|------------------------|
 
-## 🎯 What's Included
+### 🎯 What's Included
 
 - **.NET 8 SDK** with all runtimes (console, web, desktop)
 - **11 project templates:** Console, Web API, MVC, Blazor, gRPC, Tests, and more
 - **Cross-platform development** (Windows ↔ Linux containers)
-- **Instant project creation** with pre-configured scripts
+- **Development tools** and utilities for streamlined workflows, including Visual Studio code task and launch files
 
-## 📚 Documentation
+### Direct Setup links
 
-- **Complete Setup Guide:** [setup.md](./Howtos/setup.md)
-- **All Templates Overview:** [Available Scripts](./Howtos/setup.md#available-script-templates)
+Setup for the .NET 8.0 development container. To setup, choose between the quick setup and the full setup instructions.
 
-## 🛠️ Example Usage
-
-```bash
-docker exec -it net8-service-net-core8-img-1 bash
-cd scripts
-./create_webapi.sh my-api        # Create REST API
-./create_blazorwasm.sh my-spa    # Create SPA
-./create_mvc.sh my-website       # Create web app
-```
+- **🚀 Quick Links**  
+  <span class="nje-indent1">Get coding in 5 minutes with .NET 8.0: [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#appendix-i-quick-start-guide)
+  </span>
+- **📚 Full Setup**  
+  <span class="nje-indent1">Complete Setup Guide for .NET 8.0: [Setup Documentation](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup) </span>
+- **📚 .NET scripts**  
+  <span class="nje-indent1">Overview of the available .NET 8.0 scripts:  [Available Scripts](./Howtos/setup.md#available-script-templates) </span>
 
 <br>
 <p align="center">
-  <a href="http/s://nicojane.github.io/Docker-Template-Stacks-Home/">
+  <a href="https://nicojane.github.io/Docker-Template-Stacks-Home/">
     <img src="../assets/images/DTSfooter.svg" alt="WSL Template Stacks" width="400" />
   </a>
 </p>
 
-<small><small><small>
-This file is part of: **Net-Core-Template Stack**
-Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
-</small></small></small>
+<sub> <i>This file is part of: **Net-Core-Template Stack**
+Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.</i>
+</sub>
 
-<center>─── ✦ ───</center>
+<p align="center">─── ✦ ───</p>
