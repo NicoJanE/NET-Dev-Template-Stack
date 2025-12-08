@@ -30,13 +30,14 @@ NET-Dev-Template-Stack/
 
 ## Setup
 
-For setup, choose between the quick setup and the full setup instructions.
+This refers to the .NET 8.0 development container, the only .Net Container Currently. To setup refer to this page:
 
-- **🚀 Quick Links**  
-  <span class="nje-indent1">Get coding in 5 minutes with .NET 8.0: [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#appendix-i-quick-start-guide)
+- **🚀 .NET core 8.0**  
+  <span class="nje-indent1">Installation  instructions for the [.NET 8.0 container service](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)
   </span>
-- **📚 Full Setup**  
-  <span class="nje-indent1">Complete Setup Guide for .NET 8.0: [Setup Documentation](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup) </span>
+- **🚀 Site page**  
+  <span class="nje-indent1">Main page [this site ](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)
+  </span>
 
 <br>
 <p align="center">
