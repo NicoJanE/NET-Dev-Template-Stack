@@ -36,7 +36,7 @@ This refers to the .NET 8.0 development container, the only .Net Container Curre
   <span class="nje-indent1">Installation  instructions for the [.NET 8.0 container service](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)
   </span>
 - **🚀 Site page**  
-  <span class="nje-indent1">Main page [this site ](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/)
+  <span class="nje-indent1">Main page [this site](https://nicojane.github.io/NET-Dev-Template-Stack/)
   </span>
 
 <br>
