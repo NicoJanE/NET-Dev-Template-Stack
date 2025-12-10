@@ -22,7 +22,7 @@ Setup for the .NET 8.0 development container. To setup, choose between the quick
   <span class="nje-indent1">Get coding in 5 minutes with .NET 8.0: [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#appendix-i-quick-start-guide)
   </span>
 - **📚 Full Setup**  
-  <span class="nje-indent1">Complete Setup Guide for .NET 8.0: [Setup Documentation](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup) </span>
+  <span class="nje-indent1">Complete Setup Guide for .NET 8.0: [Setup Documentation](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup) <span style="color: #0dbf60ff; font-size: 1.0em; "> (Recommended) </span> </span>
 - **📚 .NET scripts**  
   <span class="nje-indent1">Overview of the available .NET 8.0 scripts:  [Available Scripts](./Howtos/setup.md#available-script-templates) </span>
 
