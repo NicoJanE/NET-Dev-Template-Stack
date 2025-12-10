@@ -32,7 +32,7 @@ The  **.NET 8 development environment** Docker environment with **11 ready-to-us
 Setup for the .NET 8.0 development container. To setup, choose between the quick setup and the full setup instructions.
 
 - **🚀 Quick Links**  
-  <span class="nje-indent1">Get coding in 5 minutes with .NET 8.0: [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#appendix-i-quick-start-guide)
+  <span class="nje-indent1">Get coding in 5 minutes with .NET 8.0: [Quick Start Guide](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup#Quick install)
   </span>
 - **📚 Full Setup**  
   <span class="nje-indent1">Complete Setup Guide for .NET 8.0: [Setup Documentation](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup)  <span style="color: #0dbf60ff; font-size: 1.0em; "> (Recommended) </span></span>
