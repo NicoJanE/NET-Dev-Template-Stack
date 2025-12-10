@@ -11,7 +11,7 @@ TableCont:
  - Using Scripts to create Sample Apps
  - Creating Applications with .NET
  - Projects in VS Code
- - ^Configure & Use VSC
+ - ^Configure VS Code
  - VS Code Usage
  - Quick install
 
@@ -279,9 +279,9 @@ This guide shows how to use Visual Studio Code to develop, build, and debug your
 
 ---
 
-<a id="Configure & Use VSC"></a>
+<a id="Configure VS Code"></a>
 
-### Configure and use VS Code
+### Configure Visual Code
 
 This section describes how to configure Visual Studio Code running on the host to build and debug your application in Docker or Windows.
 It starts with a few instructions for setting up the VS Code ***Task.json*** and ***Launch.json*** items, then explains the build/watch and debug actions in VS Code. 
