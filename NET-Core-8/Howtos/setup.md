@@ -283,8 +283,7 @@ This guide shows how to use Visual Studio Code to develop, build, and debug your
 
 ### Configure Visual Code
 
-This section describes how to configure Visual Studio Code running on the host to build and debug your application in Docker or Windows.
-It starts with a few instructions for setting up the VS Code ***Task.json*** and ***Launch.json*** items, then explains the build/watch and debug actions in VS Code. 
+This section describes how to configure Visual Studio Code running on the host to build and debug your application in Docker or Windows by setting up the VS Code ***Task.json*** and ***Launch.json*** items.
 
 #### Prerequisites
 
