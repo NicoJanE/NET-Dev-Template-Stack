@@ -2,7 +2,7 @@
 layout: default_c
 
 RefPages:
-  - Setup
+  - NET-Core-8/Howtos/Setup
 
 TableCont:
   - Introduction
