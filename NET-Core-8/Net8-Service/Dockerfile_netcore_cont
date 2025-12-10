@@ -46,8 +46,9 @@ exec "$@"' > /entrypoint.sh && chmod +x /entrypoint.sh
 # 1.5 Set working directory to the bind mount host  for subsequent commands
 WORKDIR /hostmount/workspace
 
-# 1.6 Default .NET port
+# 1.6 Default .NET ports
 EXPOSE 5000
+EXPOSE 5197
 
 # 1.7 Use entrypoint to set up navigation helpers (see also 1.3)
 ENTRYPOINT ["/entrypoint.sh"]

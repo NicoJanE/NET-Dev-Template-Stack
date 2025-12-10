@@ -1,0 +1,87 @@
+// template_launch.mvc.json
+{
+  "version": "0.2.0",
+  "configurations": [
+
+    // ---------------------------------------------------
+    // Docker Debug Launcher (ASP.NET MVC)
+    // ---------------------------------------------------
+    {
+      "name": "Launch MVC in Docker",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build (Docker)",
+      "program": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "net8-service-net-core8-img-1",                                     // Container ID
+        "dotnet",
+        "/hostmount/workspace/your-app/bin/Debug/net8.0/your-app.dll"       // 1. UPDATE the Directory and .dll name
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+
+      "env": {
+        "ASPNETCORE_URLS": "http://0.0.0.0:5000",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "http://localhost:5000"
+      },
+
+      "console": "internalConsole",
+
+      "pipeTransport": {
+        "pipeCwd": "${workspaceFolder}",
+        "pipeProgram": "docker",
+        "pipeArgs": [
+          "exec",
+          "-i",
+          "net8-service-net-core8-img-1"
+        ],
+        "debuggerPath": "/usr/share/dotnet/dotnet",
+        "quoteArgs": false
+      }
+    },
+
+    // ---------------------------------------------------
+    // Windows Local Debug Launcher (ASP.NET MVC)
+    // ---------------------------------------------------
+    {
+      "name": ".NET Core Launch (Windows MVC)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/bin/Debug/net8.0/your-app.dll",   // 1. UPDATE the .dll name
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+
+      "env": {
+        "ASPNETCORE_URLS": "http://localhost:5000",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "http://localhost:5000"
+      }
+    },
+
+    // ---------------------------------------------------
+    // Generic Attach. 
+    //    Debug an already running application (Docker / Windows / VM)
+    // ---------------------------------------------------
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}

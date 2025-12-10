@@ -1,0 +1,54 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+
+    // ---------------------------------------------------
+    //  Docker Debug Launcher (Blazor WASM)
+    // ---------------------------------------------------
+    {
+      "name": "Launch Blazor WASM in Docker",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build (Docker)",
+      "program": "docker",
+      "args": [
+        "exec", "-i", "net8-service-net-core8-img-1",                                   // Container ID
+        "dotnet", "run",
+        "--project", "/hostmount/workspace/your-blazorwasm/your-blazorwasm.csproj"     // 1. UPDATE the Directory and project name
+      ],
+      "env": {
+        "ASPNETCORE_URLS": "http://0.0.0.0:5000"
+      },
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "http://localhost:5000"
+      }
+    },
+
+    // ---------------------------------------------------
+    // Windows Local Debug Launcher (Blazor / Web)
+    // ---------------------------------------------------
+    {
+      "name": ".NET Core Launch (Windows Web)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/bin/Debug/net8.0/your-blazorwasm.dll",  // 1. UPDATE the .dll name
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+
+    // ---------------------------------------------------
+    // Generic Attach. 
+    //    Debug an already running application (alternative)
+    // ---------------------------------------------------
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}

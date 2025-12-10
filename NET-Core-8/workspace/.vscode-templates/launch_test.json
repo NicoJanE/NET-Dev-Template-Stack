@@ -1,0 +1,71 @@
+// template_launch.tests.json
+{
+  "version": "0.2.0",
+  "configurations": [
+
+    // ---------------------------------------------------
+    // Docker Test Runner
+    // ---------------------------------------------------
+    {
+      "name": "Run Tests in Docker",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build (Docker)",
+      "program": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "net8-service-net-core8-img-1",                                      // Container ID
+        "dotnet",
+        "test",
+        "/hostmount/workspace/your-tests/your-tests.csproj",                 // 1. UPDATE the Directory and project name
+        "--logger:console;verbosity=detailed"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "stopAtEntry": false,
+
+      "pipeTransport": {
+        "pipeCwd": "${workspaceFolder}",
+        "pipeProgram": "docker",
+        "pipeArgs": [
+          "exec",
+          "-i",
+          "net8-service-net-core8-img-1"
+        ],
+        "debuggerPath": "/usr/share/dotnet/dotnet",
+        "quoteArgs": false
+      }
+    },
+
+    // ---------------------------------------------------
+    // Windows Local Test Runner
+    // ---------------------------------------------------
+    {
+      "name": ".NET Core Run Tests (Windows)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/your-tests/your-tests.csproj",                   // 1. UPDATE the Directory and project name
+        "--logger:console;verbosity=detailed"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "stopAtEntry": false
+    },
+
+    // ---------------------------------------------------
+    // Generic Attach (for debugging a hanging test host)
+    // ---------------------------------------------------
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}

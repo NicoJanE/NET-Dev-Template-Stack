@@ -1,0 +1,139 @@
+{
+  "version": "2.0.0",
+
+  // Docker Tasks
+  "tasks": [
+    {
+      "label": "build (Docker)",
+      "command": "docker",
+      "type": "shell",
+      "args": [
+        "exec",
+        "net8-service-net-core8-img-1",                         // Container ID
+        "dotnet",
+        "build",
+        "/hostmount/workspace/your-app/your-app.csproj",        // 1. UPDATE the Directory and project
+        "/property:GenerateFullPaths=true",
+        "/consoleLoggerParameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "options": {
+         "env": {
+            "ASPNETCORE_ENVIRONMENT": "Development",          // Use develoment Mode
+            "ASPNETCORE_URLS":"http://0.0.0.0:5000"           // Automatic  listen to :0.0.0.0:500
+          }
+        }
+    },
+    {
+      "label": "publish (Docker)",
+      "command": "docker",
+      "type": "shell",
+      "args": [
+        "exec",
+        "net8-service-net-core8-img-1",                         // Container ID
+        "dotnet",
+        "publish",
+        "/hostmount/workspace/your-app/your-app.csproj",        // 2. UPDATE the Directory and project
+        "/property:GenerateFullPaths=true",
+        "/consoleLoggerParameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile",
+      "options": {
+         "env": {
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
+          }
+        }
+    },
+    {
+      "label": "watch (Docker)",
+      "command": "docker",
+      "type": "shell",
+      "args": [
+        "exec",
+        "net8-service-net-core8-img-1",                         // Container ID
+        "dotnet",
+        "watch",                                                // Note requires "dotnet watch" which is pat od SDK
+        "--no-launch-profile",                                  // Used for  ??
+        "run",                                                  
+        "--project",
+        "/hostmount/workspace/your-app/your-app.csproj"         // 3. UPDATE the Directory and Project
+      ],
+      "problemMatcher": "$msCompile",
+      "isBackground": true,
+      "options": {
+         "env": {
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
+          }
+        }      
+    },
+
+    // Windows Tasks
+    {
+        "label": "build (Windows)",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+          "build",
+          "${workspaceFolder}/your-app/your-app.csproj",        // 1. UPDATE the Directory and project
+          "/property:GenerateFullPaths=true",
+          "/consoleLoggerParameters:NoSummary"
+        ],
+        "problemMatcher": "$msCompile",
+        "group": {
+          "kind": "build",
+          "isDefault": false,
+        },
+        "options": {
+            "env": {
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
+            }
+          }
+      },
+      {
+        "label": "publish (Window)",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+          "publish",
+          "${workspaceFolder}/your-app/your-app.csproj",        // 2. UPDATE the Directory and project
+          "/property:GenerateFullPaths=true",
+          "/consoleLoggerParameters:NoSummary"
+        ],
+        "problemMatcher": "$msCompile",
+        "options": {
+          "env": {
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
+          }
+        }
+      },
+      {
+        "label": "watch (Windows)",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+          "watch",
+          "run",
+           "--no-launch-profile", 
+          "--project",
+          "${workspaceFolder}/your-app/your-app.csproj"         // 3. UPDATE the Directory and project
+        ],
+        "problemMatcher": "$msCompile",
+        "isBackground": true,
+         "options": {
+           "env": {
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
+          }
+        }
+      }
+
+  ]
+}

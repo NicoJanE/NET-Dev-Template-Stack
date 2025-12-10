@@ -1,0 +1,21 @@
+// NOT really needed!
+
+// Launch_classlib.json
+// NOTE: Class libraries cannot be launched directly as they have no entry point.
+// This configuration is provided for consistency but will fail if executed.
+// To test your library, create a separate console or test project that references it.
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Build Only (Class Library)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build (Docker)",
+      "program": "echo",
+      "args": ["Class libraries cannot be executed. Build successful."],
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole"
+    }
+  ]
+}
