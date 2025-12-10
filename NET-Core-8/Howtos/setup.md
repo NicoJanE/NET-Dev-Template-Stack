@@ -309,7 +309,7 @@ mkdir .vscode
 </pre>
 <div class="nje-br2"> </div>
 **2. Copy template `tasks.json`**  
-Copy the template file <span class="nje-cmd-inline-sm">.\workspace\.vscode-templates\tasks.json</span> to the <span class="nje-cmd-inline-sm">.vscode</span> directory created in step 1 (<span class="nje-cmd-inline-sm">.\workspace\your-app\.vscode</span>)
+Copy the template file <span class="nje-cmd-inline-sm">.\workspace\.vscode-templates\tasks.json</span> to the <span class="nje-cmd-inline-sm">.vscode</span> directory created in the previous step  (<span class="nje-cmd-inline-sm">.\workspace\your-app\\.vscode</span>)
 
 **3. Replace `your-app` with your actual application name in all paths in the copied `tasks.json` file.**
 
