@@ -1,8 +1,7 @@
 ---
 layout: default_c
 
-RefPages:
-  - 
+RefPages: 
   
 TableCont:
   - Introduction
