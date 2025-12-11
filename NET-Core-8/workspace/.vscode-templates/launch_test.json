@@ -5,18 +5,15 @@
 
     // ---------------------------------------------------
     // Docker Test Runner
+    // Use when VS Code is ATTACHED to the running container
     // ---------------------------------------------------
     {
       "name": "Run Tests in Docker",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build (Docker)",
-      "program": "docker",
+      "program": "dotnet",
       "args": [
-        "exec",
-        "-i",
-        "net8-service-net-core8-img-1",                                      // Container ID
-        "dotnet",
         "test",
         "/hostmount/workspace/your-tests/your-tests.csproj",                 // 1. UPDATE the Directory and project name
         "--logger:console;verbosity=detailed"
@@ -24,19 +21,7 @@
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "stopAtEntry": false,
-
-      "pipeTransport": {
-        "pipeCwd": "${workspaceFolder}",
-        "pipeProgram": "docker",
-        "pipeArgs": [
-          "exec",
-          "-i",
-          "net8-service-net-core8-img-1"
-        ],
-        "debuggerPath": "/usr/share/dotnet/dotnet",
-        "quoteArgs": false
-      }
+      "stopAtEntry": false
     },
 
     // ---------------------------------------------------

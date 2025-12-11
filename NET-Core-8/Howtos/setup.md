@@ -35,9 +35,12 @@ This guide walks you through setting up a Docker container with a **.NET 8.0 dev
   <span class="nje-indent1"> - Repository is cloned to local machine </span>  
   <span class="nje-indent1"> - External Docker network (configured in ***.env*** file) </span>
 
-<a id="Setup"></a>
+<span style="color: #02b656ff; font-size: 1.0em;">Last successful tested: </span> <span style="color: #696360ff; font-size: 0.8em;"> 12 Dec 2025, using script mvc </span>
 
 ---
+<a id="Setup"></a>
+
+
 
 ## Setup
 
@@ -164,10 +167,15 @@ cd scripts
 
 **Run the App:**
 To run a Web based app:
-<pre class="nje-cmd-one-line-sm-indent1" style="margin-top:-20px;">
-dotnet run --urls "http://0.0.0.0:5000" &
-</pre>
 
+  <pre class="nje-cmd-multi-line-sm" style="margin-top:-20px;">
+  cd /hostmount/workspace/your-app  
+  # for example
+  cd /hostmount/workspace/app-mvc
+
+  # Then run it:
+  dotnet run --urls "http://0.0.0.0:5000" &
+  </pre>
 
 <div class="nje-br3"> </div>
 <details class="nje-back-box">
@@ -326,6 +334,10 @@ copy .\workspace\.vscode-templates\launch_console.json .\workspace\your-app\.vsc
 
 **5. Replace `your-app` with your actual application name in all paths in the copied `launch.json` file.**
 
+
+
+
+
 <div class="nje-br1"> </div>
 
 ---
@@ -337,9 +349,27 @@ copy .\workspace\.vscode-templates\launch_console.json .\workspace\your-app\.vsc
 When you have set up the ***Task*** and ***Launch*** configuration in the previous section, you can build and/or debug your application. In the Docker or Windows environment, use one of the ***Task*** or ***Launch*** profiles defined in the table below.
 Our <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span> build method uses the Docker container SDK and tools.
 
-<div class="nje-indent1">    
-  <span class="nje-colored-block" style="--nje-bgcolor: #b78f93ff;; --nje-textcolor: white;margin-top:18px;font-size: 1em; ">To Build (Ctrl+Shift+B) </span>  
-  <span class="nje-indent1"> **Terminal** → **Run Build Task...** → Select [**your build task**] </span>
+<span class="nje-colored-block" style="--nje-bgcolor: #b78f93ff;; --nje-textcolor: white;margin-top:5px;font-size: 1em; margin-bottom:-25px ">Open Project in VS Code</span>  
+
+1. To develop and build in the Docker container <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span>
+   - Open VS Code.
+   - CTRL-SHIFT-P
+   - Type: **Dev Containers:Attach to running container..**
+     - Select our container: **net8-service-net-core8-img-1**
+     - Open the container folder: ***/hostmount/workspace/your-app*** (e.g., ***/hostmount/workspace/app-mvc***)
+
+1. To develop and build within Windows:
+   - Open VS Code.
+   - Open the Windows folder: ***.\workspace\your-app*** (e.g., ***.\workspace\app-mvc***)
+  
+1. For both counts
+    - Make sure the **required** VS Code extensions are installed in the container (see ***remark*** section  below )
+    - Use the Windows Task and Launchers defined in the table in combination with these instructions
+
+<div class="nje-br2"> </div>
+
+  <span class="nje-colored-block" style="--nje-bgcolor: #b78f93ff;; --nje-textcolor: white;margin-top:4px;font-size: 1em;"> To Build (Ctrl+Shift+B) </span>  
+    <span class="nje-indent1">  **Terminal** → **Run Build Task...** → Select [**your build task**] </span>
 
   <span class="nje-colored-block" style="--nje-bgcolor: #b78f93ff;; --nje-textcolor: white;margin-top:4px;font-size: 1em;"> To Debug (F5) </span>  
     <span class="nje-indent1"> **Run** → **Start Debugging** </span>
@@ -347,8 +377,7 @@ Our <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span> build
   <span class="nje-colored-block" style="--nje-bgcolor: #b78f93ff;; --nje-textcolor: white;margin-top:4px;font-size: 1em;"> To Watch </span>  
     <span class="nje-indent1"> **Terminal** → **Run Task...** → Select [**your watch task**] </span>
 
-</div>
-<div class="nje-br2"> </div>
+<div class="nje-br4"> </div>
 
 <div class="nje-table-vct">
   <span class="nje-header-row">
@@ -389,7 +418,27 @@ Our <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span> build
 </div>
 <div class="nje-br2"> </div>
 
-<details class="nje-remark-box">
+<details class="nje-remark-box" style="margin-left:0px;">
+  <summary>VS Code Container extensions
+  </summary>
+  The following extensions are required or recommend
+
+  | Container Extension | For |
+  |:-------------------|:----|
+  | `ms-dotnettools.csharp` | C# language support, IntelliSense, debugging <span style="color: #e03f05ff; font-size: 1.0em;"> required </span> |
+  | `ms-dotnettools.csdevkit` | C# Dev Kit for enhanced development experience <span style="color: #e03f05ff; font-size: 1.0em;"> required </span> |
+  | `ms-dotnettools.vscodeintellicode-csharp` | AI-assisted IntelliSense |
+  | `redhat.vscode-yaml` | Editing YAML files (Docker Compose, CI/CD configs) |
+  | `ms-azuretools.vscode-docker` | Docker file support |
+  | `formulahendry.dotnet-test-explorer` | Test explorer for .NET |
+  | `jchannon.csharpextensions` | C# extensions for creating classes/interfaces |
+  | `kreativ-software.csharpextensions` | Additional C# productivity features |
+
+</details>
+
+<div class="nje-br4"> </div>
+
+<details class="nje-remark-box" style="margin-left:0px;">
   <summary>Performance Tip, slow Docker builds?
   </summary>
    If builds are slow, copy your project to the container's local filesystem for better I/O performance:
@@ -403,6 +452,8 @@ Our <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span> build
 
 </details>
 <div class="nje-br2"> </div>
+
+---
 
 <br>
 <a id="Quick install"></a>

@@ -5,14 +5,11 @@
   "tasks": [
     {
       "label": "build (Docker)",
-      "command": "docker",
+      "command": "dotnet",
       "type": "shell",
       "args": [
-        "exec",
-        "net8-service-net-core8-img-1",                         // Container ID
-        "dotnet",
         "build",
-        "/hostmount/workspace/your-app/your-app.csproj",        // 1. UPDATE the Directory and project
+        "/hostmount/workspace/your-app/your-app.csproj",       // 1. UPDATE the Directory and project
         "/property:GenerateFullPaths=true",
         "/consoleLoggerParameters:NoSummary"
       ],
@@ -30,12 +27,9 @@
     },
     {
       "label": "publish (Docker)",
-      "command": "docker",
+      "command": "dotnet",
       "type": "shell",
       "args": [
-        "exec",
-        "net8-service-net-core8-img-1",                         // Container ID
-        "dotnet",
         "publish",
         "/hostmount/workspace/your-app/your-app.csproj",        // 2. UPDATE the Directory and project
         "/property:GenerateFullPaths=true",
@@ -51,12 +45,9 @@
     },
     {
       "label": "watch (Docker)",
-      "command": "docker",
+      "command": "dotnet",
       "type": "shell",
       "args": [
-        "exec",
-        "net8-service-net-core8-img-1",                         // Container ID
-        "dotnet",
         "watch",                                                // Note requires "dotnet watch" which is pat od SDK
         "--no-launch-profile",                                  // Used for  ??
         "run",                                                  
@@ -68,7 +59,8 @@
       "options": {
          "env": {
            "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000",           // Automatic  listen to :0.0.0.0:500
+           "DOTNET_USE_POLLING_FILE_WATCHER": "true"          // Enable polling for Docker mounted volumes
           }
         }      
     },

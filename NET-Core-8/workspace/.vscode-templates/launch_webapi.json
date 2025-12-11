@@ -5,18 +5,15 @@
 
     // ---------------------------------------------------
     // Docker Debug Launcher (Web API)
+    // Use when VS Code is ATTACHED to the running container
     // ---------------------------------------------------
     {
       "name": "Launch Web API in Docker",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build (Docker)",
-      "program": "docker",
+      "program": "dotnet",
       "args": [
-        "exec",
-        "-i",
-        "net8-service-net-core8-img-1",                                     // Container ID
-        "dotnet",
         "/hostmount/workspace/your-app/bin/Debug/net8.0/your-app.dll"       // 1. UPDATE the Directory and .dll name
       ],
       "cwd": "${workspaceFolder}",
@@ -29,28 +26,16 @@
 
       "serverReadyAction": {                                              // Can be used for Swagger
         "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
-        "uriFormat": "http://localhost:5000"
+        "pattern": "\\bNow listening on:\\s+https?://[^:]+:(\\d+)",
+        "uriFormat": "http://localhost:%s/swagger"
       },
 
-      "console": "internalConsole",
-
-      "pipeTransport": {
-        "pipeCwd": "${workspaceFolder}",
-        "pipeProgram": "docker",
-        "pipeArgs": [
-          "exec",
-          "-i",
-          "net8-service-net-core8-img-1"
-        ],
-        "debuggerPath": "/usr/share/dotnet/dotnet",
-        "quoteArgs": false
-      }
+      "console": "internalConsole"
     },
 
     // ---------------------------------------------------
     // Windows Local Debug Launcher (Web API)
-    // ---------------------------------------------------=
+    // ---------------------------------------------------
     {
       "name": ".NET Core Launch (Windows Web API)",
       "type": "coreclr",
@@ -69,8 +54,8 @@
 
       "serverReadyAction": {
         "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
-        "uriFormat": "http://localhost:5000"
+        "pattern": "\\bNow listening on:\\s+https?://[^:]+:(\\d+)",
+        "uriFormat": "http://localhost:%s/swagger"
       }
     },
 

@@ -5,18 +5,15 @@
 
     // ---------------------------------------------------
     // Docker Debug Launcher (gRPC Service)
+    // Use when VS Code is ATTACHED to the running container
     // ---------------------------------------------------
     {
       "name": "Launch gRPC in Docker",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build (Docker)",
-      "program": "docker",
+      "program": "dotnet",
       "args": [
-        "exec",
-        "-i",
-        "net8-service-net-core8-img-1",                                     // Container ID
-        "dotnet",
         "/hostmount/workspace/your-app/bin/Debug/net8.0/your-app.dll"       // 1. UPDATE the Directory and .dll name
       ],
       "cwd": "${workspaceFolder}",
@@ -27,19 +24,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
 
-      "console": "internalConsole",
-
-      "pipeTransport": {
-        "pipeCwd": "${workspaceFolder}",
-        "pipeProgram": "docker",
-        "pipeArgs": [
-          "exec",
-          "-i",
-          "net8-service-net-core8-img-1"
-        ],
-        "debuggerPath": "/usr/share/dotnet/dotnet",
-        "quoteArgs": false
-      }
+      "console": "internalConsole"
     },
 
     // ---------------------------------------------------

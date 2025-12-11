@@ -4,26 +4,30 @@
 
     // ---------------------------------------------------
     //  Docker Debug Launcher (Blazor WASM)
+    // Use when VS Code is ATTACHED to the running container
     // ---------------------------------------------------
     {
       "name": "Launch Blazor WASM in Docker",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build (Docker)",
-      "program": "docker",
+      "program": "dotnet",
       "args": [
-        "exec", "-i", "net8-service-net-core8-img-1",                                   // Container ID
-        "dotnet", "run",
+        "run",
         "--project", "/hostmount/workspace/your-blazorwasm/your-blazorwasm.csproj"     // 1. UPDATE the Directory and project name
       ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
       "env": {
-        "ASPNETCORE_URLS": "http://0.0.0.0:5000"
+        "ASPNETCORE_URLS": "http://0.0.0.0:5000",
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "serverReadyAction": {
         "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
-        "uriFormat": "http://localhost:5000"
-      }
+        "pattern": "\\bNow listening on:\\s+https?://[^:]+:(\\d+)",
+        "uriFormat": "http://localhost:%s"
+      },
+      "console": "internalConsole"
     },
 
     // ---------------------------------------------------
@@ -38,7 +42,16 @@
       "args": [],
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",
-      "stopAtEntry": false
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_URLS": "http://localhost:5000",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+https?://[^:]+:(\\d+)",
+        "uriFormat": "http://localhost:%s"
+      }
     },
 
     // ---------------------------------------------------
