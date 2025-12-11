@@ -366,6 +366,7 @@ Our <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span> build
     - Make sure the **required** VS Code extensions are installed in the container (see ***remark*** section  below )
     - Use the Windows Task and Launchers defined in the table in combination with these instructions
 
+<div class="nje-indent2">
 <div class="nje-br2"> </div>
 
   <span class="nje-colored-block" style="--nje-bgcolor: #b78f93ff;; --nje-textcolor: white;margin-top:4px;font-size: 1em;"> To Build (Ctrl+Shift+B) </span>  
@@ -376,8 +377,10 @@ Our <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span> build
 
   <span class="nje-colored-block" style="--nje-bgcolor: #b78f93ff;; --nje-textcolor: white;margin-top:4px;font-size: 1em;"> To Watch </span>  
     <span class="nje-indent1"> **Terminal** → **Run Task...** → Select [**your watch task**] </span>
+</div>
 
-<div class="nje-br4"> </div>
+
+<div class="nje-br2"> </div>
 
 <div class="nje-table-vct">
   <span class="nje-header-row">
