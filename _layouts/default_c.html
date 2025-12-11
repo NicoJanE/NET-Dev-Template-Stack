@@ -78,9 +78,10 @@
 		 {% if page.TableCont and page.TableCont.size > 0 %}
 			<h3 class="sq" style="--font-style: bold;" >Content</h3>
 			<ul class="sq">
-				{% for RefPage in page.TableCont %}			  									
-					{% if RefPage contains "^" and RefPage | slice: 0, 1 == "^" %}
-						<li class="sm2" style="color:#748ca7" ><a style="color: #5a6b7c" href="{{ page.url | relative_url }}#{{ RefPage| remove_first: '^' }}">{{ RefPage  | remove_first: "^"  }}</a> </li>
+				{% for RefPage in page.TableCont %}
+  					{% assign first_char = RefPage | slice: 0, 1 %}
+  					{% if RefPage contains "^" and first_char == "^" %}
+						<li class="sm2" style="color:#748ca7" ><a style="color: #5a6b7c" href="{{ page.url | relative_url }}#{{ RefPage| remove_first: '^' }}">{{ RefPage  | remove_first: "^"  }}</a> </li>					
 					{% else %}	
 						<li class="sm1"><a href="{{ page.url | relative_url }}#{{ RefPage }}">{{ RefPage }}</a> </li>
 					{% endif %}	
