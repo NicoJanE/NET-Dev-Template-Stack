@@ -260,7 +260,7 @@ Use the found IP to access the web page on the host. Start your browser on the *
 
 ## Build Template Projects with Visual Studio Code
 
-This guide shows how to use Visual Studio Code to develop, build, and debug your .NET applications.
+This guide shows how to use Visual Studio Code to develop, build, and debug your .NET applications. Note that you'll need to configure VS Code settings for each application you create.
 
 **We support two build methods:**
 
@@ -302,11 +302,13 @@ This section describes how to configure Visual Studio Code running on the host t
 - For Windows:
   - .NET 8.0 SDK installed on Windows ([Download here](https://dotnet.microsoft.com/download/dotnet/8.0))
   - VS Code installed on Windows
-  - Application created in `.\workspace\your-app`
+  - You have created an application, using one of the script commands, and created it in: <span class="nje-cmd-inline-sm">.\workspace\your-app</span>
 
 #### Setup Tasks and Launch Configuration
 
 These instructions will set up the task and launch items for VS Code for Docker(Linux) and Windows.
+
+<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: This five-step configuration procedure must be completed for each application you create.</span>
 
 **1. Create `.vscode` folder in your project**  
 Navigate to your application directory on Windows and create the configuration folder:
@@ -322,7 +324,7 @@ Copy the template file <span class="nje-cmd-inline-sm">.\workspace\.vscode-templ
 **3. Replace `your-app` with your actual application name in all paths in the copied `tasks.json` file.**
 
 **4. Copy template `launch_[script].json`**  
-Choose the launch template that matches your application type, then copy it to the <span class="nje-cmd-inline-sm">.vscode</span> directory created in step 1 and rename it to <span class="nje-cmd-inline-sm">launch.json</span>. Use <span class="nje-cmd-inline-sm">launch_console.json</span> for Console, Worker, and Library projects or <span class="nje-cmd-inline-sm">launch_webapi.json</span> for Web Apps and APIs. See the [Available Script Templates](#available-script-templates) table above for the complete list of which script creates which application type.
+Choose the launch template that matches your application type, then copy it to the <span class="nje-cmd-inline-sm">.vscode</span> directory created in step 1 and rename it to <span class="nje-cmd-inline-sm">launch.json</span>. Use <span class="nje-cmd-inline-sm">launch_console.json</span> for Console, Worker, and Library projects or <span class="nje-cmd-inline-sm">launch_webapi.json</span> for Web Apps and APIs. See the [Available Script Templates](#available-script-templates) table for the complete list of which script creates which application type.
 
 <div class="nje-indent1">**Example copy command:**
 </div>
@@ -333,10 +335,6 @@ copy .\workspace\.vscode-templates\launch_console.json .\workspace\your-app\.vsc
  <div class="nje-br3"> </div> 
 
 **5. Replace `your-app` with your actual application name in all paths in the copied `launch.json` file.**
-
-
-
-
 
 <div class="nje-br1"> </div>
 
@@ -356,15 +354,15 @@ Our <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span> build
    - CTRL-SHIFT-P
    - Type: **Dev Containers:Attach to running container..**
      - Select our container: **net8-service-net-core8-img-1**
-     - Open the container folder: ***/hostmount/workspace/your-app*** (e.g., ***/hostmount/workspace/app-mvc***)
+     - Use the VS Code **File → Open Folder** command to open the container folder: ***/hostmount/workspace/your-app*** (e.g., ***/hostmount/workspace/app-mvc***)
 
 1. To develop and build within Windows:
    - Open VS Code.
    - Open the Windows folder: ***.\workspace\your-app*** (e.g., ***.\workspace\app-mvc***)
   
-1. For both counts
+1. For both methods
     - Make sure the **required** VS Code extensions are installed in the container (see ***remark*** section  below )
-    - Use the Windows Task and Launchers defined in the table in combination with these instructions
+    - Use the Docker\Windows Task and Launchers defined in the table in combination with these instructions
 
 <div class="nje-indent2">
 <div class="nje-br2"> </div>
@@ -424,7 +422,7 @@ Our <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span> build
 <details class="nje-remark-box" style="margin-left:0px;">
   <summary>VS Code Container extensions
   </summary>
-  The following extensions are required or recommend
+  The following extensions are required or recommended
 
   | Container Extension | For |
   |:-------------------|:----|
