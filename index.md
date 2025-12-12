@@ -1,8 +1,9 @@
 ---
 layout: default_c
 
-RefPages: 
-  
+RefPages:
+  - Setup
+
 TableCont:
   - Introduction
   - Setup
@@ -16,7 +17,7 @@ TableCont:
 
 ## Introduction
 
-This repository contains Docker-based development environments for different .NET container environments. Currently we have only the latest **.NET 8.0** included (see sub-folder <span class="nje-cmd-inline-sm">NET-Core-8</span>) with support for additional .NET versions planned for future as needed.
+This repository contains Docker-based development environments for .NET. Currently featuring **.NET 8.0** - see the [.NET 8.0 overview](https://nicojane.github.io/NET-Dev-Template-Stack//NET-Core-8/) or jump directly to [Setup and Usage](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup). Support for additional .NET versions planned as needed.
 
 ### 🎯 What's Included
 
@@ -44,7 +45,7 @@ NET-Dev-Template-Stack/
 
 <a id="Setup"></a>
 
-## Setup
+## Setup .NET 8 Core
 
 This refers to the .NET 8.0 development container, the only .Net Container currently. To setup refer to this page:
 
