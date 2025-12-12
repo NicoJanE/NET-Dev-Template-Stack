@@ -141,7 +141,7 @@ ls -la                       # List all available scripts
 | `create_blazorserver.sh` | Blazor Server App | Interactive web apps (server-side) |
 | `create_blazorwasm.sh` | Blazor WebAssembly | Client-side web apps (browser) |
 | `create_grpc.sh` | gRPC Service | High-performance service communication |
-| `create_worker.sh` | Background Service | Scheduled tasks, message processing |
+| `create_worker.sh` | Background Service |long running tasks, optional scheduled tasks (needs library) |
 | `create_classlib.sh` | Class Library (DLL) | Reusable code, NuGet packages |
 | `create_xunit.sh` | Unit Test Project | Testing your applications |
 
