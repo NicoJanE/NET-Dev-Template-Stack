@@ -72,6 +72,18 @@
     },
 
     // Windows Tasks
+    //      Remark 1
+    //    - The clean task is needed cause during loading of the project under Window, Windows tries to be handy and
+    //      create the default folders 'bin' and 'obj'. Because we use the custom 'bin_win' and 'obj_win' the previous 
+    //      bin and obj files Freak-up our build, so we ditch them here and make sure every Windows task depends on it!
+    {
+        "label": "clean-default-folders (Windows)",
+        "type": "shell",
+        "command": "if (Test-Path '${workspaceFolder}\\obj') { Remove-Item -Path '${workspaceFolder}\\obj' -Recurse -Force }; if (Test-Path '${workspaceFolder}\\bin') { Remove-Item -Path '${workspaceFolder}\\bin' -Recurse -Force }",
+        "presentation": {
+          "reveal": "silent"
+        }
+    },
     {
         "label": "build (Windows)",
         "command": "dotnet",
@@ -89,6 +101,7 @@
           "kind": "build",
           "isDefault": false,
         },
+        "dependsOn": ["clean-default-folders (Windows)"],
         "options": {
             "env": {
            "ASPNETCORE_ENVIRONMENT": "Development",           // Use development Mode
@@ -109,6 +122,7 @@
           "/property:BaseOutputPath=bin_win\\"
         ],
         "problemMatcher": "$msCompile",
+        "dependsOn": ["clean-default-folders (Windows)"],
         "options": {
           "env": {
            "ASPNETCORE_ENVIRONMENT": "Development",           // Use development Mode
@@ -131,9 +145,10 @@
         ],
         "problemMatcher": "$msCompile",
         "isBackground": true,
+        "dependsOn": ["clean-default-folders (Windows)"],
          "options": {
            "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use development Mode
            "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
           }
         }
