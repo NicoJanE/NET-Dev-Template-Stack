@@ -39,7 +39,7 @@
       "name": ".NET Core Launch (Windows MVC)",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build",
+      "preLaunchTask": "build (Windows)",
       "program": "${workspaceFolder}/bin/Debug/net8.0/your-app.dll",   // 1. UPDATE the .dll name
       "args": [],
       "cwd": "${workspaceFolder}",

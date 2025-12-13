@@ -72,7 +72,7 @@
         "type": "process",
         "args": [
           "build",
-          "${workspaceFolder}/your-app/your-app.csproj",        // 1. UPDATE the Directory and project
+          "${workspaceFolder}\\your-app.csproj",              // 1. UPDATE the  project name
           "/property:GenerateFullPaths=true",
           "/consoleLoggerParameters:NoSummary"
         ],
@@ -83,7 +83,7 @@
         },
         "options": {
             "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use development Mode
            "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
             }
           }
@@ -94,14 +94,14 @@
         "type": "process",
         "args": [
           "publish",
-          "${workspaceFolder}/your-app/your-app.csproj",        // 2. UPDATE the Directory and project
+          "${workspaceFolder}\\your-app.csproj",              // 2. UPDATE the  project name
           "/property:GenerateFullPaths=true",
           "/consoleLoggerParameters:NoSummary"
         ],
         "problemMatcher": "$msCompile",
         "options": {
           "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use development Mode
            "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
           }
         }
@@ -115,7 +115,7 @@
           "run",
            "--no-launch-profile", 
           "--project",
-          "${workspaceFolder}/your-app/your-app.csproj"         // 3. UPDATE the Directory and project
+          "${workspaceFolder}\\your-app.csproj"         // 3. UPDATE the  project name
         ],
         "problemMatcher": "$msCompile",
         "isBackground": true,

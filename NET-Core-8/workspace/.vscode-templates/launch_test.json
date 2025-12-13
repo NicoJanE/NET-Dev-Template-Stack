@@ -31,11 +31,11 @@
       "name": ".NET Core Run Tests (Windows)",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build",
+      "preLaunchTask": "build (Windows)",
       "program": "dotnet",
       "args": [
         "test",
-        "${workspaceFolder}/your-tests/your-tests.csproj",                   // 1. UPDATE the Directory and project name
+        "${workspaceFolder}\\your-tests.csproj",                            // 2. UPDATE the  project name
         "--logger:console;verbosity=detailed"
       ],
       "cwd": "${workspaceFolder}",
