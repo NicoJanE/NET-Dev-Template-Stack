@@ -14,7 +14,7 @@
       "preLaunchTask": "build (Docker)",
       "program": "dotnet",
       "args": [
-        "/hostmount/workspace/your-app/bin/Debug/net8.0/your-app.dll"       // 1. UPDATE the Directory and .dll name
+        "/hostmount/workspace/your-app/bin_lin/Debug/net8.0/your-app.dll"       // 1. UPDATE the Directory and .dll name
       ],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,
@@ -29,7 +29,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build (Windows)",
-      "program": "${workspaceFolder}/bin/Debug/net8.0/your-app.dll",   // 1. UPDATE the .dll name
+      "program": "${workspaceFolder}/bin_win/Debug/net8.0/your-app.dll",   // 1. UPDATE the .dll name
       "args": [],
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",

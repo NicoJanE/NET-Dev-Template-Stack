@@ -11,7 +11,9 @@
         "build",
         "/hostmount/workspace/your-app/your-app.csproj",       // 1. UPDATE the Directory and project
         "/property:GenerateFullPaths=true",
-        "/consoleLoggerParameters:NoSummary"
+        "/consoleLoggerParameters:NoSummary",
+        "/property:BaseIntermediateOutputPath=obj_lin/",
+        "/property:BaseOutputPath=bin_lin/"
       ],
       "problemMatcher": "$msCompile",
       "group": {
@@ -33,7 +35,9 @@
         "publish",
         "/hostmount/workspace/your-app/your-app.csproj",        // 2. UPDATE the Directory and project
         "/property:GenerateFullPaths=true",
-        "/consoleLoggerParameters:NoSummary"
+        "/consoleLoggerParameters:NoSummary",
+        "/property:BaseIntermediateOutputPath=obj_lin/",
+        "/property:BaseOutputPath=bin_lin/"
       ],
       "problemMatcher": "$msCompile",
       "options": {
@@ -52,7 +56,9 @@
         "--no-launch-profile",                                  // Used for  ??
         "run",                                                  
         "--project",
-        "/hostmount/workspace/your-app/your-app.csproj"         // 3. UPDATE the Directory and Project
+        "/hostmount/workspace/your-app/your-app.csproj",        // 3. UPDATE the Directory and Project
+        "--property:BaseIntermediateOutputPath=obj_lin/",
+        "--property:BaseOutputPath=bin_lin/"
       ],
       "problemMatcher": "$msCompile",
       "isBackground": true,
@@ -74,7 +80,9 @@
           "build",
           "${workspaceFolder}\\your-app.csproj",              // 1. UPDATE the  project name
           "/property:GenerateFullPaths=true",
-          "/consoleLoggerParameters:NoSummary"
+          "/consoleLoggerParameters:NoSummary",
+          "/property:BaseIntermediateOutputPath=obj_win\\",
+          "/property:BaseOutputPath=bin_win\\"
         ],
         "problemMatcher": "$msCompile",
         "group": {
@@ -96,7 +104,9 @@
           "publish",
           "${workspaceFolder}\\your-app.csproj",              // 2. UPDATE the  project name
           "/property:GenerateFullPaths=true",
-          "/consoleLoggerParameters:NoSummary"
+          "/consoleLoggerParameters:NoSummary",
+          "/property:BaseIntermediateOutputPath=obj_win\\",
+          "/property:BaseOutputPath=bin_win\\"
         ],
         "problemMatcher": "$msCompile",
         "options": {
@@ -115,7 +125,9 @@
           "run",
            "--no-launch-profile", 
           "--project",
-          "${workspaceFolder}\\your-app.csproj"         // 3. UPDATE the  project name
+          "${workspaceFolder}\\your-app.csproj",             // 3. UPDATE the  project name
+          "--property:BaseIntermediateOutputPath=obj_win\\",
+          "--property:BaseOutputPath=bin_win\\"
         ],
         "problemMatcher": "$msCompile",
         "isBackground": true,

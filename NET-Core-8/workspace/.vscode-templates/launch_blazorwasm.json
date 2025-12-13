@@ -38,7 +38,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build (Windows)",
-      "program": "${workspaceFolder}/bin/Debug/net8.0/your-blazorwasm.dll",  // 1. UPDATE the .dll name
+      "program": "${workspaceFolder}/bin_win/Debug/net8.0/your-blazorwasm.dll",  // 1. UPDATE the .dll name
       "args": [],
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",
