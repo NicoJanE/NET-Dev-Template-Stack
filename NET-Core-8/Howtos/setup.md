@@ -337,10 +337,8 @@ copy .\workspace\.vscode-templates\launch_console.json .\workspace\your-app\.vsc
 **5. Replace `your-app` with your actual application name in all paths in the copied `launch.json` file.**
 
 **6. Copy Directory.Build.prop**
-
 Copy the file: .\workspace\.vscode-templates\Directory.Build.props to .\workspace\your-app\Directory.Build.props
 This avoid **'Duplicated errors messages'** when building for Docker and switch to Windows builds
-
 
 <div class="nje-br1"> </div>
 
