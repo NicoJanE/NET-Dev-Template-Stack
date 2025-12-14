@@ -1,20 +1,23 @@
 {
-  "version": "2.0.0",
+  // Depends on: file in project root 'Directory.Build.props' 
 
-  // Docker Tasks
+  "version": "2.0.0",
   "tasks": [
+    // ==================== DOCKER TASKS ====================
     {
       "label": "build (Docker)",
       "command": "dotnet",
       "type": "shell",
       "args": [
         "build",
-        "/hostmount/workspace/your-app/your-app.csproj",       // 1. UPDATE the Directory and project
+        "/hostmount/workspace/your-app/your-app.csproj",
         "/property:GenerateFullPaths=true",
-        "/consoleLoggerParameters:NoSummary",
-        "/property:BaseIntermediateOutputPath=obj_lin/",
-        "/property:BaseOutputPath=bin_lin/"
-      ],
+        "/consoleLoggerParameters:NoSummary",     
+        "/property:BaseIntermediateOutputPath=obj_lin/",      // REMARK 1: These BaseIntermediateOutputPath and BaseOutputPath settings duplicate what's in Directory.Build.props.
+        "/property:BaseOutputPath=bin_lin/"                   //           This redundancy is intentional: if Directory.Build.props is missing, the build will still use the correct
+      ],                                                      //           output directories instead of defaulting to obj/ and bin/.
+                                                              // WARNING:  Without Directory.Build.props, builds work BUT switching between Windows and Linux builds will cause
+                                                              //           file conflicts and errors due to mixing platform-specific binaries in the same directories.
       "problemMatcher": "$msCompile",
       "group": {
         "kind": "build",
@@ -22,8 +25,8 @@
       },
       "options": {
          "env": {
-            "ASPNETCORE_ENVIRONMENT": "Development",          // Use develoment Mode
-            "ASPNETCORE_URLS":"http://0.0.0.0:5000"           // Automatic  listen to :0.0.0.0:500
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "ASPNETCORE_URLS":"http://0.0.0.0:5000"
           }
         }
     },
@@ -33,17 +36,17 @@
       "type": "shell",
       "args": [
         "publish",
-        "/hostmount/workspace/your-app/your-app.csproj",        // 2. UPDATE the Directory and project
+        "/hostmount/workspace/your-app/your-app.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleLoggerParameters:NoSummary",
-        "/property:BaseIntermediateOutputPath=obj_lin/",
+        "/property:BaseIntermediateOutputPath=obj_lin/",        // See: REMARK 1 on the top
         "/property:BaseOutputPath=bin_lin/"
       ],
       "problemMatcher": "$msCompile",
       "options": {
          "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
+           "ASPNETCORE_ENVIRONMENT": "Development",
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"
           }
         }
     },
@@ -52,81 +55,67 @@
       "command": "dotnet",
       "type": "shell",
       "args": [
-        "watch",                                                // Note requires "dotnet watch" which is pat od SDK
-        "--no-launch-profile",                                  // Used for  ??
-        "run",                                                  
+        "watch",
+        "--no-launch-profile",
+        "run",
         "--project",
-        "/hostmount/workspace/your-app/your-app.csproj",        // 3. UPDATE the Directory and Project
-        "--property:BaseIntermediateOutputPath=obj_lin/",
+        "/hostmount/workspace/your-app/your-app.csproj",
+        "--property:BaseIntermediateOutputPath=obj_lin/",       // See: REMARK 1 on the top
         "--property:BaseOutputPath=bin_lin/"
       ],
       "problemMatcher": "$msCompile",
       "isBackground": true,
       "options": {
          "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000",           // Automatic  listen to :0.0.0.0:500
-           "DOTNET_USE_POLLING_FILE_WATCHER": "true"          // Enable polling for Docker mounted volumes
+           "ASPNETCORE_ENVIRONMENT": "Development",
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000",
+           "DOTNET_USE_POLLING_FILE_WATCHER": "true"
           }
         }      
     },
 
-    // Windows Tasks
-    //      Remark 1
-    //    - The clean task is needed cause during loading of the project under Window, Windows tries to be handy and
-    //      create the default folders 'bin' and 'obj'. Because we use the custom 'bin_win' and 'obj_win' the previous 
-    //      bin and obj files Freak-up our build, so we ditch them here and make sure every Windows task depends on it!
-    {
-        "label": "clean-default-folders (Windows)",
-        "type": "shell",
-        "command": "if (Test-Path '${workspaceFolder}\\obj') { Remove-Item -Path '${workspaceFolder}\\obj' -Recurse -Force }; if (Test-Path '${workspaceFolder}\\bin') { Remove-Item -Path '${workspaceFolder}\\bin' -Recurse -Force }",
-        "presentation": {
-          "reveal": "silent"
-        }
-    },
+    // ==================== WINDOWS TASKS ====================
     {
         "label": "build (Windows)",
         "command": "dotnet",
         "type": "process",
         "args": [
           "build",
-          "${workspaceFolder}\\your-app.csproj",              // 1. UPDATE the  project name
+          "${workspaceFolder}\\your-app.csproj",
           "/property:GenerateFullPaths=true",
           "/consoleLoggerParameters:NoSummary",
-          "/property:BaseIntermediateOutputPath=obj_win\\",
+          "/property:BaseIntermediateOutputPath=obj_win\\",      // See: REMARK 1 on the top
           "/property:BaseOutputPath=bin_win\\"
         ],
         "problemMatcher": "$msCompile",
         "group": {
           "kind": "build",
-          "isDefault": false,
+          "isDefault": false
         },
-        "dependsOn": ["clean-default-folders (Windows)"],
         "options": {
             "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",           // Use development Mode
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
+           "ASPNETCORE_ENVIRONMENT": "Development",
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"
             }
           }
       },
       {
-        "label": "publish (Window)",
+        "label": "publish (Windows)",
         "command": "dotnet",
         "type": "process",
         "args": [
           "publish",
-          "${workspaceFolder}\\your-app.csproj",              // 2. UPDATE the  project name
+          "${workspaceFolder}\\your-app.csproj",
           "/property:GenerateFullPaths=true",
           "/consoleLoggerParameters:NoSummary",
-          "/property:BaseIntermediateOutputPath=obj_win\\",
+          "/property:BaseIntermediateOutputPath=obj_win\\",      // See: REMARK 1 on the top
           "/property:BaseOutputPath=bin_win\\"
         ],
         "problemMatcher": "$msCompile",
-        "dependsOn": ["clean-default-folders (Windows)"],
         "options": {
           "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",           // Use development Mode
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
+           "ASPNETCORE_ENVIRONMENT": "Development",
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"
           }
         }
       },
@@ -137,22 +126,20 @@
         "args": [
           "watch",
           "run",
-           "--no-launch-profile", 
+          "--no-launch-profile",
           "--project",
-          "${workspaceFolder}\\your-app.csproj",             // 3. UPDATE the  project name
-          "--property:BaseIntermediateOutputPath=obj_win\\",
+          "${workspaceFolder}\\your-app.csproj",
+          "--property:BaseIntermediateOutputPath=obj_win\\",      // See: REMARK 1 on the top
           "--property:BaseOutputPath=bin_win\\"
         ],
         "problemMatcher": "$msCompile",
         "isBackground": true,
-        "dependsOn": ["clean-default-folders (Windows)"],
          "options": {
            "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",           // Use development Mode
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
+           "ASPNETCORE_ENVIRONMENT": "Development",
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"
           }
         }
       }
-
   ]
 }
