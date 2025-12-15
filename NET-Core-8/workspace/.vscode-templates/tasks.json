@@ -1,23 +1,18 @@
 {
-  // Depends on: file in project root 'Directory.Build.props' 
-
   "version": "2.0.0",
+
+  // Docker Tasks
   "tasks": [
-    // ==================== DOCKER TASKS ====================
     {
       "label": "build (Docker)",
       "command": "dotnet",
       "type": "shell",
       "args": [
         "build",
-        "/hostmount/workspace/your-app/your-app.csproj",
+        "/hostmount/workspace/app-mvc/app-mvc.csproj",       // 1. UPDATE the Directory and project
         "/property:GenerateFullPaths=true",
-        "/consoleLoggerParameters:NoSummary",     
-        "/property:BaseIntermediateOutputPath=obj_lin/",      // REMARK 1: These BaseIntermediateOutputPath and BaseOutputPath settings duplicate what's in Directory.Build.props.
-        "/property:BaseOutputPath=bin_lin/"                   //           This redundancy is intentional: if Directory.Build.props is missing, the build will still use the correct
-      ],                                                      //           output directories instead of defaulting to obj/ and bin/.
-                                                              // WARNING:  Without Directory.Build.props, builds work BUT switching between Windows and Linux builds will cause
-                                                              //           file conflicts and errors due to mixing platform-specific binaries in the same directories.
+        "/consoleLoggerParameters:NoSummary"
+      ],
       "problemMatcher": "$msCompile",
       "group": {
         "kind": "build",
@@ -25,8 +20,8 @@
       },
       "options": {
          "env": {
-            "ASPNETCORE_ENVIRONMENT": "Development",
-            "ASPNETCORE_URLS":"http://0.0.0.0:5000"
+            "ASPNETCORE_ENVIRONMENT": "Development",          // Use develoment Mode
+            "ASPNETCORE_URLS":"http://0.0.0.0:5000"           // Automatic  listen to :0.0.0.0:500
           }
         }
     },
@@ -36,17 +31,15 @@
       "type": "shell",
       "args": [
         "publish",
-        "/hostmount/workspace/your-app/your-app.csproj",
+        "/hostmount/workspace/app-mvc/app-mvc.csproj",        // 2. UPDATE the Directory and project
         "/property:GenerateFullPaths=true",
-        "/consoleLoggerParameters:NoSummary",
-        "/property:BaseIntermediateOutputPath=obj_lin/",        // See: REMARK 1 on the top
-        "/property:BaseOutputPath=bin_lin/"
+        "/consoleLoggerParameters:NoSummary"
       ],
       "problemMatcher": "$msCompile",
       "options": {
          "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000"
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
           }
         }
     },
@@ -55,67 +48,61 @@
       "command": "dotnet",
       "type": "shell",
       "args": [
-        "watch",
-        "--no-launch-profile",
-        "run",
+        "watch",                                                // Note requires "dotnet watch" which is pat od SDK
+        "--no-launch-profile",                                  // Used for  ??
+        "run",                                                  
         "--project",
-        "/hostmount/workspace/your-app/your-app.csproj",
-        "--property:BaseIntermediateOutputPath=obj_lin/",       // See: REMARK 1 on the top
-        "--property:BaseOutputPath=bin_lin/"
+        "/hostmount/workspace/app-mvc/app-mvc.csproj"         // 3. UPDATE the Directory and Project
       ],
       "problemMatcher": "$msCompile",
       "isBackground": true,
       "options": {
          "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000",
-           "DOTNET_USE_POLLING_FILE_WATCHER": "true"
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000",           // Automatic  listen to :0.0.0.0:500
+           "DOTNET_USE_POLLING_FILE_WATCHER": "true"          // Enable polling for Docker mounted volumes
           }
         }      
     },
 
-    // ==================== WINDOWS TASKS ====================
+    // Windows Tasks
     {
         "label": "build (Windows)",
         "command": "dotnet",
         "type": "process",
         "args": [
           "build",
-          "${workspaceFolder}\\your-app.csproj",
+          "${workspaceFolder}/app-mvc/app-mvc.csproj",        // 1. UPDATE the Directory and project
           "/property:GenerateFullPaths=true",
-          "/consoleLoggerParameters:NoSummary",
-          "/property:BaseIntermediateOutputPath=obj_win\\",      // See: REMARK 1 on the top
-          "/property:BaseOutputPath=bin_win\\"
+          "/consoleLoggerParameters:NoSummary"
         ],
         "problemMatcher": "$msCompile",
         "group": {
           "kind": "build",
-          "isDefault": false
+          "isDefault": false,
         },
         "options": {
             "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000"
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
             }
           }
       },
       {
-        "label": "publish (Windows)",
+        "label": "publish (Window)",
         "command": "dotnet",
         "type": "process",
         "args": [
           "publish",
-          "${workspaceFolder}\\your-app.csproj",
+          "${workspaceFolder}/app-mvc/app-mvc.csproj",        // 2. UPDATE the Directory and project
           "/property:GenerateFullPaths=true",
-          "/consoleLoggerParameters:NoSummary",
-          "/property:BaseIntermediateOutputPath=obj_win\\",      // See: REMARK 1 on the top
-          "/property:BaseOutputPath=bin_win\\"
+          "/consoleLoggerParameters:NoSummary"
         ],
         "problemMatcher": "$msCompile",
         "options": {
           "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000"
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
           }
         }
       },
@@ -126,20 +113,269 @@
         "args": [
           "watch",
           "run",
-          "--no-launch-profile",
+           "--no-launch-profile", 
           "--project",
-          "${workspaceFolder}\\your-app.csproj",
-          "--property:BaseIntermediateOutputPath=obj_win\\",      // See: REMARK 1 on the top
-          "--property:BaseOutputPath=bin_win\\"
+          "${workspaceFolder}/app-mvc/app-mvc.csproj"         // 3. UPDATE the Directory and project
         ],
         "problemMatcher": "$msCompile",
         "isBackground": true,
          "options": {
            "env": {
-           "ASPNETCORE_ENVIRONMENT": "Development",
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000"
+           "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
           }
         }
+      },
+
+
+      // Utilities
+      // ================================================================================================================================================
+      // Supported on Docker/Ubuntu
+
+      // 1.   Scaffold MODEL task
+      // -------------------------------------------------------------------------------------------------------------------------
+      {
+        "label": "Scaffold MODEL: Create",
+        "type": "shell",
+        "command": "bash",
+        "args": [
+          "-c",
+          "MODEL_NAME='${input:Model-create}'; cat > ./Models/$MODEL_NAME.cs << EOF\nnamespace app_mvc.Models;\n\npublic class $MODEL_NAME\n{\n    public int Id { get; set; }\n    public string Name { get; set; }\n}\nEOF\nif [ -f ./Models/$MODEL_NAME.cs ]; then echo \"Successfully created model: $MODEL_NAME\"; else echo \"Failed to create model: $MODEL_NAME\"; fi"
+        ],
+        "problemMatcher": []
+      },
+
+      // 2.   Scaffold CONTROLLER task
+      // -------------------------------------------------------------------------------------------------------------------------
+      {
+        "label": "Scaffold CONTROLLER: Create",
+        "type": "shell",
+        "command": "bash",
+        "args": [
+          "-c",
+          "CONTROLLER_NAME='${input:Controller-create}'; cat > ./Controllers/${CONTROLLER_NAME}Controller.cs << EOF\nusing System.Diagnostics;\nusing Microsoft.AspNetCore.Mvc;\nusing app_mvc.Models;\n\nnamespace app_mvc.Controllers;\n\npublic class ${CONTROLLER_NAME}Controller : Controller\n{\n    private readonly ILogger<${CONTROLLER_NAME}Controller> _logger;\n\n    public ${CONTROLLER_NAME}Controller(ILogger<${CONTROLLER_NAME}Controller> logger)\n    {\n        _logger = logger;\n    }\n\n    public IActionResult Index()\n    {\n        return View();\n    }\n\n    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]\n    public IActionResult Error()\n    {\n        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });\n    }\n}\nEOF\nif [ -f ./Controllers/${CONTROLLER_NAME}Controller.cs ]; then echo \"Successfully created controller: ${CONTROLLER_NAME}Controller\"; else echo \"Failed to create controller: ${CONTROLLER_NAME}Controller\"; fi"
+        ],
+        "problemMatcher": []
+      },
+
+      // 3.   Scaffold VIEW tasks
+      // -------------------------------------------------------------------------------------------------------------------------
+      {
+        "label": "Scaffold VIEW: Empty",
+        "type": "shell",
+        "command": "bash",
+        "args": [
+          "-c",
+          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name} Empty -udl"
+        ]
+      },
+      {
+        "label": "Scaffold VIEW: Create",
+        "type": "shell",
+        "command": "bash",
+        "args": [
+          "-c",
+          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-create} Create -m ${input:Model-use} -udl"
+        ]
+      },
+      {
+        "label": "Scaffold VIEW: Edit",
+        "type": "shell",
+        "command": "bash",
+        "args": [
+          "-c",
+          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-edit} Edit -m ${input:Model-use} -udl"
+        ]
+      },
+      {
+        "label": "Scaffold VIEW: Delete",
+        "type": "shell",
+        "command": "bash",
+        "args": [
+          "-c",
+          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-delete} Delete -m ${input:Model-use} -udl"
+        ]
+      },
+      {
+        "label": "Scaffold VIEW: Details",
+        "type": "shell",
+        "command": "bash",
+        "args": [
+          "-c",
+          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-details} Details -m ${input:Model-use} -udl"
+        ]
+      },
+      {
+        "label": "Scaffold VIEW: List",
+        "type": "shell",
+        "command": "bash",
+        "args": [
+          "-c",
+          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-list} List -m ${input:Model-use} -udl"
+        ]
+      },
+      // 34   Scaffold CRUD Task
+      //
+      // Requires:: dotnet add package Microsoft.EntityFrameworkCore --version 8.*
+      //                  dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.22
+      //
+      // Make sure model exists create with task: Scaffold MODEL: Create
+      // -------------------------------------------------------------------------------------------------------------------------
+      {
+        "label": "Scaffold CRUD: Controller + Views (no DB)",
+        "type": "shell",
+        "command": "dotnet",
+        "args": [
+          "aspnet-codegenerator",
+          "controller",
+          "-name", "${input:CrudControllerName}Controller",
+          "-m", "${input:CrudModelName}",
+          "--relativeFolderPath", "Controllers",
+          "--useDefaultLayout",
+          "--referenceScriptLibraries"
+        ],
+        "problemMatcher": []
       }
-  ]
+  ],
+
+    
+
+     // 3. User input requests, for Scaffold  tasks
+    "inputs": 
+    [    
+        // 1. User input requests, for Scaffold MODEL 
+        {
+            "id": "Model-create",
+            "type": "promptString",
+            "description": "CREATE MODEL: Enter model class name (e.g., Product)",
+            "default": "MyModel"
+        },
+
+        // 2. User input requests, for Scaffold CONTROLLER
+        {
+            "id": "Controller-create",
+            "type": "promptString",
+            "description": "CREATE CONTROLLER: Enter controller name (e.g., Products, Orders)",
+            "default": "MyController"
+        },
+
+        // 3. User input requests, for Scaffold VIEW tasks
+        {
+            "id": "Model-use",
+            "type": "promptString",
+            "description": "USE MODEL: Enter model class to use (e.g., Product)",
+            "default": "MyModel"
+        },
+        {
+            "id": "Controller-name",
+            "type": "promptString",
+            "description": "Enter controller name (e.g., Home, Products, Orders)",
+            "default": "Home"
+        },
+        {
+            "id": "View-name",
+            "type": "promptString",
+            "description": "EMPTY VIEW: Enter view name (e.g., Index, Custom, MyPage)",
+            "default": "Index"
+        },
+        {
+            "id": "View-name-create",
+            "type": "promptString",
+            "description": "CREATE VIEW: Enter view name (e.g., Create, Product-Create)",
+            "default": "Create"
+        },
+        {
+            "id": "View-name-edit",
+            "type": "promptString",
+            "description": "EDIT VIEW: Enter view name (e.g., Edit, Product-Edit)",
+            "default": "Edit"
+        },
+        {
+            "id": "View-name-delete",
+            "type": "promptString",
+            "description": "DELETE VIEW: Enter view name (e.g., Delete, Product-Delete)",
+            "default": "Delete"
+        },
+        {
+            "id": "View-name-details",
+            "type": "promptString",
+            "description": "DETAILS VIEW: Enter view name (e.g., Details, Product-Details)",
+            "default": "Details"
+        },
+        {
+            "id": "View-name-list",
+            "type": "promptString",
+            "description": "LIST VIEW: Enter view name (e.g., List, Index, Products-List)",
+            "default": "List"
+        },
+        {
+            "id": "CrudControllerName",
+            "type": "promptString",
+            "description": "CRUD: Enter controller name (e.g., Products, Orders)",
+            "default": "Products"
+        },
+        {
+            "id": "CrudModelName",
+            "type": "promptString",
+            "description": "CRUD: Enter model class name (e.g., Product)",
+            "default": "Product"
+        }
+    ]
+
+
+
 }
+
+
+
+/*
+
+You can Customize the scaffold default template to your own version. The tool automatically uses your project templates first in that case.
+
+MyMvcProject/
+├── CodeTemplates/
+    ├── MvcController/
+    ├── MvcView/
+    ├── RazorPage/
+    └── ApiController/
+    
+- The default scaffold templates are compiled into the tool's DLL assemblies as embedded resources.
+You cannot access them as files from the installation directory.
+
+WRONG!
+--To customize templates:--
+--1. Get them from GitHub: https://github.com/dotnet/Scaffolding/tree/main/src/Scaffolding/VS.Web.CG.Mvc/Templates--
+--2. Copy to your project's CodeTemplates/ folder--
+--3. Modify as needed--
+
+RIGHT, seems to be done like :(
+- Generate a view/controller using scaffolding
+- That generated file becomes your template
+- Place it in CodeTemplates with the right name
+
+
+  
+  Copy those to: ./CodeTemplates/ (maintaining the subfolder structure)
+
+  
+
+
+- Test your custom template by making a small change (e.g., add a comment) 
+  and running scaffolding. Your version will be used automatically.
+-
+
+dotnet aspnet-codegenerator view Create Create -m Product
+
+
+Okay I need these command to work
+"dotnet aspnet-codegenerator view ${input:Name-view} Empty -udl"
+"dotnet aspnet-codegenerator view ${input:Name-view} Create -udl"
+"dotnet aspnet-codegenerator view ${input:Name-view} Edit -udl"
+"dotnet aspnet-codegenerator view ${input:Name-view} Delete -udl"
+"dotnet aspnet-codegenerator view ${input:Name-view} Details -udl"
+"dotnet aspnet-codegenerator view ${input:Name-view} List -udl"
+
+all should have there  own task and own dedicated input (so we can call them proper)
+
+"MODEL_NAME='${input:Model-create}'; cat > ./Models/$MODEL_NAME.cs << EOF\nnamespace app_mvc.Models\n{\n    public class $MODEL_NAME\n    {\n        // Add your properties here\n        // Example:\n        // public int Id { get; set; }\n        // public string? Name { get; set; }\n    }\n}\nEOF\nif [ -f ./Models/$MODEL_NAME.cs ]; then echo \"Successfully created model: $MODEL_NAME\"; else echo \"Failed to create model: $MODEL_NAME\"; fi"
+*/
