@@ -18,6 +18,11 @@ TARGET_DIR=${2:-/hostmount/workspace}
 dotnet new blazor -o "$TARGET_DIR/$APP_NAME"
 cd "$TARGET_DIR/$APP_NAME"
 dotnet restore
+
+# Call scaffold script to generate additional scaffolding (scripts are in same folder)
+cd -
+./env_scaffold.sh "$TARGET_DIR/$APP_NAME"
+
 echo ".NET 8 Blazor Server app: '$APP_NAME' created in directory: $TARGET_DIR "
 echo "Run the app with the command:"
 echo "dotnet run --urls \"http://0.0.0.0:5000\""
