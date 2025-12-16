@@ -340,6 +340,15 @@ copy .\workspace\.vscode-templates\launch_console.json .\workspace\your-app\.vsc
 Copy the file: .\workspace\.vscode-templates\Directory.Build.props to .\workspace\your-app\Directory.Build.props
 This avoid **'Duplicated errors messages'** when building for Docker and switch to Windows builds
 
+7. Optional. Use **Scaffold tool** to generate CRUD items
+There is a Task in VS Code 'Scaffold CRUD: Controller + Views (no DB)' this enable the genaration of CRUD Views. These additional steps are required if you want to use that.
+    - Copy the **Data** directory in: ***.\workspace\.src_extra_CRUD\Data*** to **your root project.** directory.
+   - Add these references to you project file and make sure to **rebuild**
+      ```
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
+      ```
 <div class="nje-br1"> </div>
 
 ---

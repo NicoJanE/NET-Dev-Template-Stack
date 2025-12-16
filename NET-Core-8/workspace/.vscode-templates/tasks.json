@@ -291,51 +291,14 @@
           "controller",
           "-name", "${input:CrudControllerName}Controller",
           "-m", "${input:CrudModelName}",
+          "-dc", "app_mvc.Data.ApplicationDbContext2",
           "--relativeFolderPath", "Controllers",
           "--useDefaultLayout",
-          "--referenceScriptLibraries"
-        ],
-        "problemMatcher": []
-    },
-    {
-        "label": "build",
-        "command": "dotnet",
-        "type": "process",
-        "args": [
-            "build",
-            "${workspaceFolder}/your-app.csproj",
-            "/property:GenerateFullPaths=true",
-            "/consoleloggerparameters:NoSummary;ForceNoAlign"
-        ],
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "publish",
-        "command": "dotnet",
-        "type": "process",
-        "args": [
-            "publish",
-            "${workspaceFolder}/your-app.csproj",
-            "/property:GenerateFullPaths=true",
-            "/consoleloggerparameters:NoSummary;ForceNoAlign"
-        ],
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "watch",
-        "command": "dotnet",
-        "type": "process",
-        "args": [
-            "watch",
-            "run",
-            "--project",
-            "${workspaceFolder}/your-app.csproj"
-        ],
-        "problemMatcher": "$msCompile"
+          "--referenceScriptLibraries",
+          "-f"  
+      ]
     }
   ],
-
-    
 
      // 3. User input requests, for Scaffold  tasks
     "inputs": 
@@ -407,8 +370,8 @@
         },
         {
             "id": "CrudControllerName",
-            "type": "promptString",
-            "description": "CRUD: Enter controller name (e.g., Products, Orders)",
+            "type": "promptString",            
+            "description": "CRUD: Enter controller name (e.g., Products. Be-aware 'Controller' WILL be added! )",
             "default": "Products"
         },
         {
