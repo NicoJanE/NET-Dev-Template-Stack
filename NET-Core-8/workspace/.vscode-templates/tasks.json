@@ -23,7 +23,8 @@
             "ASPNETCORE_ENVIRONMENT": "Development",          // Use develoment Mode
             "ASPNETCORE_URLS":"http://0.0.0.0:5000"           // Automatic  listen to :0.0.0.0:500
           }
-        }
+        },
+        "dependsOn": ["Clean (Docker)"]
     },
     {
       "label": "publish (Docker)",
@@ -86,7 +87,8 @@
            "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
            "ASPNETCORE_URLS":"http://0.0.0.0:5000"            // Automatic  listen to :0.0.0.0:500
             }
-          }
+          },
+          "dependsOn": ["Clean (Windows)"]
       },
       {
         "label": "publish (Window)",
@@ -126,6 +128,38 @@
           }
         }
       },
+
+              // Clean (Windows) Task
+        {
+          "label": "Clean (Windows)",
+            "type": "shell",
+            "command": "$folders = @('.\\bin', '.\\obj'); foreach ($f in $folders) { if (Test-Path $f) { Remove-Item -Recurse -Force $f -ErrorAction SilentlyContinue } }; exit 0",
+            "options": {
+              "shell": {
+                "executable": "powershell.exe",
+                "args": ["-NoProfile", "-Command"]
+              }
+            },
+            "problemMatcher": [],
+            "presentation": {
+              "reveal": "never"
+            }
+        },
+
+        // Clean (Docker) Task
+        {
+          "label": "Clean (Docker)",
+          "type": "shell",
+          "command": "bash",
+          "args": [
+            "-c",
+            "rm -rf ./bin_win ./obj_win"
+          ],
+          "problemMatcher": [],
+          "presentation": {
+            "reveal": "never"
+          }
+        },
 
 
       // Utilities
