@@ -363,7 +363,10 @@ Our <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span> build
 1. To develop and build within Windows:
    - Open VS Code.
    - Open the Windows folder: ***.\workspace\your-app*** (e.g., ***.\workspace\app-mvc***)
-  
+   - Installl at least these two extensions (For others see remark section, below):
+     - ***ms-dotnettools.csharp***
+     -***ms-dotnettools.csdevkit***
+
 1. For both methods
     - Make sure the **required** VS Code extensions are installed in the container (see ***remark*** section  below )
     - Use the Docker\Windows Task and Launchers defined in the table in combination with these instructions

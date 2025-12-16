@@ -14,7 +14,7 @@
       "preLaunchTask": "build (Docker)",
       "program": "dotnet",
       "args": [
-        "/hostmount/workspace/your-app/bin_lin/Debug/net8.0/your-app.dll"       // 1. UPDATE the Directory and .dll name
+        "/hostmount/workspace/your-app/bin/Debug/net8.0/your-app.dll"       // 1. UPDATE the Directory and .dll name
       ],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,
