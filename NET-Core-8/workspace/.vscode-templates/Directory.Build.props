@@ -1,9 +1,16 @@
-<Project>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <!-- Separate build outputs for Windows vs Linux/Docker -->
+    <!-- Separate build outputs for Windows vs Linux/Docker 
+        Changed from:
+               bin_lin  and obj_lin to:
+               bin and obj
+
+               because scaffolding requires this, it needs bin and obj (Hardcoded) and if bin_lin and obj-lin are around as well
+              we  get a duplicated items .... errror (very said this altogether)
+    -->
     <BaseIntermediateOutputPath Condition="'$(OS)' == 'Windows_NT'">obj_win\</BaseIntermediateOutputPath>
-    <BaseIntermediateOutputPath Condition="'$(OS)' != 'Windows_NT'">obj_lin/</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath Condition="'$(OS)' != 'Windows_NT'">obj</BaseIntermediateOutputPath>
     <BaseOutputPath Condition="'$(OS)' == 'Windows_NT'">bin_win\</BaseOutputPath>
-    <BaseOutputPath Condition="'$(OS)' != 'Windows_NT'">bin_lin/</BaseOutputPath>
+    <BaseOutputPath Condition="'$(OS)' != 'Windows_NT'">bin</BaseOutputPath>
   </PropertyGroup>
 </Project>

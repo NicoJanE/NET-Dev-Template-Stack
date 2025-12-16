@@ -9,7 +9,7 @@
       "type": "shell",
       "args": [
         "build",
-        "/hostmount/workspace/app-mvc/app-mvc.csproj",       // 1. UPDATE the Directory and project
+        "/hostmount/workspace/your-app/your-app.csproj",       // 1. UPDATE the Directory and project
         "/property:GenerateFullPaths=true",
         "/consoleLoggerParameters:NoSummary"
       ],
@@ -31,7 +31,7 @@
       "type": "shell",
       "args": [
         "publish",
-        "/hostmount/workspace/app-mvc/app-mvc.csproj",        // 2. UPDATE the Directory and project
+        "/hostmount/workspace/your-app/your-app.csproj",        // 2. UPDATE the Directory and project
         "/property:GenerateFullPaths=true",
         "/consoleLoggerParameters:NoSummary"
       ],
@@ -52,7 +52,7 @@
         "--no-launch-profile",                                  // Used for  ??
         "run",                                                  
         "--project",
-        "/hostmount/workspace/app-mvc/app-mvc.csproj"         // 3. UPDATE the Directory and Project
+        "/hostmount/workspace/your-app/your-app.csproj"         // 3. UPDATE the Directory and Project
       ],
       "problemMatcher": "$msCompile",
       "isBackground": true,
@@ -72,7 +72,7 @@
         "type": "process",
         "args": [
           "build",
-          "${workspaceFolder}/app-mvc/app-mvc.csproj",        // 1. UPDATE the Directory and project
+          "${workspaceFolder}/your-app/your-app.csproj",        // 1. UPDATE the Directory and project
           "/property:GenerateFullPaths=true",
           "/consoleLoggerParameters:NoSummary"
         ],
@@ -94,7 +94,7 @@
         "type": "process",
         "args": [
           "publish",
-          "${workspaceFolder}/app-mvc/app-mvc.csproj",        // 2. UPDATE the Directory and project
+          "${workspaceFolder}/your-app/your-app.csproj",        // 2. UPDATE the Directory and project
           "/property:GenerateFullPaths=true",
           "/consoleLoggerParameters:NoSummary"
         ],
@@ -115,7 +115,7 @@
           "run",
            "--no-launch-profile", 
           "--project",
-          "${workspaceFolder}/app-mvc/app-mvc.csproj"         // 3. UPDATE the Directory and project
+          "${workspaceFolder}/your-app/your-app.csproj"         // 3. UPDATE the Directory and project
         ],
         "problemMatcher": "$msCompile",
         "isBackground": true,
@@ -139,8 +139,19 @@
         "type": "shell",
         "command": "bash",
         "args": [
-          "-c",
-          "MODEL_NAME='${input:Model-create}'; cat > ./Models/$MODEL_NAME.cs << EOF\nnamespace app_mvc.Models;\n\npublic class $MODEL_NAME\n{\n    public int Id { get; set; }\n    public string Name { get; set; }\n}\nEOF\nif [ -f ./Models/$MODEL_NAME.cs ]; then echo \"Successfully created model: $MODEL_NAME\"; else echo \"Failed to create model: $MODEL_NAME\"; fi"
+          "-c",        
+            "MODEL_NAME='${input:Model-create}'; \
+  mkdir -p Models && \
+  cat > ./Models/${MODEL_NAME}.cs <<'EOF'\nnamespace YOUR_APP.Models;\n\npublic class ${MODEL_NAME}\n{\n    public int Id { get; set; }\n    public string Name { get; set; }\n}\nEOF\nif [ -f ./Models/${MODEL_NAME}.cs ]; then \
+    clear; \
+    echo \"Successfully created model: ${MODEL_NAME}\"; \
+    echo \"------------------------------------------------------------\"; \
+    echo \"IMPORTANT: Edit ./Models/${MODEL_NAME}.cs and replace YOUR_APP in the namespace with your actual project namespace!\"; \
+    echo \"------------------------------------------------------------\"; \
+  else \
+    clear; \
+    echo \"Failed to create model: ${MODEL_NAME}\"; \
+  fi"
         ],
         "problemMatcher": []
       },
@@ -153,7 +164,18 @@
         "command": "bash",
         "args": [
           "-c",
-          "CONTROLLER_NAME='${input:Controller-create}'; cat > ./Controllers/${CONTROLLER_NAME}Controller.cs << EOF\nusing System.Diagnostics;\nusing Microsoft.AspNetCore.Mvc;\nusing app_mvc.Models;\n\nnamespace app_mvc.Controllers;\n\npublic class ${CONTROLLER_NAME}Controller : Controller\n{\n    private readonly ILogger<${CONTROLLER_NAME}Controller> _logger;\n\n    public ${CONTROLLER_NAME}Controller(ILogger<${CONTROLLER_NAME}Controller> logger)\n    {\n        _logger = logger;\n    }\n\n    public IActionResult Index()\n    {\n        return View();\n    }\n\n    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]\n    public IActionResult Error()\n    {\n        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });\n    }\n}\nEOF\nif [ -f ./Controllers/${CONTROLLER_NAME}Controller.cs ]; then echo \"Successfully created controller: ${CONTROLLER_NAME}Controller\"; else echo \"Failed to create controller: ${CONTROLLER_NAME}Controller\"; fi"
+            "CONTROLLER_NAME='${input:Controller-create}'; \
+  mkdir -p Controllers && \
+  cat > ./Controllers/${CONTROLLER_NAME}Controller.cs <<'EOF'\nusing System.Diagnostics;\nusing Microsoft.AspNetCore.Mvc;\nusing YOUR_APP.Models;\n\nnamespace YOUR_APP.Controllers;\n\npublic class ${CONTROLLER_NAME}Controller : Controller\n{\n    private readonly ILogger<${CONTROLLER_NAME}Controller> _logger;\n\n    public ${CONTROLLER_NAME}Controller(ILogger<${CONTROLLER_NAME}Controller> logger)\n    {\n        _logger = logger;\n    }\n\n    public IActionResult Index()\n    {\n        return View();\n    }\n\n    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]\n    public IActionResult Error()\n    {\n        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });\n    }\n}\nEOF\nif [ -f ./Controllers/${CONTROLLER_NAME}Controller.cs ]; then \
+    clear; \
+    echo \"Successfully created controller: ${CONTROLLER_NAME}Controller\"; \
+    echo \"------------------------------------------------------------\"; \
+    echo \"***IMPORTANT***: Edit ./Controllers/${CONTROLLER_NAME}Controller.cs and replace YOUR_APP in the file with your actual project namespace!\"; \
+    echo \"------------------------------------------------------------\"; \
+  else \
+    clear; \
+    echo \"Failed to create controller: ${CONTROLLER_NAME}Controller\"; \
+  fi"
         ],
         "problemMatcher": []
       },
@@ -175,8 +197,13 @@
         "command": "bash",
         "args": [
           "-c",
-          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-create} Create -m ${input:Model-use} -udl"
-        ]
+          // "codegen_trace=1 dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-create} Create -m ${input:Model-use} -udl"
+          "codegen_trace=1 dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-create} Create -m ${input:Model-use} -udl"
+         // "CodeGeneration=true codegen_trace=1 dotnet aspnet-codegenerator view flip Create -m ErrorView -udl"
+        ],
+          "options": {
+             "cwd": "${workspaceFolder}"
+        },
       },
       {
         "label": "Scaffold VIEW: Edit",
@@ -235,7 +262,43 @@
           "--referenceScriptLibraries"
         ],
         "problemMatcher": []
-      }
+    },
+    {
+        "label": "build",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "build",
+            "${workspaceFolder}/your-app.csproj",
+            "/property:GenerateFullPaths=true",
+            "/consoleloggerparameters:NoSummary;ForceNoAlign"
+        ],
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "publish",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "publish",
+            "${workspaceFolder}/your-app.csproj",
+            "/property:GenerateFullPaths=true",
+            "/consoleloggerparameters:NoSummary;ForceNoAlign"
+        ],
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "watch",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "watch",
+            "run",
+            "--project",
+            "${workspaceFolder}/your-app.csproj"
+        ],
+        "problemMatcher": "$msCompile"
+    }
   ],
 
     
@@ -247,7 +310,7 @@
         {
             "id": "Model-create",
             "type": "promptString",
-            "description": "CREATE MODEL: Enter model class name (e.g., Product)",
+            "description": "CREATE MODEL: Enter model class name (e.g., ProductModel,  Be-aware 'Model' will **NOT** be added!)",
             "default": "MyModel"
         },
 
@@ -255,7 +318,7 @@
         {
             "id": "Controller-create",
             "type": "promptString",
-            "description": "CREATE CONTROLLER: Enter controller name (e.g., Products, Orders)",
+            "description": "CREATE CONTROLLER: Enter controller name (e.g., Products.  Be-aware 'Controller' WILL be added! ",
             "default": "MyController"
         },
 
@@ -263,13 +326,13 @@
         {
             "id": "Model-use",
             "type": "promptString",
-            "description": "USE MODEL: Enter model class to use (e.g., Product)",
+            "description": "USE MODEL: Enter model class to use (e.g., ProductModel, Be-aware ALWAYS use Fullname!),",
             "default": "MyModel"
         },
         {
             "id": "Controller-name",
             "type": "promptString",
-            "description": "Enter controller name (e.g., Home, Products, Orders)",
+            "description": "Enter controller name (e.g., Home, Products Be-aware 'Controller' WILL be added! )",
             "default": "Home"
         },
         {
@@ -317,7 +380,7 @@
         {
             "id": "CrudModelName",
             "type": "promptString",
-            "description": "CRUD: Enter model class name (e.g., Product)",
+            "description": "CRUD: Enter model class name (e.g., Produc Be-aware ALWAYS use Fullname! ",
             "default": "Product"
         }
     ]
@@ -352,30 +415,8 @@ RIGHT, seems to be done like :(
 - Generate a view/controller using scaffolding
 - That generated file becomes your template
 - Place it in CodeTemplates with the right name
-
-
-  
   Copy those to: ./CodeTemplates/ (maintaining the subfolder structure)
-
-  
-
-
 - Test your custom template by making a small change (e.g., add a comment) 
   and running scaffolding. Your version will be used automatically.
--
 
-dotnet aspnet-codegenerator view Create Create -m Product
-
-
-Okay I need these command to work
-"dotnet aspnet-codegenerator view ${input:Name-view} Empty -udl"
-"dotnet aspnet-codegenerator view ${input:Name-view} Create -udl"
-"dotnet aspnet-codegenerator view ${input:Name-view} Edit -udl"
-"dotnet aspnet-codegenerator view ${input:Name-view} Delete -udl"
-"dotnet aspnet-codegenerator view ${input:Name-view} Details -udl"
-"dotnet aspnet-codegenerator view ${input:Name-view} List -udl"
-
-all should have there  own task and own dedicated input (so we can call them proper)
-
-"MODEL_NAME='${input:Model-create}'; cat > ./Models/$MODEL_NAME.cs << EOF\nnamespace app_mvc.Models\n{\n    public class $MODEL_NAME\n    {\n        // Add your properties here\n        // Example:\n        // public int Id { get; set; }\n        // public string? Name { get; set; }\n    }\n}\nEOF\nif [ -f ./Models/$MODEL_NAME.cs ]; then echo \"Successfully created model: $MODEL_NAME\"; else echo \"Failed to create model: $MODEL_NAME\"; fi"
 */

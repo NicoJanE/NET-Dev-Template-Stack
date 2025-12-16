@@ -19,7 +19,10 @@ RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
     && rm dotnet-install.sh
 ENV PATH="/usr/share/dotnet:$PATH"
 
-
+# 1.2.1 Install ASP.NET scaffolding tool (dotnet-aspnet-codegenerator) globally
+RUN dotnet tool install -g dotnet-aspnet-codegenerator --version 8.0.0
+# Ensure dotnet global tools are on PATH
+ENV PATH="$PATH:/root/.dotnet/tools"
 
 
 # 1.3 Create 'cworkspace' directory for scripts that must be copied to the container
