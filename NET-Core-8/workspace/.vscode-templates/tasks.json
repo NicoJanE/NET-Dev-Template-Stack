@@ -174,13 +174,13 @@
         "command": "bash",
         "args": [
           "-c",        
-            "MODEL_NAME='${input:Model-create}'; \
+            "MODEL_NAME='${input:Model-create}';  COLOR_OFF='\\033[0m';  \
   mkdir -p Models && \
   cat > ./Models/${MODEL_NAME}.cs <<'EOF'\nnamespace YOUR_APP.Models;\n\npublic class ${MODEL_NAME}\n{\n    public int Id { get; set; }\n    public string Name { get; set; }\n}\nEOF\nif [ -f ./Models/${MODEL_NAME}.cs ]; then \
     clear; \
-    echo \"Successfully created model: ${MODEL_NAME}\"; \
+    echo -e \"\\033[1;32mSuccessfully\\033[0m created model: ${MODEL_NAME}\"; \
     echo \"------------------------------------------------------------\"; \
-    echo \"IMPORTANT: Edit ./Models/${MODEL_NAME}.cs and replace YOUR_APP in the namespace with your actual project namespace!\"; \
+    echo -e \"\\033[1;33mIMPORTANT!\\033[0m \\n  - Edit ./Models/${MODEL_NAME}.cs and replace \\033[1;32mYOUR_APP\\033[0m in the File  with your actual project namespace! \\n \"; \
     echo \"------------------------------------------------------------\"; \
   else \
     clear; \
@@ -202,9 +202,9 @@
   mkdir -p Controllers && \
   cat > ./Controllers/${CONTROLLER_NAME}Controller.cs <<'EOF'\nusing System.Diagnostics;\nusing Microsoft.AspNetCore.Mvc;\nusing YOUR_APP.Models;\n\nnamespace YOUR_APP.Controllers;\n\npublic class ${CONTROLLER_NAME}Controller : Controller\n{\n    private readonly ILogger<${CONTROLLER_NAME}Controller> _logger;\n\n    public ${CONTROLLER_NAME}Controller(ILogger<${CONTROLLER_NAME}Controller> logger)\n    {\n        _logger = logger;\n    }\n\n    public IActionResult Index()\n    {\n        return View();\n    }\n\n    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]\n    public IActionResult Error()\n    {\n        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });\n    }\n}\nEOF\nif [ -f ./Controllers/${CONTROLLER_NAME}Controller.cs ]; then \
     clear; \
-    echo \"Successfully created controller: ${CONTROLLER_NAME}Controller\"; \
+    echo -e \"\\033[1;32mSuccessfully\\033[0m created controller: ${CONTROLLER_NAME}Controller\"; \
     echo \"------------------------------------------------------------\"; \
-    echo \"***IMPORTANT***: Edit ./Controllers/${CONTROLLER_NAME}Controller.cs and replace YOUR_APP in the file with your actual project namespace!\"; \
+    echo -e \"\\033[1;33mIMPORTANT!\\033[0m \\n  - Edit ./Models/${CONTROLLER_NAME}.cs and replace \\033[1;32mYOUR_APP\\033[0m in the File  with your actual project namespace! \\n \"; \
     echo \"------------------------------------------------------------\"; \
   else \
     clear; \
@@ -213,7 +213,7 @@
         ],
         "problemMatcher": []
       },
-
+      
       // 3.   Scaffold VIEW tasks
       // -------------------------------------------------------------------------------------------------------------------------
       {
