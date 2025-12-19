@@ -7,13 +7,13 @@ using app_mvc.Models;
 
 namespace app_mvc.Data
 {
-    public class ApplicationDbContext2 : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext2 (DbContextOptions<ApplicationDbContext2> options)
+        public ApplicationDbContext (DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
 
-        public DbSet<app_mvc.Models.MyModel> MyModel { get; set; } = default!;
+        public DbSet<app_mvc.Models.ErrorViewModel> MyModel { get; set; } = default!;
     }
 }
