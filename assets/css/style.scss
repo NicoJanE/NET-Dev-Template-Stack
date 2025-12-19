@@ -1717,11 +1717,24 @@ table.no-border, table.no-border th, table.no-border td {
   border: none !important;
   box-shadow: none !important;
 }
-@media (max-width: 600px) {
+
+/* ================================= CARFULL media block! start  ==================================
+
+    MAKE Sure: to only add intended items here. Leave this at the end of the document
+    
+    CONSIDER: To move it to it's own file 
+
+======================================================================================= */
+
+/* START MEDIA BLOCK */
+@media (max-width: 600px) 
+{
   table.no-border, table.no-border tr, table.no-border td {
     display: block;
     width: 100%;
   }
+
+
   table.no-border td:first-child {
     text-align: center !important;
     padding: 8px 0;
@@ -1730,4 +1743,162 @@ table.no-border, table.no-border th, table.no-border td {
     text-align: right !important;
     padding: 8px 0;
   }
+
+}  
+/* END MEDIA BLOCK */
+
+
+/* =====================================================================================
+  BEGIN Item blocks
+
+  Customized item blocks, with specific behavior.
+  - All the block start with:   'nje-block-'
+  - This approach helps minimize code in the Markdown/HTML and centralizes styling logic in CSS
+  - Items are intended  to display  only one specific thing, an are not intended for customize
+  - Some items may be very similar in output, while using almost the same source code. But still we  don't reuse code from other items,
+     instead  we copy the same code and customize it (no DRY!) this enables safe, independent customization to an item without breaking 
+     other items.
+
+======================================================================================= */
+
+
+/* *********************************************************************************************************************************************
+      
+      ITEM 1        :   nje-block-now   
+      PURPOSE   :   Display links in a block, on which we currently working 
+
+  ********************************************************************************************************************************************** */
+
+
+.nje-block-now-header {       /* Header */
+  color: #578358;
+  font-size: 11px;
+  font-weight: bold;
+  
+  padding-bottom: 0;
+  padding-left: 22px;;
 }
+.nje-block-now {                    /* Main item*/
+                                             
+  --nje-bgcolor: #E8F5E9;    /* Use variables for flexibility */
+  --nje-textcolor: #1E88E5;
+  --nje-offset: 20px;                 /* Move block to righ(+) or to left(-) */
+  --nje-vmove2: -21px;;           /* Move block up(-) or down (+)*/
+
+  background-color: var(--nje-bgcolor);
+  color: var(--nje-textcolor) !important;
+  display: inline-block;
+  width: fit-content;
+  font-size: 90%;
+  padding-top: 12px;
+  padding-left: 6px;
+  padding-right: 4px;
+  padding-bottom: 11px;
+  border-radius: 6px;
+  margin: 0;
+  margin-top: 0px; 
+  transform: translateX(var(--nje-offset)) translateY(var(--nje-vmove2));
+}
+
+.nje-block-now a::before {        /* Main support item. Add text and icon  */
+  content: " ⛏️ ";
+  color: inherit;
+  margin-top: -110px;
+}
+.nje-block-now .desc::after {     /* Main support item. Add newline after descr item  */
+  content: "\A";
+  white-space: pre;
+}
+
+
+/* *********************************************************************************************************************************************
+      
+      ITEM 2    :   nje-block-pre-header
+      PURPOSE   :   Display prerequist items in a blocak
+
+  ********************************************************************************************************************************************** */
+
+  .nje-block-pre-header {       /* Header */
+  --nje-color: #666666;
+  color: var(--nje-color);
+  font-size: 14px;
+  font-weight: bold;
+  
+  padding-bottom: 0;
+  padding-left: 2px;;
+}
+.nje-block-pre {                    /* Main item*/
+                                             
+  /*--nje-bgcolor: #E8F5E9;*/    /* Use variables for flexibility */
+  --nje-bgcolor: #EEEEEE;
+  --nje-textcolor: #444444;
+  --nje-offset: 2px;                 /* Move block to righ(+) or to left(-) */
+  --nje-vmove2: 0px;;           /* Move block up(-) or down (+)*/
+  min-width: 420px; /* or any value you prefer */
+  background-color: var(--nje-bgcolor);
+  color: var(--nje-textcolor) !important;
+  display: inline-block;
+  width: fit-content;
+  font-size: 90%;
+  padding-top: 12px;
+  padding-left: 6px;
+  padding-right: 140px;
+  padding-bottom: 20px;
+  border-radius: 6px;
+  margin: 0;
+  margin-top: 0px; 
+  transform: translateX(var(--nje-offset)) translateY(var(--nje-vmove2));
+}
+
+.nje-block-pre-header::before {        /* Main support item. Add text and icon  */
+  content: " ✅ Prerequisites ";
+  margin-top: 0px;
+}
+.nje-block-pre .item::before {        /* Main support item. Add text and icon  */
+  content: " 🟢   ";
+  font-size: 45%;
+  margin-left: 6px;
+  margin-right: 6px;
+  font-weight: 500; 
+}
+.nje-block-pre .item 
+{
+  font-size: 110%;
+}
+
+.nje-block-pre .item::after {    /* Main support item. Add newline after descr item  */
+  content: "\A";
+  margin-left: 26px;
+  white-space: pre;
+  
+}
+ 
+.nje-block-pre .descr::before {     /* Main support item. Add newline after descr item  */
+  content: "\2003\2003";
+  white-space: pre;
+}
+
+.nje-block-pre .descr
+{
+  --nje-textcolor: #2e8de1;
+  color: var(--nje-textcolor) !important;
+  display: block;
+  font-weight: 500;
+  font-style: italic;
+  margin-left:-2px;
+  margin-top:-5px;  
+  font-size: 104%;
+}
+
+
+.nje-block-pre .descr::after {     /* Main support item. Add newline after descr item 1E88E5*/
+  content: "\A";
+  white-space: pre;
+}
+
+
+/* ======================================================================================
+  END: Item blocks
+  ====================================================================================== */
+
+
