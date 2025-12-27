@@ -1,4 +1,6 @@
-# .NET Development Container <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker Container</span>
+<h1> 
+  .NET Development Container <i><sub><sub> - A Docker Template Stack Container</sub></sub></i>
+</h1>
 
 ## Introduction
 
@@ -39,6 +41,10 @@ For setup, choose between the quick setup and full documentation:
   <span class="nje-indent1">View full documentation with better navigation: [Documentation Site](https://nicojane.github.io/NET-Dev-Template-Stack/)
   </span>
 
+
+<sub> <i>This file is part of: **Net-Core-Template Stack**  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see [`COMMERCIAL.md`](COMMERCIAL.md).</i>
+</sub>
+
 <br>
 <p align="center">
   <a href="https://nicojane.github.io/Docker-Template-Stacks-Home/">
@@ -46,8 +52,5 @@ For setup, choose between the quick setup and full documentation:
   </a>
 </p>
 
-<sub> <i>This file is part of: **Net-Core-Template Stack**
-Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.</i>
-</sub>
 
 <p align="center">─── ✦ ───</p>
