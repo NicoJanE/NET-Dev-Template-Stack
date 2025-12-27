@@ -54,7 +54,8 @@ This refers to the .NET 8.0 development container, the only .Net Container curre
   </span>
 
 <span style="color: #6d757dff; font-size: 10px; font-style: italic;"> <br>
-This file is part of: **Net-Core-Template Stack**
-Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.</span>
+<sub> <i>This file is part of: **Net-Core-Template Stack**  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see [`COMMERCIAL.md`](COMMERCIAL.md).</i>
+</sub></span>
 
+<br>
 <center>─── ✦ ───</center>
