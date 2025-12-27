@@ -39,10 +39,10 @@ Setup for the .NET 8.0 development container. To setup, choose between the quick
 - **📚 .NET scripts**  
   <span class="nje-indent1">Overview of the available .NET 8.0 scripts:  [Available Scripts](./Howtos/setup.md#available-script-templates) </span>
 
-
-<span style="color: #6d757dff; font-size: 10px; font-style: italic;"> <br>
-This file is part of: **Net-Core-Template Stack**
-Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.</span>
+<span style="color: #6d757dff; font-size: 13px; font-style: italic;"> <br>
+<i><b>License</b><br>This file is part of: **Net-Core-Template Stack**  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see [`COMMERCIAL.md`](COMMERCIAL.md).</i>
+</span>
+<br>
 
 
 <center>─── ✦ ───</center>
