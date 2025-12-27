@@ -42,9 +42,9 @@ For setup, choose between the quick setup and full documentation:
   </span>
 
 <br>
-<small> <i><b>License</b><br>This file is part of: <b>Net-Core-Template Stack</b>  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see [`COMMERCIAL.md`](COMMERCIAL.md).</i>
+<small> <i><b>License</b><br>This file is part of: <b>Net-Core-Template Stack</b>  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see <a href="COMMERCIAL.md">COMMERCIAL.md</a></i>
 </small>
-
+  
 <br><br>
 <p align="center">
   <a href="https://nicojane.github.io/Docker-Template-Stacks-Home/">
