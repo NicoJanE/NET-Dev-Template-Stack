@@ -27,14 +27,15 @@ Setup for the .NET 8.0 development container. To setup, choose between the quick
   <span class="nje-indent1">Overview of the available .NET 8.0 scripts:  [Available Scripts](./Howtos/setup.md#available-script-templates) </span>
 
 <br>
+<small> <i><b>License</b><br>This file is part of: <b>Net-Core-Template Stack</b>  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see <a href="COMMERCIAL.md">COMMERCIAL.md</a></i>
+</small>
+
+<br><br>
 <p align="center">
   <a href="https://nicojane.github.io/Docker-Template-Stacks-Home/">
     <img src="../assets/images/DTSfooter.svg" alt="WSL Template Stacks" width="400" />
   </a>
 </p>
 
-<sub> <i>This file is part of: **Net-Core-Template Stack**
-Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.</i>
-</sub>
 
 <p align="center">─── ✦ ───</p>
