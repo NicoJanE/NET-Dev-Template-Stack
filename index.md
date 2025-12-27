@@ -45,7 +45,7 @@ NET-Dev-Template-Stack/
 
 <a id="Setup"></a>
 
-## Setup .NET 8 Core
+### Setup .NET 8 Core
 
 This refers to the .NET 8.0 development container, the only .Net Container currently. To setup refer to this page:
 
@@ -53,8 +53,8 @@ This refers to the .NET 8.0 development container, the only .Net Container curre
   <span class="nje-indent1">View full documentation with better navigation: [Documentation Site](https://nicojane.github.io/NET-Dev-Template-Stack//NET-Core-8/)
   </span>
 
-<span style="color: #6d757dff; font-size: 12px; font-style: italic;"> <br>
-<i>This file is part of: **Net-Core-Template Stack**  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see [`COMMERCIAL.md`](COMMERCIAL.md).</i>
+<span style="color: #6d757dff; font-size: 13px; font-style: italic;"> <br>
+<i><b>License</b><br>This file is part of: **Net-Core-Template Stack**  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see [`COMMERCIAL.md`](COMMERCIAL.md).</i>
 </span>
 
 <br>
