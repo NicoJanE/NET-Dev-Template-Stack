@@ -41,11 +41,11 @@ For setup, choose between the quick setup and full documentation:
   <span class="nje-indent1">View full documentation with better navigation: [Documentation Site](https://nicojane.github.io/NET-Dev-Template-Stack/)
   </span>
 
-
-<sub> <i>This file is part of: **Net-Core-Template Stack**  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see [`COMMERCIAL.md`](COMMERCIAL.md).</i>
-</sub>
-
 <br>
+<small> <i><b>License</b><br>This file is part of: **Net-Core-Template Stack**  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see [`COMMERCIAL.md`](COMMERCIAL.md).</i>
+</small>
+
+<br><br>
 <p align="center">
   <a href="https://nicojane.github.io/Docker-Template-Stacks-Home/">
     <img src="assets/images/DTSfooter.svg" alt="DTS Template Stacks" width="400" />
