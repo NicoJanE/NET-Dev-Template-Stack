@@ -2,6 +2,8 @@
   .NET Development Container <i><sub><sub> - A Docker Template Stack Container</sub></sub></i>
 </h1>
 
+![MIT License](https://img.shields.io/badge/License-MIT-green) ![Commercial Services Available](https://img.shields.io/badge/Services-Optional-blue)
+
 ## Introduction
 
 This repository contains Docker-based development environments for .NET. Currently featuring **.NET 8.0** - see the [.NET 8.0 overview](https://nicojane.github.io/NET-Dev-Template-Stack//NET-Core-8/) or jump directly to [Setup and Usage](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup). Support for additional .NET versions planned as needed.
@@ -41,8 +43,9 @@ For setup, choose between the quick setup and full documentation:
   <span class="nje-indent1">View full documentation with better navigation: [Documentation Site](https://nicojane.github.io/NET-Dev-Template-Stack/)
   </span>
 
+
 <br>
-<small> <i><b>License</b><br>This file is part of: <b>Net-Core-Template Stack</b>  Copyright (c) 2025 Nico Jan Eelhart.This repository is MIT licensed and free to use. For optional commercial support, customization, training, or long-term maintenance, see <a href="COMMERCIAL.md">COMMERCIAL.md</a></i>
+<small> <i><b>License</b><br>This file is part of: <b>Net-Core-Template Stack</b>  Copyright (c) 2025-2026 Nico Jan Eelhart.This repository is <a href="MIT-license.md">MIT licensed</a>and free to use. For optional commercial support, customization, training, or long-term maintenance, see <a href="COMMERCIAL.md">COMMERCIAL.md</a></i>
 </small>
   
 <br><br>
