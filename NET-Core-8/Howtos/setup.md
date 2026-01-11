@@ -267,7 +267,8 @@ This guide shows how to use Visual Studio Code to develop, build, and debug your
 **We support two build methods:**
 
 1. **🐳 Docker Container Method** <span style="color: #0dbf60ff; font-size: 1.0em; ">(Recommended) </span> - Build and run inside the container
-2. **🪟 Windows Host Method** - Build and run on your local Windows machine
+2. **🪟 Windows Host Method** - Build and run on your local Windows machine. 
+&nbsp; ***Note*** *: For some .Net application types (i.e. WPF) your are required to use this method!*
 
 <div class="nje-br2"> </div>
 
