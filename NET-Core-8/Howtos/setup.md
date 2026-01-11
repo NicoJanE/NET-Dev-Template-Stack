@@ -267,8 +267,8 @@ This guide shows how to use Visual Studio Code to develop, build, and debug your
 **We support two build methods:**
 
 1. **🐳 Docker Container Method** <span style="color: #0dbf60ff; font-size: 1.0em; ">(Recommended) </span> - Build and run inside the container
-2. **🪟 Windows Host Method** - Build and run on your local Windows machine. 
-&nbsp; ***Note*** *: For some .Net application types (i.e. WPF) your are required to use this method!*
+2. **🪟 Windows Host Method** - Build and run on your local Windows machine.  
+ ***Note*** *: For some .Net application types (i.e. WPF) your are required to use this method!*
 
 <div class="nje-br2"> </div>
 
@@ -311,7 +311,7 @@ This section describes how to configure Visual Studio Code running on the host t
 
 These instructions will set up the task and launch items for VS Code for Docker(Linux) and Windows.
 
-<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: This five-step configuration procedure must be completed for each application you create.</span>
+<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: This six-step configuration procedure must be completed for each application you create.</span>
 
 **1. Create `.vscode` folder in your project**  
 Navigate to your application directory on Windows and create the configuration folder:
