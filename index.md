@@ -19,7 +19,7 @@ TableCont:
 
 ## Introduction
 
-This repository contains Docker-based development environments for .NET. Currently featuring **.NET 8.0** - see the [.NET 8.0 overview](https://nicojane.github.io/NET-Dev-Template-Stack//NET-Core-8/) or jump directly to [Setup and Usage](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup). Support for additional .NET versions planned as needed.
+This repository contains Docker-based **development environments**for .NET projects. Currently featuring **.NET 8.0** - see the [.NET 8.0 overview](https://nicojane.github.io/NET-Dev-Template-Stack//NET-Core-8/) or jump directly to [Setup and Usage](https://nicojane.github.io/NET-Dev-Template-Stack/NET-Core-8/Howtos/setup). Support for additional .NET versions planned as needed.
 
 ### 🎯 What's Included
 
@@ -29,27 +29,29 @@ Each .NET development environment provides:
 - **Project templates generation scripts:** Console, Web API, MVC, Blazor, gRPC, Tests, and more
 - **Cross-platform development** (Windows ↔ Linux containers)
 - **Development tools** and utilities for streamlined workflows, including Visual Studio code task and launch files
+- **A Workspace** folder for your project(s)
 
 ### 📁 Repository Structure
 
-```text
+<pre class="nje-cmd-multi-line-sm">
 NET-Dev-Template-Stack/
 ├── NET-Core-8/                         # .NET 8.0 development environment
+│   ├── Howtos/                         # Documentation and guides
 │   ├── Net8-Service/                   # Main service container
 │   │   ├── script-templates/           # Project creation scripts
 │   │   ├── Dockerfile_netcore_cont     # Container definition
 │   │   └── compose_netcore_cont.yml    # Docker Compose
-│   ├── Howtos/                         # Documentation and guides
+│   ├── <span style="color: #f98585; font-size: 1.2em; font-style: italic;">Workspace/                  # Project(s) go here! </span>
 │   └── README.md                       # .NET 8.0 specific documentation
 ├── assets/                             # Documentation assets
 └── README.md                           # This file
-```
+</pre>
 
 <a id="Setup"></a>
 
-### Setup .NET 8 Core
+### Setup .NET 8 Core Development Environment
 
-This refers to the .NET 8.0 development container, the only .Net Container currently. To setup refer to this page:
+This refers to the .NET 8.0 development container, the only .Net development environment Container currently available. To setup refer to this page:
 
 - **📖🚀 Enhanced Documentation .NET core 8.0**  
   <span class="nje-indent1">View full documentation with better navigation: [Documentation Site](https://nicojane.github.io/NET-Dev-Template-Stack//NET-Core-8/)
