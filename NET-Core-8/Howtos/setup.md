@@ -37,12 +37,10 @@ This guide walks you through setting up a Docker container with a **.NET 8.0 dev
   <span class="nje-indent1"> - Repository is cloned to local machine </span>  
   <span class="nje-indent1"> - External Docker network (configured in ***.env*** file) </span>
 
-<span style="color: #02b656ff; font-size: 1.0em;">Last successful tested: </span> <span style="color: #696360ff; font-size: 0.8em;"> 12 Dec 2025, using script mvc </span>
+<span style="color: #02b656ff; font-size: 1.0em;">Last successful tested: </span> <span style="color: #696360ff; font-size: 0.8em;"> 19 Jan. 2026, using script mvc </span>
 
 ---
 <a id="Setup"></a>
-
-
 
 ## Setup
 
@@ -55,6 +53,7 @@ Follow these steps to set up your .NET 8.0 development container.
 **Navigate to the service directory:**
 
 Open PowerShell and navigate to the <span class="nje-cmd-inline-sm">.\NET-Core-8\Net8-Service</span> directory, then follow these steps:
+**🔹Tip**: Rename the `Net8-Service` to a name that identifies your project to more easily identify it in Docker (Name). For this document we continue to use the name `Net8-Service`
 
 **1. Create the external network**
 
@@ -66,8 +65,11 @@ Open PowerShell and navigate to the <span class="nje-cmd-inline-sm">.\NET-Core-8
    If you get an error message that the network already exists, you're probably good to go!
    </span>
 
+Open a the `.env` and define a project **IP** address, that will be used in the ``compose_netcore_cont.yml`` file below
+
 **2. Create the container**
 
+First edit  the above defined,  **IP** address in the ``compose_netcore_cont.yml`` file then:
    <pre class="nje-cmd-multi-line-sm" style="margin-top:-20px;">
  docker-compose -f compose_netcore_cont.yml up -d
  docker-compose -f compose_netcore_cont.yml up -d --build --force-recreate
