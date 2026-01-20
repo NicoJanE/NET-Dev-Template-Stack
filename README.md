@@ -1,5 +1,5 @@
 <h1> 
-  .NET Development Container <i><sub><sub> - A Docker Template Stack Container</sub></sub></i>
+  .NET Development Environment <i><sub><sub> - A Docker Template Stack Container</sub></sub></i>
 </h1>
 
 ![MIT License](https://img.shields.io/badge/License-MIT-green) ![Commercial Services Available](https://img.shields.io/badge/Services-Optional-blue)
