@@ -52,8 +52,8 @@ Follow these steps to set up your .NET 8.0 development container.
 
 **Navigate to the service directory:**
 
-Open PowerShell and navigate to the <span class="nje-cmd-inline-sm">.\NET-Core-8\Net8-Service</span> directory, then follow these steps:
-**🔹Tip**: Rename the `Net8-Service` to a name that identifies your project to more easily identify it in Docker (Name). For this document we continue to use the name `Net8-Service`
+Open PowerShell and navigate to the <span class="nje-cmd-inline-sm">.\NET-Core-8\Net8-Service</span> directory, then follow these steps:  
+**🔹Tip**: Rename the `Net8-Service` to a name that identifies **`your project`** to more easily identify it in Docker (Name). For this document we continue to use the name `Net8-Service`
 
 **1. Create the external network**
 
