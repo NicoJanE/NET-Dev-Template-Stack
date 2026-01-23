@@ -2,4 +2,36 @@
   "files.associations": {
     "launch.json": "jsonc"
   }
+
+    // COMBINATIONS, to distinct projects
+    // **************************************************************************************************************************************************
+    // Project 1.
+    // "workbench.colorTheme": "Tomorrow Night Blue",         // Day time | built-in
+    // "workbench.colorTheme": "Solarized Dark",                    // Evening | built-in
+    //
+    // Project 2.
+    // --------------------------------------------------------------------------------------------------------------------------------------------------------
+    // "workbench.colorTheme": "Best Themes - Andromeda",       // Daytime | ext: lakshits11.best-themes-redefined
+    // "workbench.colorTheme": "Best Themes - Laserwave",          // Evening (warm, muted) | ext: lakshits11.best-themes-redefined
+    //
+    // Project 3
+    // --------------------------------------------------------------------------------------------------------------------------------------------------------
+    //"workbench.colorTheme": "Cobalt2",               // Daytime | ext: wesbos.theme-cobalt2
+    // "workbench.colorTheme": "Night Owl",          // Evening | ext: sdras.night-owl
+    //
+    // Project 4. Different  to use day./evening, all have other status bar color
+    // --------------------------------------------------------------------------------------------------------------------------------------------------------
+    // "workbench.colorTheme": "Dark Green",                                                                                   // ext: zrnatoneto.dark-green
+    //  "workbench.colorTheme": "Best Themes - Andromeda"                                                          // blue status bar | ext: lakshits11.best-themes-redefined
+    // "workbench.colorTheme": "Synthwave x Fluoromachine & epic animations & contrast"         // 100% black  status bar + High contrast | ext: thecodemonkey.synthwave-x-fluoromachine-epic-animations
+    //  "workbench.colorTheme": "zathura"                                                                                         // Yellow  status bar | ext: tenebris.zathura
+    // "workbench.colorTheme": "Zone Green Mellow",                                                                      // Retro | ext: lakshits11.best-themes-redefined
+    //  "workbench.colorTheme": "Best Themes - Laserwave",                                                            // Pink status bar | ext: lakshits11.best-themes-redefined
+    // "workbench.colorTheme": "Best Themes - Xcode Catalina Bold",                                             // Blue status bar | ext: lakshits11.best-themes-redefined
+    //
+    //  "workbench.colorTheme": "Synthwave '2077"                                                                          // Green  status bar retro | ext: codesacha.synthwave--2077
+    //  "workbench.colorTheme": "Dracula Purple"                                                                             // purpal  status bar | ext: cbasdev.dracula-purple
+    
+    
+
 }

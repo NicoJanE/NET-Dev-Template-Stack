@@ -449,12 +449,11 @@ Our <span style="color: #0dbf60ff; font-size: 1.0em;"> recommended </span> build
   |:-------------------|:----|
   | `ms-dotnettools.csharp` | C# language support, IntelliSense, debugging <span style="color: #e03f05ff; font-size: 1.0em;"> required </span> |
   | `ms-dotnettools.csdevkit` | C# Dev Kit for enhanced development experience <span style="color: #e03f05ff; font-size: 1.0em;"> required </span> |
-  | `ms-dotnettools.vscodeintellicode-csharp` | AI-assisted IntelliSense |
+  | `GitHub.copilot-chat` | AI-assisted IntelliSense |
   | `redhat.vscode-yaml` | Editing YAML files (Docker Compose, CI/CD configs) |
   | `ms-azuretools.vscode-docker` | Docker file support |
   | `formulahendry.dotnet-test-explorer` | Test explorer for .NET |
-  | `jchannon.csharpextensions` | C# extensions for creating classes/interfaces |
-  | `kreativ-software.csharpextensions` | Additional C# productivity features |
+  | `kreativ-software.csharpextensions` | C# productivity features |
 
 </details>
 
