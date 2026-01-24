@@ -20,6 +20,13 @@ dotnet new webapp -o "$TARGET_DIR/$APP_NAME"
 cd "$TARGET_DIR/$APP_NAME"
 dotnet restore
 
+# Copy the VS Code settings, User must check them, for the correct paths
+mkdir -p .vscode
+cp "../../workspace/.vscode-templates/tasks.json" ".vscode/tasks.json"
+cp "../../workspace/.vscode-templates/settings.json" ".vscode/settings.json"
+cp "../../workspace/.vscode-templates/launch_webapp.json" ".vscode/launch.json"
+cp "../../workspace/.vscode-templates/Directory.Build.props" "./Directory.Build.props"
+
 # Call scaffold script to generate additional scaffolding (scripts are in same folder)
 cd -
 ./env_scaffold.sh "$TARGET_DIR/$APP_NAME"
@@ -28,12 +35,7 @@ echo ".NET 8 Razor Pages Web App: '$APP_NAME' created in directory: $TARGET_DIR 
 echo "Run the app with the command:"
 echo "dotnet run --urls \"http://0.0.0.0:5000\""
 
-# Copy the VS Code settings, User must check them, for the correct paths
-mkdir -p .vscode
-cp "../../workspace/.vscode-templates/tasks.json" ".vscode/tasks.json"
-cp "../../workspace/.vscode-templates/settings.json" ".vscode/settings.json"
-cp "../../workspace/.vscode-templates/launch_webapp.json" ".vscode/launch.json"
-cp "../../workspace/.vscode-templates/Directory.Build.props" "./Directory.Build.props"
+
 
 
 # Call syntax

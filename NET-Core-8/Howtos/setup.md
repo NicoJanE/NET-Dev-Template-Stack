@@ -313,36 +313,30 @@ This section describes how to configure Visual Studio Code running on the host t
 
 These instructions will set up the task and launch items for VS Code for Docker(Linux) and Windows.
 
-<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: This six-step configuration procedure must be completed for each application you create. Some Scripts will copy the files for you, but you still are required to check the files and content</span>
+<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: This six-step configuration procedure must be completed for each application you create. Most scripts will copy the files for you, but you still are required to check the files and content</span>
 
-**1. Create `.vscode` folder in your project**  
+**1. Check if the `.vscode` folder in your project exists**  
 Navigate to your application directory on Windows and create the configuration folder:
 
 <pre class="nje-cmd-multi-line-sm-indent1" style="margin-top:-20px;">
-cd .\workspace\your-app
-mkdir .vscode
+cd .\workspace\your-app\.vscode  # Should exist
 </pre>
 <div class="nje-br2"> </div>
-**2. Copy template `tasks.json`**  
-Copy the template file <span class="nje-cmd-inline-sm">.\workspace\.vscode-templates\tasks.json</span> to the <span class="nje-cmd-inline-sm">.vscode</span> directory created in the previous step  (<span class="nje-cmd-inline-sm">.\workspace\your-app\\.vscode</span>)
 
-**3. Replace `your-app` with your actual application name in all paths in the copied `tasks.json` file.**
+**2. Check if the  template `.\vscode\tasks.json` exists**  
+If it does not exists a Template can be found at  `.\workspace\.vscode-templates\tasks.json`.
 
-**4. Copy template `launch_[script].json`**  
-Choose the launch template that matches your application type, then copy it to the <span class="nje-cmd-inline-sm">.vscode</span> directory created in step 1 and rename it to <span class="nje-cmd-inline-sm">launch.json</span>. Use <span class="nje-cmd-inline-sm">launch_console.json</span> for Console, Worker, and Library projects or <span class="nje-cmd-inline-sm">launch_webapi.json</span> for Web Apps and APIs. See the [Available Script Templates](#available-script-templates) table for the complete list of which script creates which application type.
+**3. Replace `your-app` with your actual application name in all paths in the `tasks.json` file.**
 
-<div class="nje-indent1">**Example copy command:**
-</div>
-<pre class="nje-cmd-multi-line-sm-indent4" style="margin-top:-23px;">
-# For a console app:
-copy .\workspace\.vscode-templates\launch_console.json .\workspace\your-app\.vscode\launch.json
-</pre>
+**4. Check if  the  `.vscode\launch..json` exists**  
+If it does not exists a template can be found at  `.\workspace\.vscode-templates\launch_[app-type].json`.
+
  <div class="nje-br3"> </div> 
 
-**5. Replace `your-app` with your actual application name in all paths in the copied `launch.json` file.**
+**5. Replace `your-app` with your actual application name in all paths in the copied `./vscode/launch.json` file.**
 
-**6. Copy Directory.Build.prop**  
-Copy the file: .\workspace\.vscode-templates\Directory.Build.props to .\workspace\your-app\Directory.Build.props
+**6. Check if the `.\Directory.Build.prop` exists**  
+If it does not exists a template can be found at  `.\workspace\.vscode-templates\`.
 This avoid **'Duplicated errors messages'** when building for Docker and switch to Windows builds
 
 7. Optional. Use **Scaffold tool** to generate CRUD items
