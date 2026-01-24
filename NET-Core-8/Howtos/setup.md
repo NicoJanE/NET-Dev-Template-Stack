@@ -328,16 +328,14 @@ If it does not exists a Template can be found at  `.\workspace\.vscode-templates
 
 **3. Replace `your-app` with your actual application name in all paths in the `tasks.json` file.**
 
-**4. Check if  the  `.vscode\launch..json` exists**  
+**4. Check if  the  `.vscode\launch.json` exists**  
 If it does not exists a template can be found at  `.\workspace\.vscode-templates\launch_[app-type].json`.
-
- <div class="nje-br3"> </div> 
 
 **5. Replace `your-app` with your actual application name in all paths in the copied `./vscode/launch.json` file.**
 
 **6. Check if the `.\Directory.Build.prop` exists**  
-If it does not exists a template can be found at  `.\workspace\.vscode-templates\`.
-This avoid **'Duplicated errors messages'** when building for Docker and switch to Windows builds
+If it does not exists a template can be found at  `.\workspace\.vscode-templates\`.  
+This avoid **'Duplicated errors messages'** when building for Docker and switch to Windows builds.
 
 7. Optional. Use **Scaffold tool** to generate CRUD items
 There is a Task in VS Code 'Scaffold CRUD: Controller + Views (no DB)' this enable the genaration of CRUD Views. These additional steps are required if you want to use that.
