@@ -29,6 +29,15 @@ echo "Run the app with the command:"
 echo "dotnet run --urls \"http://0.0.0.0:5000\""
 echo "For native compilation: dotnet publish -c Release"
 
+
+# Copy the VS Code settings, User must check them, for the correct paths
+mkdir -p .vscode
+cp "../../workspace/.vscode-templates/tasks.json" ".vscode/tasks.json"
+cp "../../workspace/.vscode-templates/settings.json" ".vscode/settings.json"
+cp "../../workspace/.vscode-templates/launch_webapiaot.json" ".vscode/launch.json"
+cp "../../workspace/.vscode-templates/Directory.Build.props" "./Directory.Build.props"
+
+
 # Call syntax
 # Default: ./create_webapiaot.sh                      => (uses defaults: app-webapi-aot in /hostmount/workspace)
 # option 1:./create_webapiaot.sh  my-fast-api         => (custom name, default location)

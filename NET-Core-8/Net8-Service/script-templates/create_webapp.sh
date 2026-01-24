@@ -28,6 +28,14 @@ echo ".NET 8 Razor Pages Web App: '$APP_NAME' created in directory: $TARGET_DIR 
 echo "Run the app with the command:"
 echo "dotnet run --urls \"http://0.0.0.0:5000\""
 
+# Copy the VS Code settings, User must check them, for the correct paths
+mkdir -p .vscode
+cp "../../workspace/.vscode-templates/tasks.json" ".vscode/tasks.json"
+cp "../../workspace/.vscode-templates/settings.json" ".vscode/settings.json"
+cp "../../workspace/.vscode-templates/launch_webapp.json" ".vscode/launch.json"
+cp "../../workspace/.vscode-templates/Directory.Build.props" "./Directory.Build.props"
+
+
 # Call syntax
 # Default: ./create_webapp.sh                      => (uses defaults: app-webapp in /hostmount/workspace)
 # option 1:./create_webapp.sh  my-website          => (custom name, default location)

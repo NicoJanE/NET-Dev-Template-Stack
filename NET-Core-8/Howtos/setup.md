@@ -313,7 +313,7 @@ This section describes how to configure Visual Studio Code running on the host t
 
 These instructions will set up the task and launch items for VS Code for Docker(Linux) and Windows.
 
-<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: This six-step configuration procedure must be completed for each application you create.</span>
+<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: This six-step configuration procedure must be completed for each application you create. Some Scripts will copy the files for you, but you still are required to check the files and content</span>
 
 **1. Create `.vscode` folder in your project**  
 Navigate to your application directory on Windows and create the configuration folder:

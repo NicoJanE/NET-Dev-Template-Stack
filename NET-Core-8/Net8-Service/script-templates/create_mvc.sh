@@ -20,6 +20,14 @@ dotnet new mvc -o "$TARGET_DIR/$APP_NAME"
 cd "$TARGET_DIR/$APP_NAME"
 dotnet restore
 
+# Copy the VS Code settings, User must check them, for the correct paths
+mkdir -p .vscode
+cp "../../workspace/.vscode-templates/mvc/tasks.json" ".vscode/tasks.json"
+cp "../../workspace/.vscode-templates/settings.json" ".vscode/settings.json"
+cp "../../workspace/.vscode-templates/mvc/launch_mvc.json" ".vscode/launch.json"
+cp "../../workspace/.vscode-templates/Directory.Build.props" "./Directory.Build.props"
+
+
 ## BEGIN
 ## Changes required because we like to have the: ./controlls, ./Models, ./Views and ./Data 
 ## Into the folder ./Source

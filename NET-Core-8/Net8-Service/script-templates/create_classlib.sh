@@ -24,6 +24,15 @@ echo "Build the library with the command:"
 echo "dotnet build"
 echo "Note: This creates a .dll that can be referenced by other projects"
 
+
+# Copy the VS Code settings, User must check them, for the correct paths
+mkdir -p .vscode
+cp "../../workspace/.vscode-templates/tasks.json" ".vscode/tasks.json"
+cp "../../workspace/.vscode-templates/settings.json" ".vscode/settings.json"
+cp "../../workspace/.vscode-templates/launch_classlib.json" ".vscode/launch.json"
+cp "../../workspace/.vscode-templates/Directory.Build.props" "./Directory.Build.props"
+
+
 # Call syntax
 # Default: ./create_classlib.sh                      => (uses defaults: app-classlib in /hostmount/workspace)
 # option 1:./create_classlib.sh  my-library          => (custom name, default location)

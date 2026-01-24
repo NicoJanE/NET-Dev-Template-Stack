@@ -22,6 +22,14 @@ echo ".NET 8 Console app: '$APP_NAME' created in directory: $TARGET_DIR "
 echo "Run the app with the command:"
 echo "dotnet run"
 
+# Copy the VS Code settings, User must check them, for the correct paths
+mkdir -p .vscode
+cp "../../workspace/.vscode-templates/tasks.json" ".vscode/tasks.json"
+cp "../../workspace/.vscode-templates/settings.json" ".vscode/settings.json"
+cp "../../workspace/.vscode-templates/launch_console.json" ".vscode/launch.json"
+cp "../../workspace/.vscode-templates/Directory.Build.props" "./Directory.Build.props"
+
+
 # Call syntax
 # Default: ./create_console.sh                      => (uses defaults: app-console in /hostmount/workspace)
 # option 1:./create_console.sh  my-app              => (custom name, default location)
