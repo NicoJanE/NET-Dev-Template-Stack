@@ -161,27 +161,27 @@
           }
         },
 
-
-      // Utilities
+// Utilities
       // ================================================================================================================================================
       // Supported on Docker/Ubuntu
 
       // 1.   Scaffold MODEL task
       // -------------------------------------------------------------------------------------------------------------------------
       {
-        "label": "Scaffold MODEL: Create",
+         "label": "Scaffold MODEL: Create",
         "type": "shell",
         "command": "bash",
         "args": [
           "-c",        
             "MODEL_NAME='${input:Model-create}';  COLOR_OFF='\\033[0m';  \
-  mkdir -p Models && \
-  cat > ./Models/${MODEL_NAME}.cs <<'EOF'\nnamespace YOUR_APP.Models;\n\npublic class ${MODEL_NAME}\n{\n    public int Id { get; set; }\n    public string Name { get; set; }\n}\nEOF\nif [ -f ./Models/${MODEL_NAME}.cs ]; then \
+  mkdir -p Source/Models && \
+  cat > ./Source/Models/${MODEL_NAME}.cs <<'EOF'\nnamespace YOUR_APP.Models;\n\npublic class ${MODEL_NAME}\n{\n    public int Id { get; set; }\n  }\nEOF\nif [ -f ./Source/Models/${MODEL_NAME}.cs ]; then \
     clear; \
     echo -e \"\\033[1;32mSuccessfully\\033[0m created model: ${MODEL_NAME}\"; \
     echo \"------------------------------------------------------------\"; \
-    echo -e \"\\033[1;33mIMPORTANT!\\033[0m \\n  - Edit ./Models/${MODEL_NAME}.cs and replace \\033[1;32mYOUR_APP\\033[0m in the File  with your actual project namespace! \\n \"; \
+      echo -e \"\\033[1;33mIMPORTANT!\\033[0m \\n  - Edit ./Source/Models/${MODEL_NAME}.cs and replace \\033[1;32mYOUR_APP\\033[0m in the File  with your actual project namespace! \\n \"; \
     echo \"------------------------------------------------------------\"; \
+    code -r ${workspaceFolder}/Source/Models/${MODEL_NAME}.cs || true; \
   else \
     clear; \
     echo \"Failed to create model: ${MODEL_NAME}\"; \
@@ -199,13 +199,14 @@
         "args": [
           "-c",
             "CONTROLLER_NAME='${input:Controller-create}'; \
-  mkdir -p Controllers && \
-  cat > ./Controllers/${CONTROLLER_NAME}Controller.cs <<'EOF'\nusing System.Diagnostics;\nusing Microsoft.AspNetCore.Mvc;\nusing YOUR_APP.Models;\n\nnamespace YOUR_APP.Controllers;\n\npublic class ${CONTROLLER_NAME}Controller : Controller\n{\n    private readonly ILogger<${CONTROLLER_NAME}Controller> _logger;\n\n    public ${CONTROLLER_NAME}Controller(ILogger<${CONTROLLER_NAME}Controller> logger)\n    {\n        _logger = logger;\n    }\n\n    public IActionResult Index()\n    {\n        return View();\n    }\n\n    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]\n    public IActionResult Error()\n    {\n        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });\n    }\n}\nEOF\nif [ -f ./Controllers/${CONTROLLER_NAME}Controller.cs ]; then \
+  mkdir -p Source/Controllers && \
+  cat > ./Source/Controllers/${CONTROLLER_NAME}Controller.cs <<'EOF'\nusing System.Diagnostics;\nusing Microsoft.AspNetCore.Mvc;\nusing YOUR_APP.Models;\n\nnamespace YOUR_APP.Controllers;\n\npublic class ${CONTROLLER_NAME}Controller : Controller\n{\n    private readonly ILogger<${CONTROLLER_NAME}Controller> _logger;\n\n    public ${CONTROLLER_NAME}Controller(ILogger<${CONTROLLER_NAME}Controller> logger)\n    {\n        _logger = logger;\n    }\n\n    public IActionResult Index()\n    {\n        return View();\n    }\n\n    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]\n    public IActionResult Error()\n    {\n        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });\n    }\n}\nEOF\nif [ -f ./Source/Controllers/${CONTROLLER_NAME}Controller.cs ]; then \
     clear; \
     echo -e \"\\033[1;32mSuccessfully\\033[0m created controller: ${CONTROLLER_NAME}Controller\"; \
     echo \"------------------------------------------------------------\"; \
-    echo -e \"\\033[1;33mIMPORTANT!\\033[0m \\n  - Edit ./Models/${CONTROLLER_NAME}.cs and replace \\033[1;32mYOUR_APP\\033[0m in the File  with your actual project namespace! \\n \"; \
+                echo -e \"\\033[1;33mIMPORTANT!\\033[0m \\n  - Edit ./Source/Models/${CONTROLLER_NAME}.cs and replace \\033[1;32mYOUR_APP\\033[0m in the File  with your actual project namespace! \\n \"; \
     echo \"------------------------------------------------------------\"; \
+    code -r ${workspaceFolder}/Source/Controllers/${CONTROLLER_NAME}Controller.cs || true; \
   else \
     clear; \
     echo \"Failed to create controller: ${CONTROLLER_NAME}Controller\"; \
@@ -222,7 +223,7 @@
         "command": "bash",
         "args": [
           "-c",
-          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name} Empty -udl"
+            "dotnet aspnet-codegenerator view ./Source/Views/${input:Controller-name}/${input:View-name} Empty -udl &&  code -r ${workspaceFolder}/Source/Views/${input:Controller-name}/${input:View-name}.cs || true; "
         ]
       },
       {
@@ -231,8 +232,8 @@
         "command": "bash",
         "args": [
           "-c",
-          // "codegen_trace=1 dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-create} Create -m ${input:Model-use} -udl"
-          "codegen_trace=1 dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-create} Create -m ${input:Model-use} -udl"
+            "CN='${input:Controller-name}'; VN='${input:View-name-create}Create'; M='${input:Model-use}'; \
+             codegen_trace=1 dotnet aspnet-codegenerator view \"$VN\" Create -m $M --relativeFolderPath Source/Views/$CN -udl && code -r \"${workspaceFolder}/Source/Views/$CN/$VN.cshtml\" || true"
          // "CodeGeneration=true codegen_trace=1 dotnet aspnet-codegenerator view flip Create -m ErrorView -udl"
         ],
           "options": {
@@ -245,7 +246,8 @@
         "command": "bash",
         "args": [
           "-c",
-          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-edit} Edit -m ${input:Model-use} -udl"
+            "CN='${input:Controller-name}'; VN='${input:View-name-edit}Edite'; M='${input:Model-use}'; \
+             codegen_trace=1 dotnet aspnet-codegenerator view \"$VN\" Edit -m $M --relativeFolderPath Source/Views/$CN -udl && code -r \"${workspaceFolder}/Source/Views/$CN/$VN.cshtml\" || true"
         ]
       },
       {
@@ -254,7 +256,8 @@
         "command": "bash",
         "args": [
           "-c",
-          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-delete} Delete -m ${input:Model-use} -udl"
+            "CN='${input:Controller-name}'; VN='${input:View-name-delete}Delete'; M='${input:Model-use}'; \
+             codegen_trace=1 dotnet aspnet-codegenerator view \"$VN\" Delete -m $M --relativeFolderPath Source/Views/$CN -udl && code -r \"${workspaceFolder}/Source/Views/$CN/$VN.cshtml\" || true"
         ]
       },
       {
@@ -263,7 +266,8 @@
         "command": "bash",
         "args": [
           "-c",
-          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-details} Details -m ${input:Model-use} -udl"
+            "CN='${input:Controller-name}'; VN='${input:View-name-details}Details'; M='${input:Model-use}'; \
+             codegen_trace=1 dotnet aspnet-codegenerator view \"$VN\" Details -m $M --relativeFolderPath Source/Views/$CN -udl && code -r \"${workspaceFolder}/Source/Views/$CN/$VN.cshtml\" || true"
         ]
       },
       {
@@ -272,7 +276,8 @@
         "command": "bash",
         "args": [
           "-c",
-          "dotnet aspnet-codegenerator view ./Views/${input:Controller-name}/${input:View-name-list} List -m ${input:Model-use} -udl"
+            "CN='${input:Controller-name}'; VN='${input:View-name-list}List'; M='${input:Model-use}'; \
+             codegen_trace=1 dotnet aspnet-codegenerator view \"$VN\" List -m $M --relativeFolderPath Source/Views/$CN -udl && code -r \"${workspaceFolder}/Source/Views/$CN/$VN.cshtml\" || true"
         ]
       },
       // 34   Scaffold CRUD Task
@@ -292,7 +297,7 @@
           "-name", "${input:CrudControllerName}Controller",
           "-m", "${input:CrudModelName}",
           "-dc", "app_mvc.Data.ApplicationDbContext2",
-          "--relativeFolderPath", "Controllers",
+          "--relativeFolderPath", "Source/Controllers",
           "--useDefaultLayout",
           "--referenceScriptLibraries",
           "-f"  
