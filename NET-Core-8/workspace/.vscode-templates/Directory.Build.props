@@ -6,11 +6,13 @@
                bin and obj
 
                because scaffolding requires this, it needs bin and obj (Hardcoded) and if bin_lin and obj-lin are around as well
-              we  get a duplicated items .... errror (very said this altogether)
+              we  get a duplicated items .... error (very said this altogether)
     -->
     <BaseIntermediateOutputPath Condition="'$(OS)' == 'Windows_NT'">obj_win\</BaseIntermediateOutputPath>
-    <BaseIntermediateOutputPath Condition="'$(OS)' != 'Windows_NT'">obj</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath Condition="'$(OS)' != 'Windows_NT'">obj</BaseIntermediateOutputPath> <!-- FOR scarfolding DO NOT! CHANGE THIS, at least in . NET 8.0 -->
     <BaseOutputPath Condition="'$(OS)' == 'Windows_NT'">bin_win\</BaseOutputPath>
-    <BaseOutputPath Condition="'$(OS)' != 'Windows_NT'">bin</BaseOutputPath>
+    <BaseOutputPath Condition="'$(OS)' != 'Windows_NT'">bin</BaseOutputPath> <!-- FOR scarfolding DO NOT! CHANGE THIS, at least in . NET 8.0 -->
+
+
   </PropertyGroup>
 </Project>
