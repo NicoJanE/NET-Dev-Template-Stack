@@ -3,11 +3,11 @@
 
 ## Directory contents
 
-This folder points to guidance for creating API documentation from your code and for generating browser documentation with DocFX.
+This folder contains guidelines and templates for generating API reference documentation from your .NET code with DocFX.
 
 These files exist:
 
-- `Create-API-Documentation.md` — Instructions for creating API documentation and generating DocFX output.
-- `./Template/page.md` — A DocFX markdown template that demonstrates front-matter and common DocFX-specific syntax.
+- [Create-API-Documentation.md](Create-API-Documentation.md) Instructions for creating API documentation and generating DocFX output.
+- [./Template/page.md](./Template/page.md)  A DocFX markdown template that demonstrates front-matter and common DocFX-specific syntax.
 
 More information: [DocFX website](https://dotnet.github.io/docfx/)
