@@ -6,6 +6,8 @@
 
 ![MIT License](https://img.shields.io/badge/License-MIT-green) ![Commercial Services Available](https://img.shields.io/badge/Services-Optional-blue)
 
+***This is a template for your project***
+
 ## Introduction
 
 This repository contains  [YOUR-PROJECT-NAME], a [YOUR DESCRIPTION].

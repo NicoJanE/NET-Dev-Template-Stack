@@ -2,175 +2,191 @@
 
 ## Introduction
 
-> Note : Docfx is not particularly a joy to work with, but this procedure should create a specific generated folder in your document root that you can easily delete and regenerate.
+DocFX can generate API documentation from XML documentation comments produced by the .NET build. This procedure creates a generated documentation folder that you can safely delete and regenerate.
 
-.NET Core only supports API documentation, no independent module documentation (like in Rust)
-The API Documentation is interweaved(coupled) in the .NET Build systems and has other functions beside the API documentation itself, most importantly:
+Note: .NET Core supports API documentation but does not provide independent module-level documentation like some other ecosystems (for example, Rust). The API documentation is integrated with the .NET build system and IDE features.
 
-- IDE Tool integration\IntelliSense (Documentation tooltips)
-- Refactoring (renaming does update the documentation)
+The API documentation system is useful for:
 
-For this reason the usage of the API documentation tag has a few restrictions: 
+- IDE integration / IntelliSense (documentation tooltips)
+- Keeping documentation aligned with refactoring (renames, etc.)
 
-- Comment must be attached to class, method or member
-- Can **not** be attached to top-level statement. for example items like: ***var builder = WebApplication.CreateBuilder(args);*** in ***Program.cs*** 
+Restrictions
 
-## Configuration. &  Usage
+- XML comments must be attached to a type, member, or method.
+- XML comments cannot be attached to top-level statements (for example: `var builder = WebApplication.CreateBuilder(args);` in `Program.cs`).
 
-Add the following to the ***.csproj*** file:
+## Configuration
 
-```
+Enable generation of the XML documentation file in your `*.csproj`:
+
+```xml
 <PropertyGroup>
-    ...
-    <!-- For documentation  generation -->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <!-- Optional: suppress warnings for missing docs -->
-    <NoWarn>$(NoWarn);1591</NoWarn> 
-    ...
+   <!-- Enable XML documentation output -->
+   <GenerateDocumentationFile>true</GenerateDocumentationFile>
+   <!-- Optional: suppress missing-doc warnings -->
+   <NoWarn>$(NoWarn);1591</NoWarn>
 </PropertyGroup>
 ```
 
-Add the following to a class/method to document the item
+Document members with XML comments. Keep the summary short (1–3 lines) and add more details in `<remarks>` when needed:
 
-```
+```csharp
 /// <summary>
 /// API Doc.
 /// 
 ///     Handles: GET /. 
-///     prefer a onliner, max 3 lines.
+///     prefer a inliner, max 3 lines.
 //
 /// </summary>
 ```
 
-or more detailed like:
-```
+```csharp
 /// <summary>
 /// API Doc.
 /// 
 ///     Handles: GET /. 
-///     prefer a onliner, max 3 lines.
-///
+///     prefer a inliner, max 3 lines.
+/// 
 /// </summary>
-/// <param name="sureName">... </param>
-/// <returns>The total price including tax.</returns>
-///
+/// <param name="amount">Base amount.</param>
+/// <returns>Total amount including tax.</returns>
+/// 
 /// <remarks> Use for desgn remarks/explanations </remarks>
 /// <see cref="class/method"/>
 /// See <see href="Doc/Create-API-Documentation.md">Create API Documentation</see>.
+public decimal GetTotal(decimal amount) { ... }
 ```
 
-Some other common XML tags:
-``
-<exception> <example> <see> <seealso> <typeparam>
-``
-More can be found here:[website](https://www.nu.nl)
+Common XML tags: `<summary>`, `<remarks>`, `<param>`, `<returns>`, `<exception>`, `<example>`, `<see>`, `<seealso>`, `<typeparam>`.
 
-## Result
+See Microsoft's XML documentation guide for details:
+https://learn.microsoft.com/dotnet/csharp/programming-guide/xmldoc/ (or the DocFX docs for doc-specific guidance).
 
-Using the above will generate a raw ***[projectname].xml*** file that contains the documentation per items and can be used to create a real document
+## Build the XML file
 
-## Create the documentation site
+Build your project to produce the XML documentation file alongside the assembly:
 
-The ***[projectname].xml*** file can be used to create the developer documentation. Use:
+```powershell
+dotnet build
+```
 
-1. **Prerequisite**: Ensure your project is **built** first
-   ```
-   dotnet build
-   ```
-   This generates the compiled `.dll` file and the `[projectname].xml` documentation file in the `bin/Debug/net[version]/` directory.
+The XML file appears in the build output folder, e.g. `bin/Debug/net8.0/YourProject.xml`.
 
-2. Install docfx
-   ```
-   dotnet tool install -g docfx
-   ```
+## Create the documentation site with DocFX
 
-3. Generate the documentation structure
-   ```
-   docfx init
-   ```  
-   This will prompt for configuration. Suggestions: 
-   - **Name**: Your project name
-   - **Generate .NET API Documentation**: Y
-   - **.NET projects location**: You can point to the folder containing the `.csproj` file (e.g., `.` for current directory)
-   - **Markdown docs location**: Doc-API
-   - **Enable site search**: Y
-   - **Enable PDF**: Y
-   - **Is this correct** : Y   (It is **not** correct but we need to say "yes" to be able to edit it)
+1. Install DocFX (choose one):
 
-4. **Important**: Edit the generated `docfx.json` 
-   
-   Update the `metadata` section to point to your **compiled DLL** and output to `Doc-Generated/api`:
-   ```json
-   "metadata": [
-     {
-       "src": [
-         {
-           "files": ["bin/Debug/net8.0/[YourProjectName].dll"],
-           "cwd": "."
-         }
-       ],
-       "dest": "Doc-Generated/api"
-     }
-   ]
-   ```
-   
-   Also update the `build` section to include the API YAML files:
-   ```json
-   "build": {
-     "content": [
-       {
-            "files": ["**/*.{md,yml}"],
-            "exclude": ["Doc-Generated/**/_site/**"]
-       },
-       {
-            "files": ["Doc-Generated/api/**.yml"],
-            "dest": "Doc-Generated"
-       }
-     ],
-     ...
+```powershell
+# Using Chocolatey (Windows)
+choco install docfx -y
+
+# Or as a .NET global tool
+dotnet tool install -g docfx
+```
+
+2. Initialize a DocFX project (creates `docfx.json` and folders):
+
+```powershell
+docfx init
+```
+
+When prompted, set values that match your project (You can edit `docfx.json` later)
+
+- Name: Your project name
+- Generate .NET API Documentation: Y
+- .NET projects location: You can point to the folder containing the .csproj file (e.g., . for current directory)
+- Markdown docs location: Doc-API
+- Enable site search: Y
+- Enable PDF: Y
+- Is this correct : Y (It is not correct but we need to say "yes" to be able to edit it)
+
+3. **Important**: edit the generated `docfx.json` metadata to point to your built assembly (DLL) and XML file. Example `metadata` entry:
+
+```json
+"metadata": [
+   {
+      "src": [ { "files": ["bin/Debug/net8.0/YourProject.dll"], "cwd": "." } ],
+      "dest": "Doc-Generated/api"
    }
-   ```
-
-   And in **resource** set the output to `Doc-Generated/_site`: changes this
-   ``` json
-   "output": "_site",
-   ```
-   To this
-   ``` json
-    "output": "Doc-Generated/_site",
-   ```
-
-
-5. Generate the API metadata YAML files
-   ```
-   docfx metadata
-   ```
-   This converts your compiled DLL and XML documentation into YAML files in the `Doc-Generated/api` directory.
-
-6. Generate the documentation
-   ```
-   docfx build
-   ```  
-   This generates the `Doc-Generated/_site` directory with your complete documentation including API reference.
-
-7. **Fix API navigation**: Copy API files to where the template expects them
-   ```bash
-   cp -r Doc-Generated/_site/Doc-Generated/api/*  Doc-Generated/_site/api
-   ```
-   This allows the template's "API" tab to work correctly. Without this step, the API is only accessible at `http://localhost:8080/Doc-Generated/api/`.
-
-## View the Documentation Site
-
-To display and run the documentation site locally:
+]
 ```
+
+4. Ensure the `build` section includes your generated YAML/MD content. Example snippet:
+
+```json
+"build": {
+  "content": [
+    {
+         "files": ["**/*.{md,yml}"],
+         "exclude": ["Doc-Generated/**/_site/**"]
+    },
+    {
+         "files": ["Doc-Generated/api/**.yml"],
+         "dest": "Doc-Generated"
+    }
+  ],
+  ...
+}
+```
+
+And in **resource** section set the output to `Doc-Generated/_site`: changes this
+
+``` json
+"output": "_site",
+```
+
+**To this**:
+
+``` json
+ "output": "Doc-Generated/_site",
+```
+
+
+
+
+5. Generate API metadata (YAML):
+
+```powershell
+docfx metadata
+```
+This extracts the documentation from the source code 
+
+6. Build the site:
+
+```powershell
+docfx build
+```
+
+This creates the static site under `Doc-Generated/_site`.
+
+7. **Fix** generation bug for API directory.  
+Because the build systems copies them to the wrong destination directory we need to correct that manually, the correct API location is:
+ `Doc-Generated/_site/api` I tried many settings in the `docfx.json` file but the API directory  always seems to get generated in the wrong folder.
+
+<small><sub>PowerShell (Windows):</sub></small>
+
+```powershell
+Copy-Item -Path Doc-Generated/_site/Doc-Generated/api/* -Destination Doc-Generated/_site/api -Recurse -Force
+```
+
+<small><sub>Unix/macOS:</small></sub>
+
+```bash
+cp -r Doc-Generated/_site/Doc-Generated/api/* Doc-Generated/_site/api
+```
+
+## Serve locally
+
+```powershell
 docfx serve Doc-Generated/_site
 ```
 
-Then open your browser to `http://localhost:8080`
+Then open `http://localhost:8080` in your browser.
 
 <details>
 <summary class="clickable-summary"> <span class="summary-icon"></span>
-    <span style="color: #097df1ff; font-size: 26px;">Optional</span> <span style="color: #409EFF; font-size: 16px; font-style: italic;"> -  Optional: Create cleaner API URL (redirect) </span>
+    <span style="color: #097df1ff; font-size: 26px;">Optional</span> <span style="color: #409EFF; font-size: 16px; font-style: italic;"> -  : Create cleaner API URL (redirect) </span>
 </summary>
 
 By default, the API docs are at `http://localhost:8080/Doc-Generated/api/`. If you want a cleaner URL at the root, create a redirect file.
