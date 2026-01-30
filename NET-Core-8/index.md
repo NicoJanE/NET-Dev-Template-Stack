@@ -38,9 +38,11 @@ NET-Dev-Template-Stack/NET-Core-8/
 │   ├── script-templates/
 │   ├── Dockerfile_netcore_cont
 │   └── compose_netcore_cont.yml
-<span style="color: #f98585; font-size: 1.1em; font-style: italic;">├── Workspace/        # Project(s) go here! </span>
-│   <span style="color: #f98585; font-size: 1.1em; font-style: italic;">├── README.md     # README.MD file for your project </span>
-│   <span style="color: #f98585; font-size: 1.1em; font-style: italic;">├── Index.md      # index.md file for your project </span>
+<span style="color: #f98585; font-size: 1.1em; font-style: italic;">├── Workspace/                          # Project(s) go here! </span>
+│   <span style="color: #f98585; font-size: 1.1em; font-style: italic;">├─ Your Project/ </span> 
+│   <span style="color: #f98585; font-size: 1.1em; font-style: italic;">└─ Project Doc and Tools/ </span> 
+│        <span style="color: #f98585; font-size: 1.1em; font-style: italic;">├─ Readme and Index templates/ # Template Docs for your project </span>
+│        <span style="color: #f98585; font-size: 1.1em; font-style: italic;">└─ Using DocFX/                # API documentation tool </span>
 └── README.md                        # .NET 8.0 environment information
 
 </pre>
