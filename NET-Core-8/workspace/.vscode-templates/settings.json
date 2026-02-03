@@ -1,7 +1,18 @@
 {
-  "files.associations": {
+  "files.associations": 
+  {
     "launch.json": "jsonc"
-  }
+  },
+
+  // Personal view
+  // CodeLens is freaking annoying. Many people suggested good solutions in 2017 ( if needed add configuration settings).
+  // But as often is the case with issues, you first need to collect 100,000 votes before getting it done :(
+  // Yes, I know it's Open Source and you can do it yourself, but the voting debacle is preventing me from submitting issues and ideas.
+  // You cannot only decide based on votes. I think the community needs common sense and to finalize features instead of overloading 
+  // developers with new features. References: GitHub Issues #19917, #32421, #33952, #38257 (2017-2018)
+  "editor.codeLens": false,
+
+  // "workbench.panel.defaultLocation": "top",
 
     // COMBINATIONS, to distinct projects
     // **************************************************************************************************************************************************

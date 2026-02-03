@@ -1,0 +1,71 @@
+// template_launch.mvc.json
+{
+  "version": "0.2.0",
+  "configurations": [
+
+    // ---------------------------------------------------
+    // Docker Debug Launcher (ASP.NET MVC)
+    // ---------------------------------------------------
+    {
+      "name": "Launch MVC in Docker",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build (Docker)",
+      "program": "dotnet",
+      "args": [
+        "/hostmount/workspace/{{cookiecutter.solution_name}}/{{ cookiecutter.app_name }}/bin/Debug/net8.0/{{ cookiecutter.app_name }}.dll"       // 1. UPDATE the Directory and .dll name
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+
+      "env": {
+        "ASPNETCORE_URLS": "http://0.0.0.0:5000",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+https?://[^:]+:(\\d+)",
+        "uriFormat": "http://localhost:%s"
+      },
+
+      "console": "internalConsole"
+    },
+
+    // ---------------------------------------------------
+    // Windows Local Debug Launcher (ASP.NET MVC)
+    // ---------------------------------------------------
+    {
+      "name": ".NET Core Launch (Windows MVC)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build (Windows)",
+      "program": "${workspaceFolder}/bin_win/Debug/net8.0/{{ cookiecutter.app_name }}.dll",   // 1. UPDATE the .dll name
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+
+      "env": {
+        "ASPNETCORE_URLS": "http://localhost:5000",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "http://localhost:5000"
+      }
+    },
+
+    // ---------------------------------------------------
+    // Generic Attach. 
+    //    Debug an already running application (Docker / Windows / VM)
+    // ---------------------------------------------------
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}

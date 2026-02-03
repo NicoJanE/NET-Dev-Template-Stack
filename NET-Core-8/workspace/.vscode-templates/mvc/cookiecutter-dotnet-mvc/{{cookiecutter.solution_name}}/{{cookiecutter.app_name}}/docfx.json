@@ -1,0 +1,44 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+"metadata": [
+  {
+    "src": [
+      {
+        "files": ["bin/Debug/net8.0/{{ cookiecutter.app_name }}.dll"],
+        "cwd": "."
+      }
+    ],
+    "dest": "Doc-Generated/api"
+  }
+],
+  "build": {
+    "content": [
+    {
+         "files": ["**/*.{md,yml}"],
+         "exclude": ["Doc-Generated/**/_site/**"]
+    },
+    {
+          "files": ["Doc-Generated/api/**.yml"],
+         "dest": "Doc-Generated"
+    }
+  ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "Doc-Generated/_site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "{{ cookiecutter.app_name }}",
+      "_appTitle": "{{ cookiecutter.app_name }}",
+      "_enableSearch": true,
+      "pdf": true
+    }
+  }
+}

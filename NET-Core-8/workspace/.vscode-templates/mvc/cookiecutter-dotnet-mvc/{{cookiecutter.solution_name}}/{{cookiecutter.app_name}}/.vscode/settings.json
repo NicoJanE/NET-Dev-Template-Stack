@@ -1,0 +1,74 @@
+{
+  "files.associations": {
+    "launch.json": "jsonc"
+  },
+
+  "workbench.panel.defaultLocation": "top",
+
+// Personal view
+// CodeLens is freaking annoying. Many people suggested good solutions in 2017 ( if needed add configuration settings).
+// But as often is the case with issues, you first need to collect 100,000 votes before getting it done :(
+// Yes, I know it's Open Source and you can do it yourself, but the voting debacle is preventing me from submitting issues and ideas.
+// You cannot only decide based on votes. I think the community needs common sense and to finalize features instead of overloading 
+// developers with new features. References: GitHub Issues #19917, #32421, #33952, #38257 (2017-2018)
+"editor.codeLens": false,
+
+
+  // Uncomment the theme you want to use for this workspace:
+    // This can be handy to distinct between different projects
+    //
+    // "workbench.colorTheme": "Default Dark+",
+    // "workbench.colorTheme": "Default Light+",
+    // "workbench.colorTheme": "Default High Contrast",
+    // "workbench.colorTheme": "Abyss",
+     //"workbench.colorTheme": "Kimbie Dark",
+    // "workbench.colorTheme": "Monokai",
+    // "workbench.colorTheme": "Red",
+    // "workbench.colorTheme": "Solarized Dark",
+    // "workbench.colorTheme": "Solarized Light",
+    // "workbench.colorTheme": "Tomorrow Night Blue",
+    // "workbench.colorTheme": "Dracula",
+    // "workbench.colorTheme": "GitHub Dark",
+    // "workbench.colorTheme": "GitHub Light",
+    // "workbench.colorTheme": "One Dark Pro",
+    // "workbench.colorTheme": "One Dark Pro Darker",
+    // "workbench.colorTheme": "One Monokai",
+    // "workbench.colorTheme": "Quiet Light",
+    // "workbench.colorTheme": "Slack Dark",
+    // "workbench.colorTheme": "Slack Ochin",
+    // "workbench.colorTheme": "SynthWave '84",
+    //"workbench.colorTheme": "Night Owl",
+    // "workbench.colorTheme": "Cobalt2",
+     //"workbench.colorTheme": "Default Dark+"
+    //
+     // FAVORIT COMBINATIONS, for distinting projects
+     // **************************************************************************************************************************************************
+     // Project 1
+     // "workbench.colorTheme": "Tomorrow Night Blue",         // Day time 
+     // "workbench.colorTheme": "Solarized Dark",                // Evening 
+     //
+     // Project 2  Combination 2: 
+     // --------------------------------------------------------------------------------------------------------------------------------------------------------
+    // "workbench.colorTheme": "Best Themes - Andromeda",       // Daytime
+    // "workbench.colorTheme": "Best Themes - Laserwave",          // Evening (warm, muted)
+    //
+    // Project 3 diffrent  to use day./evening, all have other  Statusbar color
+    // --------------------------------------------------------------------------------------------------------------------------------------------------------
+    // "workbench.colorTheme": "Dark Green",
+     "workbench.colorTheme": "Best Themes - Andromeda"                                                            // blue status bar
+    // "workbench.colorTheme": "Synthwave x Fluoromachine & epic animations & contrast"         // 100% black  status bar + High contrast
+    //  "workbench.colorTheme": "zathura"                                                                                       // Yellow  status bar
+    // "workbench.colorTheme": "Zone Green Mellow",                                                                     // Retro
+    //  "workbench.colorTheme": "Best Themes - Laserwave",                                                           // Pink status bar
+    // "workbench.colorTheme": "Best Themes - Xcode Catalina Bold",                                             // Blue status bar
+    //
+    //  "workbench.colorTheme": "Synthwave '2077"                                                                         // Green  status bar retro 
+    //  "workbench.colorTheme": "Dracula Purple"                                                                           // purpal  status bar
+    
+    // Project 4
+    // --------------------------------------------------------------------------------------------------------------------------------------------------------
+    //"workbench.colorTheme": "Cobalt2",               // Daytime
+    // "workbench.colorTheme": "Night Owl",          // Evening
+
+
+}

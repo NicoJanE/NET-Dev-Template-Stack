@@ -1,0 +1,8 @@
+{
+  "solution_name": "MySolution",
+  "app_name": "MyWebApp",
+  "_copy_without_render": [
+    "*.png",
+    "*.ico"
+  ]
+}
