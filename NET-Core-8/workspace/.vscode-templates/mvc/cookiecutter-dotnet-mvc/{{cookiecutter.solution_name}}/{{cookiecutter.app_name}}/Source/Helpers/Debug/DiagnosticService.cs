@@ -2,9 +2,7 @@
 
 namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namespace
 {
-    // ❌⚡→ ⟹ ⇒ 
-
-    // ANSI colors and background colors for terminal output
+    // Ansi colors and background colors for terminal output
     public struct Color
     {
         // MEMBERS
@@ -49,7 +47,7 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
     /// <summary>
     ///  Debug options for developers. Currently
     ///     - PrintServiceHierarchy                 →  Prints the registered services   
-    ///     - Clear                                           →  Clears the console, also for redirected console
+    ///     - Clear                                           →  Clears the console, also for redirected consols
     ///     - Write                                          →  Write to console,optional different text and background colors.
     /// </summary>
     public class DiagnosticService
@@ -77,7 +75,7 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
         }
 
         /// <summary>
-        ///  Output  the defined services in the terminal
+        ///  Output  the defined services in the terminla
         /// </summary>
         public void PrintServiceHierarchy(string callSite="Not defined", bool IgnoreOthers=true)
         {
@@ -85,10 +83,13 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
             var services = _dbg_Descriptors2;   // Passed in via constructor
 
            // Option 2 (alternative): Get descriptors from DI container
-           // var services = _serviceProvider.GetService<IEnumerable<ServiceDescriptor>>();
-           // Requires in Program.cs: builder.Services.AddSingleton<IEnumerable<ServiceDescriptor>>(dbg_Descriptors);
+            // var services = _serviceProvider.GetService<IEnumerable<ServiceDescriptor>>();
+            // Requires in Program.cs: builder.Services.AddSingleton<IEnumerable<ServiceDescriptor>>(dbg_Descriptors);
 
-           // Lifetime Notes:  Singleton = one instance forever, Scoped = one per request, Transient = new each time
+            // Lifetime Notes:  Singleton = one instance forever, Scoped = one per request, Transient = new each time
+            
+            if (services == null)
+                return;
             
             Write("\nServices in use:\n----------------\n",Color.Cyan, Color.BKBlackAlMost);    
             Write($"CALL SITE:{callSite}\n");
@@ -135,10 +136,12 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
                 Write($"CALL SITE:{callSite}\n", Color.Magenta, Color.BKBlackAlMost);
                 foreach (var service in services)
                 {
-                    if( service != null)                                    
+                    if( service != null)
+                    {
                         Write($"\t-  Service. Type(Interface): {service.ServiceType}\n", Color.Magenta,Color.BKBlackAlMost);
                         if (service.ImplementationType != null)
                             Write($"\t-  Implementation Type: {service.ImplementationType}\n", Color.Magenta, Color.BKBlackAlMost);                        
+                    }
                 }
             }
         }
@@ -155,7 +158,7 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
             }
 
         /// <summary>
-        /// Write text to console, including redirected consoles
+        /// Wrtite text to console, including redirected consoles
         /// </summary>
         public void Write(string text, Color? c=null, Color? bk=null )       //  ⚡ Cannot default to: c=Color.defaultColor (not compile-time constant)
         {            
@@ -166,6 +169,5 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
 
 
     }       // End Class DiagnosticService
-
 
 }           // Namespace: {{ cookiecutter.app_name }}.Helpers.Debug
