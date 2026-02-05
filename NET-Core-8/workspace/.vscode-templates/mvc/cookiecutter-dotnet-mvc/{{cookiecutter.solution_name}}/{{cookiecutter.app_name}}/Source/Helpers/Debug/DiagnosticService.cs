@@ -1,15 +1,10 @@
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-//using Microsoft.CodeAnalysis.Elfie.Serialization;
-//using NuGet.Configuration;
+
 
 namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namespace
 {
     // ❌⚡→ ⟹ ⇒ 
 
-    // Ansi colors and background colors for terminal output
+    // ANSI colors and background colors for terminal output
     public struct Color
     {
         // MEMBERS
@@ -54,7 +49,7 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
     /// <summary>
     ///  Debug options for developers. Currently
     ///     - PrintServiceHierarchy                 →  Prints the registered services   
-    ///     - Clear                                           →  Clears the console, also for redirected consols
+    ///     - Clear                                           →  Clears the console, also for redirected console
     ///     - Write                                          →  Write to console,optional different text and background colors.
     /// </summary>
     public class DiagnosticService
@@ -82,16 +77,20 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
         }
 
         /// <summary>
-        ///  Output  the defined services in the terminla
+        ///  Output  the defined services in the terminal
         /// </summary>
-        public void PrintServiceHierarchy(string callSite="Not defined")
+        public void PrintServiceHierarchy(string callSite="Not defined", bool IgnoreOthers=true)
         {
-            var services = _dbg_Descriptors2;
-           // Option 2 lighter
-           // var services2 = _serviceProvider.GetService<IEnumerable<ServiceDescriptor>>();  
-           // NO DI needed in Ctor and in programs.cs  no:  builder.Services.AddSingleton<IEnumerable<ServiceDescriptor>>(dbg_Descriptors);
+            // Option 1 (current): Pass descriptors via constructor - no DI setup needed
+            var services = _dbg_Descriptors2;   // Passed in via constructor
 
-            Write("\nServices in use:\n----------------\n",Color.Red, Color.BKBlackAlMost);    
+           // Option 2 (alternative): Get descriptors from DI container
+           // var services = _serviceProvider.GetService<IEnumerable<ServiceDescriptor>>();
+           // Requires in Program.cs: builder.Services.AddSingleton<IEnumerable<ServiceDescriptor>>(dbg_Descriptors);
+
+           // Lifetime Notes:  Singleton = one instance forever, Scoped = one per request, Transient = new each time
+            
+            Write("\nServices in use:\n----------------\n",Color.Cyan, Color.BKBlackAlMost);    
             Write($"CALL SITE:{callSite}\n");
             foreach (var service in services)
             {
@@ -99,7 +98,13 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
                 {                                        
                     if (service.ImplementationInstance != null)
                     {
-                        Write($"Instance in use: {service.ImplementationInstance}\n");       
+                        Write($"Instance direct created : {service.ImplementationInstance}\n",Color.Cyan, Color.BKBlackAlMost);       // Like: builder.Services.AddSingleton(new Logger());
+
+                        Write($"\t-  Lifetime: {service.Lifetime}\n", Color.Yellow,Color.BKBlackAlMost);
+                        Write($"\t-  Service Type (Interface): {service.ServiceType}\n", Color.Yellow, Color.BKBlackAlMost);
+                        if (service.ImplementationType != null)
+                            Write($"\t-  Implementation Type: {service.ImplementationType}\n", Color.Yellow, Color.BKBlackAlMost);
+                        Write($"\t-  Actual Runtime Type: {service.ImplementationInstance.GetType()}\n", Color.Yellow, Color.BKBlackAlMost);
                     }
                     else if (service.Lifetime == ServiceLifetime.Singleton)
                     {
@@ -109,23 +114,32 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
                             var instance = _serviceProvider.GetService(service.ServiceType);
                             if (instance != null)
                             {
-                                Write($"Instance in use: {instance}\n");
+                                Write($"Instance lazy created(by Interface) : {instance}\t _serviceProvider.Get \n",Color.Green, Color.BKBlackAlMost);      // Like: builder.Services.AddSingleton<ILogger, ConsoleLogger>();
+                                Write($"\t-  Lifetime: {service.Lifetime}\n", Color.Green,Color.BKBlackAlMost);
+                                Write($"\t-  Service. Type(Interface): {service.ServiceType}\n", Color.Yellow,Color.BKBlackAlMost);
+                                if (service.ImplementationType != null)
+                                    Write($"\t-  Implementation Type: {service.ImplementationType}\n", Color.Yellow, Color.BKBlackAlMost);
+                                Write($"\t-  Actual Runtime Type: {instance.GetType()}\n", Color.Yellow, Color.BKBlackAlMost);
                             }
                         }
                         catch
                         {
-                            // Silently skip if service can't be instantiated
+                            // Service couldn't be instantiated (missing dependencies, invalid registration, etc.)
                         }
                     }
                 }
             }
-
-            Write("\nAll Available Services (Type -> Implementation):\n------------------------------------------------\n",Color.Magenta, Color.BKBlackAlMost);    
-            Write($"CALL SITE:{callSite}\n", Color.Magenta, Color.BKBlackAlMost);
-            foreach (var service in services)
+            if(! IgnoreOthers)
             {
-                if( service != null)                                    
-                     Write($"{service.ServiceType} -> {service.ImplementationType}\n",Color.Magenta, Color.BKBlackAlMost);                
+                Write("\nAll Available Services (Type -> Implementation):\n------------------------------------------------\n",Color.Magenta, Color.BKBlackAlMost);    
+                Write($"CALL SITE:{callSite}\n", Color.Magenta, Color.BKBlackAlMost);
+                foreach (var service in services)
+                {
+                    if( service != null)                                    
+                        Write($"\t-  Service. Type(Interface): {service.ServiceType}\n", Color.Magenta,Color.BKBlackAlMost);
+                        if (service.ImplementationType != null)
+                            Write($"\t-  Implementation Type: {service.ImplementationType}\n", Color.Magenta, Color.BKBlackAlMost);                        
+                }
             }
         }
 
@@ -141,7 +155,7 @@ namespace {{ cookiecutter.app_name }}.Helpers.Debug      // Omit Soure in namesp
             }
 
         /// <summary>
-        /// Wrtite text to console, including redirected consoles
+        /// Write text to console, including redirected consoles
         /// </summary>
         public void Write(string text, Color? c=null, Color? bk=null )       //  ⚡ Cannot default to: c=Color.defaultColor (not compile-time constant)
         {            
