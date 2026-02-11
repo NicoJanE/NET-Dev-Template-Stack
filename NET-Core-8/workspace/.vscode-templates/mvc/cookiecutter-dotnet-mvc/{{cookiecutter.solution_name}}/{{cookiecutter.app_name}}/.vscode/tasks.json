@@ -50,7 +50,7 @@
       "type": "shell",
       "args": [
         "watch",                                                // Note requires "dotnet watch" which is pat od SDK
-        "--no-launch-profile",                                  // Used for  ??
+        "--no-launch-profile",                          
         "run",                                                  
         "--project",
         "/hostmount/workspace/{{cookiecutter.solution_name}}/{{ cookiecutter.app_name }}/{{ cookiecutter.app_name }}.csproj"         // 3. UPDATE the Directory and Project
@@ -60,8 +60,11 @@
       "options": {
          "env": {
            "ASPNETCORE_ENVIRONMENT": "Development",           // Use develoment Mode
-           "ASPNETCORE_URLS":"http://0.0.0.0:5000",           // Automatic  listen to :0.0.0.0:500
-           "DOTNET_USE_POLLING_FILE_WATCHER": "true"          // Enable polling for Docker mounted volumes
+           "ASPNETCORE_URLS":"http://0.0.0.0:5000",                     // Automatic  listen to :0.0.0.0:500
+           "DOTNET_USE_POLLING_FILE_WATCHER": "true",           // Enable polling for Docker mounted volumes 
+           "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1",       // Don't auto-launch browser
+           "DOTNET_WATCH_RESTART_ON_RUDE_EDIT": "true",           // Restart on any file change
+           "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"  // Enable runtime compilation
           }
         }      
     },

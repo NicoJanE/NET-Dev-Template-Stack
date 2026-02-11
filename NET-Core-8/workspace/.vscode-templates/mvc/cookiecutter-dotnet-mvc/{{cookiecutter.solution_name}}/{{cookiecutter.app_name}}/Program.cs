@@ -72,7 +72,9 @@ static void App_RegisterServices(WebApplicationBuilder builder)
         {
             options.ViewLocationFormats.Add("/Source/Views/{1}/{0}.cshtml");            // {1} = controller name {0} = action name
             options.ViewLocationFormats.Add("/Source/Views/Shared/{0}.cshtml");
-        });
+        })
+        // Enable runtime compilation of Razor views during development (allows hot reload without restart)         
+        .AddRazorRuntimeCompilation();
 
     // Register our DiagnosticService for inspecting and displaying registered services during development
     // For more information see the class documentation
