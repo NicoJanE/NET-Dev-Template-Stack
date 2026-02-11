@@ -11,6 +11,7 @@
 # EXCEPTION: allow the root-level folder '_layouts/' and the file: !_config.yml
 !/_layouts/
 !_config.yml
+!_Layout.cshtml.css
   
 # EXCEPTION  folders _include 
 # !**/_include/

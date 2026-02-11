@@ -1,3 +1,31 @@
+/* ============================================================================
+   IMPORTANT: MVC Views CSS Styling Guide
+   ============================================================================
+   
+   THIS FILE (site.css) is where you style your MVC views!
+   
+   ❌ DO NOT use .cshtml.css files (like _Layout.cshtml.css)
+      - Those only work with Blazor components, NOT MVC views
+      - ASP.NET Core does NOT automatically process .cshtml.css for MVC
+      - Any styles in _Layout.cshtml.css will be IGNORED
+   
+   ✅ DO use this file (site.css) for:
+      - All MVC view styling (_Layout.cshtml, Index.cshtml, etc.)
+      - Global styles across your entire MVC application
+      - Custom component styles (use IDs or classes)
+   
+   How it works:
+      - _Layout.cshtml includes: <link rel="stylesheet" href="~/css/site.css" />
+      - This loads site.css for ALL pages that use _Layout.cshtml
+      - Changes here apply immediately with dotnet watch hot reload
+   
+   Note: .cshtml.css isolation files are a Blazor feature that was never
+         fully implemented for MVC views in ASP.NET Core.
+   ============================================================================
+*/
+
+
+
 html {
   font-size: 14px;
 }
