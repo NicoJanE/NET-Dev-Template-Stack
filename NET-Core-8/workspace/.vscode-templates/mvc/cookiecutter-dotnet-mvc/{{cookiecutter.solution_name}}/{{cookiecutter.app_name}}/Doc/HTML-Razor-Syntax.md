@@ -98,19 +98,53 @@ The Razor template engine (**server-side technology**<sup>1*</sup>) generates HT
 5. ***View Component***
     - **What:** Compiled C# class plus a Razor view, for encapsulating reusable, logic-rich UI blocks.
     - **Example:**
-        - In the file: ***_MyView.cshtml*** you have:
+        - In the view file: ***_MyView.cshtml*** you have:
             ```html
             <input type="text" class="nje-my-css-element" />
             ```
-        - You can include it like:
+        - in a logic file: ***_MyView.cshtml.cs*** you may have:
+            ```
+            //
+            public class MyViewComponent : ViewComponent
+            {
+                public async Task<IViewComponentResult> InvokeAsync(string cssClass)
+                {
+                    // Your logic here
+                    return View();
+                }
+            }
+            ```
+        - You can include  your View Component like:
             ```cs
             @await Component.InvokeAsync("_MyView", new { cssClass = "nje-my-css-element" })
             ```
     - **When to use:**
         Use for complex, reusable UI with logic (e.g., widgets, menus, lists) that need their own C# code and view. Supports dependency injection and async logic.
 
+6.  **Component Libraries:**
+    - **What:** An autonomic component that be used across projects, designed for MVC and razor. Supports DI, Async.
+    - **Example:**
+        - Definition. Define this in a Razor file: **MyComponent.razor** 
+            ``` html
+                @namespace MyComponentLibrary
+                
+                <div class="nje-container">
+                    <div class="nje-layoutbox-flex-parent">
+                        <div id="block-bkground" class="nje-contentbox-flex-child" style="--nje-width-perc: 100%; --nje-width-max-perc: 100%;">                    
+                                <div class="nje_header" style="--nje-font-size-header:10px;--nje-font-color-header: #b020b0">Toolbar</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ```
+        -  Then call it like in for example: **MyView.cshtml**
+            ``` html
+                @using MyComponentLibrary                  <!--  MyComponent.razor should be in same project, not nessacery in the same  directorie -->
 
-6. ***Rare things not covered  here***
+                <MyComponent></MyComponent>       <!-- Namespace  without 'Library'  -->
+            ```
+
+7. ***Rare things not covered  here***
 - Editor Templates / Display Templates (for strongly-typed, reusable field rendering, e.g., EditorForModel)
 - Sections/Layout features (e.g., @section, _Layout.cshtml) — but these are more about page structure than individual controls
 - Direct JavaScript/JSX integration (not typical in Razor, but possible)
