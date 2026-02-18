@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model MainOverviewModel
+
+@{
+    ViewData["Title"] = "Home Page";    
 }
 
 <!-- LICENSE.
@@ -140,14 +142,20 @@
 
                                     <!-- nje-contentbox-flex-item    nje-contentbox-flex-column  -->                                       
                                 <div class="nje-contentbox-flex-child _header-line" style=" --nje-header-title: 'item 1b';   --nje-width-perc: 20%; --nje-width-max-perc:20%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
-                                    column 1
+                                    <@* @await Html.PartialAsync("_ClientSelection.cshtml",Model) *@
                                 </div>
                                 <div class="nje-contentbox-flex-child  _header-line" style=" --nje-header-title: 'item 2';   -nje-width-perc: 35%; --nje-width-max-perc:35%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
-                                    column 2 <br>
-                                    More info her
+                                    <div class="nje-colgrid col3" style="--nje-col1: 5fr; --nje-col2: 3fr; --nje-col3: 2fr; " >
+                                        <div>Col 1 </div> 
+                                        <div>Col 2</div> 
+                                        <div>Col 3</div>                
+                                    </div>
                                 </div>
-                                <div class="nje-contentbox-flex-child _header-line" style=" --nje-header-title: 'item 3';   --nje-width-perc: 20%; --nje-width-max-perc:20%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
-                                    column 3
+                                <div class="nje-contentbox-flex-child _header-line" style=" --nje-header-title: 'item 3';   --nje-width-perc: 20%; --nje-width-max-perc:20%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">                                    
+                                    <div class="nje-colgrid auto">
+                                        <div>Item 1</div>
+                                        <div>Item 2</div>                                        
+                                    </div>
                                 </div>
 
                             </div>       <!-- END sub container to represent data in different columns.  Using FLEX ROW   because --nje-flex-direction is: row -->   
@@ -261,7 +269,7 @@
             - Definition. Define this in a Razor file: **MyComponent.razor** 
                 ``` html
                     @namespace MyComponentLibrary
-                    
+
                     <div class="nje-container">
                         <div class="nje-layoutbox-flex-parent">
                             <div id="block-bkground" class="nje-contentbox-flex-child" style="--nje-width-perc: 100%; --nje-width-max-perc: 100%;">                    
@@ -274,15 +282,15 @@
             -  Then call it like in for example: **MyView.cshtml**
                 ``` html
                     @using MyComponentLibrary                  <!--  MyComponent.razor should be in same project, not nessacery in the same  directorie -->
-    
+
                     <MyComponent></MyComponent>       <!-- Namespace  without 'Library'  -->
                 ```
-    
+
     7. ***Rare things not covered  here***
     - Editor Templates / Display Templates (for strongly-typed, reusable field rendering, e.g., EditorForModel)
     - Sections/Layout features (e.g., @section, _Layout.cshtml) — but these are more about page structure than individual controls
     - Direct JavaScript/JSX integration (not typical in Razor, but possible)
     - Dynamic rendering with ViewBag/ViewData (but this is more about data passing than control creation)
-    
+
 
 *@

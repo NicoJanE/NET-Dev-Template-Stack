@@ -89,7 +89,7 @@ h1, h2, h3, h4, h5, h6
   --nje-conner-radius: 5px;
   --nje-flex-column-basis:15% ;
   --nje-flex-column-width:15%;
-  --nje-flex-direction: row;
+  --nje-flex-direction: row;  
 
   /* convient background colors during development, to shift between  develoment and production view */
   --nje-bk-color-red: #b02023;
@@ -412,4 +412,83 @@ h1, h2, h3, h4, h5, h6
   max-width: 100%;
 }
 /* END Text with addition indent
+============================================================================================== */
+
+
+/* END Text with addition indent
+============================================================================================== */
+
+
+/* BEGIN Column Grids
+=============================================================================================== 
+Depends on CSS: grid-template-columns  see a good reference site like: https://css-tricks.com/                                                                                     
+Other usefull samples:
+  - grid-template-columns: auto auto  auto;       ->  All item have same space
+  - grid-template-columns: auto 1fr auto;           ->  Because of the usage '1fr'.  auto columns are only as wide as the content inside them, 1fr takes the rest!
+  - grid-template-columns: min-content 1fr;       -> 1e column  takes size of the largest word in the text(rest is wrapped), 2e column the rest
+  - grid-template-columns: max-content 1fr;       -> 1e column  takes size of the whole line the text, 2e column the rest
+  - many more options, see: https://css-tricks.com/almanac/properties/g/grid/grid-template-columns/
+*/
+
+/* Colgrid, designed to be used inside other container(s)   
+  -  Automatic even spread columns, use default for 2 columns or for more columns to spread evenly
+------------------------------------------------------------------------------------------------------------------------
+  Call:
+          1, Default:
+                <div class="nje-colgrid auto">
+                    <div>Item 1</div>
+                    <div>Item 2</div>
+              </div>
+           2. Custom, column item is at least 100 px width if not fit wrapped (next) column to next line
+                <div class="nje-colgrid auto" style="--nje-min-col-px: 100px; ">
+                    <div>Item 1</div>
+                    <div>Item 2</div>
+              </div>
+*/
+.nje-colgrid {
+  display: grid;
+  gap: 1px;             /*Gap when item wraps to next line, use 'fr' */
+}
+.nje-colgrid.auto {
+  grid-template-columns: repeat(auto-fit, minmax(var(--nje-min-col-px, 100px), 1fr));       /* Every column is at least 100px */
+}
+
+
+/* Colgrid, designed to be used inside other container   
+    - By default  even spread columns,  size can be customize using 'ft' (where 10ft is the full lenght) 
+------------------------------------------------------------------------------------------------------------------------
+      Warning:  Prefer 'fr' above % they consider gaps and are less fragile!
+
+      Call: 
+            1.Default, (even column sizes
+                  <div class="nje-colgrid col3"   >
+                      <div>Item 13</div> <div>Item 2</div> <div>Item 3</div>                
+                  </div
+            2. Custom column sizes
+                  <div class="nje-colgrid col3" style="--nje-col1: 5fr; --nje-col2: 3fr; --nje-col3: 2fr; " >
+                      <div>Item 13</div> <div>Item 2</div> <div>Item 3</div>                
+                  </div>
+*/
+.nje-colgrid.col3 {  
+    gap: 5px;                       /*Gap when item wraps to next line*/
+    grid-template-columns: var(--nje-col1, 3fr)  var(--nje-col2, 3fr)   var(--nje-col3, 4fr) ;
+    /*width: 900px; */ /* The whole width of the 3 column grid*/
+}
+
+.nje-colgrid.col4 {  
+    gap: 5px;                       /*Gap when item wraps to next line*/
+    grid-template-columns: var(--nje-col1, 2.5fr)  var(--nje-col2, 2.5fr)   var(--nje-col3, 2.5fr)  var(--nje-col4, 2.5fr) ;
+}
+.nje-colgrid.col5 {  
+    gap: 5px;                       /*Gap when item wraps to next line*/
+    grid-template-columns: var(--nje-col1, 2fr)  var(--nje-col2, 2fr)   var(--nje-col3, 2fr)  var(--nje-col4, 2fr)  var(--nje-col5, 2fr) ;
+}
+.nje-colgrid.col6 {  
+    gap: 5px;                       /*Gap when item wraps to next line*/
+    grid-template-columns: var(--nje-col1, 1.667fr)  var(--nje-col2, 1.667fr)   var(--nje-col3, 1.667fr)  var(--nje-col4, 1.667fr)  var(--nje-col5, 1.667fr) var(--nje-col6, 1.667fr) ;
+}
+
+
+
+/* END Column Grids
 ============================================================================================== */
