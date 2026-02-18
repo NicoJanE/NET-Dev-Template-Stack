@@ -26,7 +26,7 @@ To run, double-click the PowerShell script: `Create-mvc.ps1`. But make sure:
 
 
 <br>
-<small> <i><b>License</b><br>This file is part of: <b>Keyroll Prompts Systems</b> Copyright (c) 2025-2026 [Nico Jan Eelhart]. This repository is <a href="MIT-license.md">MIT licensed</a> and free to use. For optional commercial support, customization, training, or long-term maintenance, see <a href="COMMERCIAL.md">COMMERCIAL.md</a>.</i>
+<small> <i><b>License</b><br>This file is part of: <b>Net-Core-Template Stack</b> Copyright (c) 2025-2026 [Nico Jan Eelhart]. This repository is <a href="MIT-license.md">MIT licensed</a> and free to use. For optional commercial support, customization, training, or long-term maintenance, see <a href="COMMERCIAL.md">COMMERCIAL.md</a>.</i>
 </small>
 
 
