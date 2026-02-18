@@ -22,7 +22,10 @@ To run, double-click the PowerShell script: `Create-mvc.ps1`. But make sure:
   - `python -m pip install --upgrade pip`
   - `pip install cookiecutter`
 
+### Latest changes
 
+- Add 'Reference-layout' in the initial index.cshtml file and the related documentation in .\Doc\Reference-layout
+- Add '.\doc\HTML-Razor-Syntax.md' describing the different methods to create Blazor and Razor componnents,
 
 
 <br>
