@@ -64,7 +64,7 @@
                 <div id="toolbar" class="nje-contentbox-flex-child " style="    --nje-width-perc: 99%; --nje-width-max-perc: 99%;  --nje-height: 5.4vh; --nje-overflow: hidden; --nje-conner-radius:5px ;
                                                                                                                      --nje-padding-top: 0px; --nje-padding-bottom: 0px; --nje-bkcolor: var(--nje-bk-color-green); ;"> 
  
-                        <div class="nje_header" style="--nje-font-size-header:10px;--nje-font-color-header: #b020b0">Toolbar</div>
+                        <div class="nje_header" style="--nje-font-size-header:10px;--nje-font-color-header: #fffff">Title  or Toolbar</div>
                 </div>
 
                  <!-- Start Worksheet parent   -->
@@ -142,14 +142,16 @@
 
                                     <!-- nje-contentbox-flex-item    nje-contentbox-flex-column  -->                                       
                                 <div class="nje-contentbox-flex-child _header-line" style=" --nje-header-title: 'item 1b';   --nje-width-perc: 20%; --nje-width-max-perc:20%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
-                                    <@* @await Html.PartialAsync("_ClientSelection.cshtml",Model) *@
+                                @* @await Html.PartialAsync("_ClientSelection.cshtml",Model) *@
+
                                 </div>
-                                <div class="nje-contentbox-flex-child  _header-line" style=" --nje-header-title: 'item 2';   -nje-width-perc: 35%; --nje-width-max-perc:35%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
-                                    <div class="nje-colgrid col3" style="--nje-col1: 5fr; --nje-col2: 3fr; --nje-col3: 2fr; " >
+                                <div class="nje-contentbox-flex-child  _header-line" style=" --nje-header-title: 'item 2';   -nje-width-perc: 45%; --nje-width-max-perc:45%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
+                                    <!-- <div class="nje-colgrid col3" style="--nje-col1: 5fr; --nje-col2: 3fr; --nje-col3: 2fr; " >
                                         <div>Col 1 </div> 
                                         <div>Col 2</div> 
                                         <div>Col 3</div>                
-                                    </div>
+                                    </div> -->
+                                    @await Html.PartialAsync("_ClientControl.cshtml")
                                 </div>
                                 <div class="nje-contentbox-flex-child _header-line" style=" --nje-header-title: 'item 3';   --nje-width-perc: 20%; --nje-width-max-perc:20%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">                                    
                                     <div class="nje-colgrid auto">

@@ -453,7 +453,6 @@ Other usefull samples:
   grid-template-columns: repeat(auto-fit, minmax(var(--nje-min-col-px, 100px), 1fr));       /* Every column is at least 100px */
 }
 
-
 /* Colgrid, designed to be used inside other container   
     - By default  even spread columns,  size can be customize using 'ft' (where 10ft is the full lenght) 
 ------------------------------------------------------------------------------------------------------------------------
@@ -473,6 +472,10 @@ Other usefull samples:
     gap: 5px;                       /*Gap when item wraps to next line*/
     grid-template-columns: var(--nje-col1, 3fr)  var(--nje-col2, 3fr)   var(--nje-col3, 4fr) ;
     /*width: 900px; */ /* The whole width of the 3 column grid*/
+    margin-left: var(--nje-margin-left,0px);    
+    margin-bottom: var(--nje-margin-bottom,0px);    
+    font-size: calc(var(--nje-font-size)  -1px); 
+    line-height: 1.1;
 }
 
 .nje-colgrid.col4 {  

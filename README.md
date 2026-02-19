@@ -45,8 +45,16 @@ For environment setup, refer to these  links:
   <span class="nje-indent1">View full documentation with better navigation: [Documentation Site](https://nicojane.github.io/NET-Dev-Template-Stack/)
   </span>
 
+### Sample
 
-<br>
+The default MVC template project in .NET 8.0 provides a complete starting point for C# development. It includes pre-built custom CSS components and demonstrates best practices for implementing them in your application.
+
+
+<a href="image.png" target="_blank">
+  <img src="Sample-mvc.png.jpg" alt="MVC template with custom CSS components and usage examples" style="width: 500px; height: auto; border-radius: 8px; cursor: pointer;">
+</a>
+
+<br><br>
 <small> <i><b>License</b><br>This file is part of: <b>Net-Core-Template Stack</b>  Copyright (c) 2025-2026 Nico Jan Eelhart.This repository is <a href="MIT-license.md">MIT licensed</a>and free to use. For optional commercial support, customization, training, or long-term maintenance, see <a href="COMMERCIAL.md">COMMERCIAL.md</a></i>
 </small>
   
