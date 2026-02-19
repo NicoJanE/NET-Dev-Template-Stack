@@ -50,8 +50,8 @@ For environment setup, refer to these  links:
 The default MVC template project in .NET 8.0 provides a complete starting point for C# development. It includes pre-built custom CSS components and demonstrates best practices for implementing them in your application.
 
 
-<a href="image.png" target="_blank">
-  <img src="Sample-mvc.png.jpg" alt="MVC template with custom CSS components and usage examples" style="width: 500px; height: auto; border-radius: 8px; cursor: pointer;">
+<a href="Sample-mvc.png.jpg" target="_blank">
+  <img src="./Sample-mvc.png.jpg" alt="MVC template with custom CSS components and usage examples" style="width: 500px; height: auto; border-radius: 8px; cursor: pointer;">
 </a>
 
 <br><br>
