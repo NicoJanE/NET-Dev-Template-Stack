@@ -37,7 +37,7 @@ This guide walks you through setting up a Docker container with a **.NET 8.0 dev
   <span class="nje-indent1"> - Repository is cloned to local machine </span>  
   <span class="nje-indent1"> - External Docker network (configured in ***.env*** file) </span>
 
-<span style="color: #02b656ff; font-size: 1.0em;">Last successful tested: </span> <span style="color: #696360ff; font-size: 0.8em;"> 19 Jan. 2026, using script mvc </span>
+<span style="color: #02b656ff; font-size: 1.0em;">Last successful tested: </span> <span style="color: #696360ff; font-size: 0.8em;"> 24 Feb. 2026, using Cookiecutter MVC application type. </span>
 
 ---
 <a id="Setup"></a>
@@ -348,6 +348,8 @@ This section describes how to configure Visual Studio Code running on the host t
 These instructions will set up the task and launch items for VS Code for Docker(Linux) and Windows.
 
 <span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: This six-step configuration procedure must be completed for each application you create. Most scripts will copy the files for you, but you still are required to check the files and content</span>
+<br>
+<span style="color: #0dbf60ff; font-size: 1.0em;">Note:</span> This procedure is <b>not needed</b> if your application was created using a Cookiecutter template. Cookiecutter templates automatically generate the required configuration files. (See section: <i>Create Applications with Cookiecutter template</i> above.)
 
 **1. Check if the `.vscode` folder in your project exists**  
 Navigate to your application directory on Windows and create the configuration folder:
