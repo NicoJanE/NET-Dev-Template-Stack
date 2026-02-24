@@ -1,0 +1,13 @@
+﻿// Automatically applied to all views in the application, except for layouts and partial views.
+//  - It's used to define common `using` and `addTagHelper` directives that should be included in all views.
+//  - Individual views can opt out of the settings defined in _ViewImports.cshtml by providing their own `using` and `addTagHelper` directives in the view file.
+@*
+    Note: Razor style comments als supported
+*@
+
+
+@using {{ cookiecutter.app_name }}
+@using {{ cookiecutter.app_name }}.Models
+
+// MS built in tag helper, server-side attributes like:  <a asp-*>, form asp-*,script asp- ...
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

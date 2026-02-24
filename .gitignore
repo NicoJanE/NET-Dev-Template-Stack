@@ -12,6 +12,10 @@
 !/_layouts/
 !_config.yml
 !_Layout.cshtml.css
+!_ViewImports.cshtml
+!_ViewStart.cshtml
+!_Layout.cshtml
+!_ValidationScriptsPartial.cshtml
   
 # EXCEPTION  folders _include 
 # !**/_include/
