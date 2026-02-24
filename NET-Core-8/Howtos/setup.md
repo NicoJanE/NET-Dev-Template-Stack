@@ -116,13 +116,27 @@ dotnet --list-runtimes
 
 <a id="Using Scripts to create Sample Apps"></a>
 
-### Creating Applications with the Scripts <span style="color: #0dbf60ff; font-size: 1.0em; "> (Recommended) </span>
+### Creating Template Applications with the Scripts
 
 Assuming that the Docker container has been successfully created and can be started with:<span class="nje-cmd-inline-sm">  docker exec -it net8-service-net-core8-img-1 bash</span> we will show here how you can create a .NET 8.0 Template application with the different scripts that are provided within Docker.
 
-#### Quick Start with Script Templates
+#### 1. Use the Cookiecutter Scripts <span style="color: #0dbf60ff; font-size: 0.8em; "> (Recommended if available) </span>
 
-This container includes **11 ready-to-use script templates** for creating different types of .NET 8 applications. When you start the docker container, you will automatically enter the **host mount workspace** (<span class="nje-cmd-inline-sm">/hostmount/workspace</span>) in your **Bash Shell**, if not, <span class="nje-cmd-inline-sm">cd</span> to that directory.
+This container includes the following **ready-to-use Cookiecutter scripts** for creating different types of .NET 8 applications with an advanced template, in contrast to the non-Cookiecutter scripts in the next section, these scripts should be started on the Windows host and can be found in the folder: ***./project/workspace/.vscode-templates/[application type]/cookiecutter-dotnet-****. for example: 
+  ` ./project/workspace/.vscode-templates/mvc/cookiecutter-dotnet-mvc/`
+
+That folder contains a  `README.md` file with a few requirements and instruction to execute the script. But when you have installed Python and the Cookiecutter module it is as simple as executing the script: **`Create-mvc.ps1`** with the Windows Power-Shell program After that, the solution and the newly created project will be created one folder up.
+
+##### Available Cookiecutter Script(s)
+
+|**Cookiecutter Script** | **Creates** | **Use For** |
+|:--------|:---------|:---------|
+| `vscode-templates\mvc\cookiecutter-dotnet-mvc\\create_mvc.sh` | MVC Web Application with advanced  template | *See also side note: 'Create Applications with Cookiecutter template*' in previous section  |
+
+
+#### 2. Use the Alternative Script()
+
+This container includes a **number of ready-to-use script templates** for creating different types of .NET 8 applications. When you start the docker CLI container, you will automatically enter the **host mount workspace** (<span class="nje-cmd-inline-sm">/hostmount/workspace</span>) in your **Bash Shell**, if not, <span class="nje-cmd-inline-sm">cd</span> to that directory.
 
 **To access the scripts:**  
 Execute these commands:  
@@ -133,7 +147,7 @@ ls -la                       # List all available scripts
 </pre>
 <span class="nje-expect-block"> The scripts will create the applications in directory: **/hostmount/workspace** </span>
 
-#### Available Script Templates
+##### Available Script Templates
 
 |**Script** | **Creates** | **Use For** |
 |:--------|:---------|:---------|
@@ -141,17 +155,16 @@ ls -la                       # List all available scripts
 | `create_webapi.sh` | REST API Service | Backend services, microservices |
 | `create_webapiaot.sh` | High-Performance API | Ultra-fast APIs, cloud-native |
 | `create_mvc.sh` | MVC Web Application | Traditional websites, admin panels |
-| `vscode-templates\mvc\cookiecutter-dotnet-mvc\\create_mvc.sh` | MVC Web Application with **Cookiecutter** template | ***See side note: 'Create Applications with Cookiecutter template***'  |
 | `create_mvc.sh` | MVC Web Application | Traditional websites, admin panels |
 | `create_webapp.sh` | Razor Pages App | Content-heavy sites, blogs |
 | `create_blazorserver.sh` | Blazor Server App | Interactive web apps (server-side) |
 | `create_blazorwasm.sh` | Blazor WebAssembly | Client-side web apps (browser) |
 | `create_grpc.sh` | gRPC Service | High-performance service communication |
-| `create_worker.sh` | Background Service |long running tasks, optional scheduled tasks (needs library) |
+| `create_worker.sh` | Background Service |long-running tasks, optional scheduled tasks (needs library) |
 | `create_classlib.sh` | Class Library (DLL) | Reusable code, NuGet packages |
 | `create_xunit.sh` | Unit Test Project | Testing your applications |
 
-#### Using the Scripts
+##### Example: Scripts command
 
 **Basic Usage:**
 
@@ -171,7 +184,43 @@ cd scripts
 
 </div>
 
-**Run the App:**
+#### 3. Creating using old school method: .NET
+
+If your preferred .NET template isn't scripted, use the official .NET CLI in the **Bash shell**
+
+**ASP.NET Core Example:**  
+For example to create an ASP.NET Core program (manually) in Docker, follow these steps:
+
+<div class="nje-indent1" style="margin-bottom:-30px;">
+  <span class="nje-colored-block" > Note: The resulting application will be created in the host mount folder: **/hostmount/workspace** </span>
+</div>
+
+- Create the app <br>
+  <pre class="nje-cmd-inline-sm">
+  dotnet new web -n MyAspNetApp
+  </pre>
+
+- Get the NuGet packages required
+  <pre class="nje-cmd-multi-line-sm">
+  cd MyAspNetApp
+  dotnet restore
+  </pre>
+
+- Run the app
+  <pre class="nje-cmd-multi-line-sm">
+  # Start the application server
+  dotnet run --urls "http://0.0.0.0:5000" &
+  </pre>
+
+- Access the app on the host
+  Because we specified 0.0.0.0 as the listening IP address in the previous command, we can reach the web page on the host via localhost! Open a browser and navigate to: <span class="nje-cmd-inline-sm"> http://localhost:5000/</span>
+
+---
+
+<a id="Using Scripts to create Sample Apps"></a>
+
+### Run\test  the created App in the Docker terminal
+
 To run a Web based app:
 
   <pre class="nje-cmd-multi-line-sm" style="margin-top:-20px;">
@@ -182,6 +231,9 @@ To run a Web based app:
   # Then run it:
   dotnet run --urls "http://0.0.0.0:5000" &
   </pre>
+
+
+
 
 <div class="nje-br3"> </div>
 <details class="nje-back-box">
@@ -241,36 +293,6 @@ More Cookiecutter templates are planned for the future. The documentation will b
 
 <a id="Creating Applications with .NET"></a>
 
-### Creating Applications with .NET <span style="color: #e0970fff; font-size: 1.0em; "> (Alternative) </span>
-
-If your preferred .NET template isn't scripted, use the official .NET CLI in the **Bash shell**
-
-**ASP.NET Core Example:**  
-For example to create an ASP.NET Core program (manually) in Docker, follow these steps:
-
-<div class="nje-indent1" style="margin-bottom:-30px;">
-  <span class="nje-colored-block" > Note: The resulting application will be created in the host mount folder: **/hostmount/workspace** </span>
-</div>
-
-- Create the app <br>
-  <pre class="nje-cmd-inline-sm">
-  dotnet new web -n MyAspNetApp
-  </pre>
-
-- Get the NuGet packages required
-  <pre class="nje-cmd-multi-line-sm">
-  cd MyAspNetApp
-  dotnet restore
-  </pre>
-
-- Run the app
-  <pre class="nje-cmd-multi-line-sm">
-  # Start the application server
-  dotnet run --urls "http://0.0.0.0:5000" &
-  </pre>
-
-- Access the app on the host
-  Because in the previous command we specified 0.0.0.0 as the listening IP address, we can reach the web page on the **host** via localhost! So from the host, open a browser and navigate to: <span class="nje-cmd-inline-sm"> http://localhost:5000/</span>
 
 <div class="nje-br2"> </div>
 <details class="nje-note-box">
@@ -343,16 +365,16 @@ This section describes how to configure Visual Studio Code running on the host t
   - VS Code installed on Windows
   - You have created an application, using one of the script commands, and created it in: <span class="nje-cmd-inline-sm">.\workspace\your-app</span>
 
-#### Setup Tasks and Launch Configuration
+#### Setup Tasks and Launch Configuration (skip for Cookiecutter templates)
 
-These instructions will set up the task and launch items for VS Code for Docker(Linux) and Windows.
+If your application was **not** created using a **Cookiecutter** template script, follow these steps to configure VS Code tasks and launch settings for Docker (Linux) and Windows. (If you used a Cookiecutter template, these steps are not needed, the required configuration files are generated automatically)
 
-<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: This six-step configuration procedure must be completed for each application you create. Most scripts will copy the files for you, but you still are required to check the files and content</span>
+<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: Complete this six-step configuration for each application you create without a Cookiecutter template. Most scripts will copy the files for you, but you are still required to check the files and their content.</span>
 <br>
-<span style="color: #0dbf60ff; font-size: 1.0em;">Note:</span> This procedure is <b>not needed</b> if your application was created using a Cookiecutter template. Cookiecutter templates automatically generate the required configuration files. (See section: <i>Create Applications with Cookiecutter template</i> above.)
+
 
 **1. Check if the `.vscode` folder in your project exists**  
-Navigate to your application directory on Windows and create the configuration folder:
+Navigate to your application directory on Windows and create the configuration folder if needed:
 
 <pre class="nje-cmd-multi-line-sm-indent1" style="margin-top:-20px;">
 cd .\workspace\your-app\.vscode  # Should exist
@@ -371,7 +393,7 @@ If it does not exists a template can be found at  `.\workspace\.vscode-templates
 
 **6. Check if the `.\Directory.Build.prop` exists**  
 If it does not exists a template can be found at  `.\workspace\.vscode-templates\`.  
-This avoid **'Duplicated errors messages'** when building for Docker and switch to Windows builds.
+This avoids **'Duplicated errors messages'** when building for Docker and switch to Windows builds.
 
 7. Optional. Use **Scaffold tool** to generate CRUD items
 There is a Task in VS Code 'Scaffold CRUD: Controller + Views (no DB)' this enable the genaration of CRUD Views. These additional steps are required if you want to use that.
