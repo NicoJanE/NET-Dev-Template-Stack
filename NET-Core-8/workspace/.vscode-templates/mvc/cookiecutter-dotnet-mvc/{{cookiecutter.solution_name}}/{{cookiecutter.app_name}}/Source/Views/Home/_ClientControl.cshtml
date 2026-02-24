@@ -1,0 +1,38 @@
+
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Client Selection";
+    var options = Model?.FullNameOptions ?? new string[] { };
+}
+<!--  1e Row Labels --->
+<div class="nje-colgrid col3" style="--nje-col1: 1fr; --nje-col2: 1fr; --nje-col3: 1fr; ">
+    <div style="margin-left: 2px; margin-bottom: 3px;">Favorite Artist </div>   <!-- one bottom is enough, cause all divs on the same line! -->
+    <div style="margin-left: 2px;">Age: </div>     
+</div>
+    
+<!--  1e Row controls--->
+<div class="nje-colgrid col3" style="--nje-col1: 1fr; --nje-col2: 1fr; --nje-col3: 1fr; " >
+    <div>
+        <select id="favorieteArtiest" name="favorieteArtiest">
+                <option value="">-- Select an artiest --</option>
+                <option value="springsteen">Bruce Springsteen</option>
+                <option value="sting">Sting</option>
+                <option value="fleetwood">Fleetwood Mac</option>
+                <option value="kahan">Noah Kahan</option>
+                <option value="browne">Jackson Browne</option>
+            </select>
+    </div>
+    <div>
+        <select id="favorieteArtiest" name="favorieteArtiest">
+            <option value="">-- Select an age --</option>
+            <option value="70">70</option>
+            <option value="71">71</option>
+            
+        </select>
+    </div>
+                    
+</div>
+
+
+ 

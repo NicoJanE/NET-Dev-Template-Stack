@@ -64,7 +64,7 @@
                 <div id="toolbar" class="nje-contentbox-flex-child " style="    --nje-width-perc: 99%; --nje-width-max-perc: 99%;  --nje-height: 5.4vh; --nje-overflow: hidden; --nje-conner-radius:5px ;
                                                                                                                      --nje-padding-top: 0px; --nje-padding-bottom: 0px; --nje-bkcolor: var(--nje-bk-color-green); ;"> 
  
-                        <div class="nje_header" style="--nje-font-size-header:10px;--nje-font-color-header: #fffff">Title  or Toolbar</div>
+                        <div class="nje_header" style="--nje-font-size-header:10px;--nje-font-color-header: #fffff">Title  or Toolbar</div>                        
                 </div>
 
                  <!-- Start Worksheet parent   -->
@@ -83,6 +83,7 @@
                         <!-- Start main container for  workssheet, first  two blocks-->
                         <div class="nje-layoutbox-flex-parent">  
 
+@*
                                 <!-- Main container. Using FLEX COLUMN to add a layout box and the option to add normal data in second column at the next row ( because default --nje-flex-direction is column  -->                                                            
                             <div class="nje-layoutbox-flex-column-parent" style="--nje-flex-column-basis:20%; --nje-flex-column-width:20%">
 
@@ -100,35 +101,42 @@
                                 </div>
 
                             </div>  <!-- End FLEX COLUMN -->
-                                
+*@                                 
 
                                 <!-- Start second block -->
-                            <div id="ws-block2" class="nje-contentbox-flex-child" style="--nje-header-title: 'Another header title'; --nje-width-perc: 70%; --nje-width-max-perc: 84%; --nje-min-height: 20vh; --nje-max-height: 40vh; --nje-overflow: auto;
-                                                                                                                                            --nje-bkcolor: var(--nje-bk-color-purple);">
-                                    New <br> block 1 in worksheet                  
+                            <div id="ws-block2" class="nje-contentbox-flex-child" style="--nje-header-title: 'Application Name'; --nje-width-perc: 70%; --nje-width-max-perc: 84%; --nje-min-height: 20vh; --nje-max-height: 40vh; --nje-overflow: auto;
+                                                                                                                                --nje-bkcolor: var(--nje-bk-color-purple);">
 
-                                    <pre id="ws-block2-section1" class="nje-section-header">Title 1</pre>
-                                        Content title 1
-                                    <div id="ws-block2-section2" class="nje-section-header" style="--nje-section-width: 40%;--nje-textcolor: #0e0d0d; ">Title 2</div>
+                                       @*
+                                                C2. Help icon workflow:
+                                                1. @Model.Name populates the 'data-model' attribute (server-side)
+                                                2. On click: Bootstrap modal window: '#_ViewHelpModal' opens
+                                                3. JavaScript intercepts click (Called in _layout.cshtml ==> lib\app\app.js see: 'Help JavaScript'), reads 'data-model' value
+                                                4. JavaScript updates #view-HelpText element with the value from 'data-model' in the called view: '_ViewHelpModal,cshtml'            
+                                        *@
+
+                                        
+                                        Sample Help using model, click::                                        
+                                        <img src="./Question.png" alt="Helpss"  width="16" height="16"  class="nje_app-help-icon"  data-bs-toggle="modal" data-bs-target="#_ViewHelpModal" data-model="@Model.helptext_1"  />        
                                     
-                                    <!-- TODO DOCUMENT in CSS -->
-                                    <div class="nje-text-with-ident">
-                                        <span>Single line tabs, tab 1 <br> Next line </span>
-                                        <div class="nje-indent-content-80">Next tab, tab2.  should be on the same line!...<br>next tab  line 2</div>
-                                    </div>
+
                                     
-                                    <br>
 
-                                    <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 10%;--nje-textcolor: #151414; ">Section Titlenjecu1</div> 
-                                    <div class="nje-text-with-ident">                                        
-                                        <span>Before the idendt</span>
-                                        <div class="nje-indent-content-80">                                            
-                                            should be on the same line!...ff
-                                        </div>
-                                    </div>
-
-                                    <!-- <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 60%;--nje-textcolor: #151414; --nje-linecolor: #ee0d0daa;">Section Title 3</div> -->
+                                    <!-- <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 60%;--nje-textcolor: #151414; --nje-linecolor: #ee0d0daa;">Section Title 3</div> -->                                    
                                     <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 60%;--nje-textcolor: #151414; ">Section Title 3</div>
+                                    Section 3 content                                     
+
+                  <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 60%;--nje-textcolor: #151414; ">Section Title 3   <!-- DEFAULT DEPENDED object -->
+                        <details>
+                            <summary class="nje2-box-help-head">Help </summary>
+                            <div class="nje-indent-content-10  nje2-box-help-content" >Inline help content. If  you have any to tell about this do it here please.<br> newline for mare info.  </div>
+                        </details> 
+                  </div>
+                  Your information here <br>
+                  Welcome to...<br />
+                
+
+
 
                             </div>  <!-- ENDt second block -->                          
                         </div>          <!-- END main container for  workssheet, first  two blocks-->
@@ -142,16 +150,25 @@
 
                                     <!-- nje-contentbox-flex-item    nje-contentbox-flex-column  -->                                       
                                 <div class="nje-contentbox-flex-child _header-line" style=" --nje-header-title: 'item 1b';   --nje-width-perc: 20%; --nje-width-max-perc:20%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
-                                @* @await Html.PartialAsync("_ClientSelection.cshtml",Model) *@
-
+                                    <details>
+                                        <summary class="nje2-box-help-head">Help </summary>
+                                        <div class="nje-indent-content-10  nje2-box-help-content" 
+                                             Help:<br>   Help:<br>Inline help content. If  you have any to tell about this do it here please.<br><br> newline for more info.
+                                          </div>
+                                    </details>
+                                    @* @await Html.PartialAsync("_ClientSelection.cshtml",Model) *@
+                                    Help text Should overlap this  <br>
+                                   Try pressing 'Help' <br>
+                                   to see, if tis happens corect or not. Try now!
                                 </div>
+
                                 <div class="nje-contentbox-flex-child  _header-line" style=" --nje-header-title: 'item 2';   -nje-width-perc: 45%; --nje-width-max-perc:45%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
                                     <!-- <div class="nje-colgrid col3" style="--nje-col1: 5fr; --nje-col2: 3fr; --nje-col3: 2fr; " >
                                         <div>Col 1 </div> 
                                         <div>Col 2</div> 
                                         <div>Col 3</div>                
                                     </div> -->
-                                    @await Html.PartialAsync("_ClientControl.cshtml")
+                                     @await Html.PartialAsync("_ClientControl.cshtml")
                                 </div>
                                 <div class="nje-contentbox-flex-child _header-line" style=" --nje-header-title: 'item 3';   --nje-width-perc: 20%; --nje-width-max-perc:20%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">                                    
                                     <div class="nje-colgrid auto">

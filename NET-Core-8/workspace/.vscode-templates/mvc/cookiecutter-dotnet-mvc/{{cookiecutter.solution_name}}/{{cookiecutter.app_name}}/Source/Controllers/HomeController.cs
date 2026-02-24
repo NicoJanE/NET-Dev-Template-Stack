@@ -52,7 +52,8 @@ public class HomeController : Controller
         _diagnosticService.PrintServiceHierarchy("HomeController.cs");
 
 
-        return View();
+        
+        return View(new MainOverviewModel());
     }
 
     // Handles: GET /Home/Privacy

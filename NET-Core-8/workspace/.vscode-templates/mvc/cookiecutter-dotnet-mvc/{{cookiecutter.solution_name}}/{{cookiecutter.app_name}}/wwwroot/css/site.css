@@ -1,11 +1,20 @@
 /*     LICENSE.
+        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         This file is part of:Net-Core-Template Stack  Copyright (c) 2025-2026 Nico Jan Eelhart.This repository\file is "MIT-license.md and free to use. For optional commercial support, customization, 
-        training, or long-term maintenance, see ="COMMERCIAL.md" fil in this repository root directory     */
+        training, or long-term maintenance, see ="COMMERCIAL.md" fil in this repository root directory                                                                                                                                                   */
+
+
+/*
+        TIP Section:
+        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                1. Use extension: devdrac.css-peek-pro
+                        - This will show the CSS defintition in the tooltip  (works for .cshtml, while others may not)
+                        - use CTRL -CLISK to open file  (may be abit slow :( )                                                                                                                                                                                                        */
 
 
 /* ============================================================================
    IMPORTANT: MVC Views CSS Styling Guide
-   ============================================================================
+   -----------------------------------------------------------------------------------------------------------------------------------
    
    THIS FILE (site.css) is where you style your MVC views!
    
@@ -30,7 +39,17 @@
    ============================================================================
 */
 
+
+/* Font import
+   ----------------------------------------------------------------------------------------------------------------------------------
+    font-family: 'Raleway', sans-serif;
+
+    Alternative way of loading (In <head> secttion  in your HTML document:
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&display=swap" rel="stylesheet">
+
+        perhaps beter perfromance ??                                                                                                                                        */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&display=swap');
+
 
 html 
 {
@@ -56,6 +75,7 @@ body
 {
     margin-bottom: 60px;
     background-color: #ffffff;;
+    background-color: #636363;;
 
     font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
     font-size: 13px;
@@ -255,12 +275,12 @@ h1, h2, h3, h4, h5, h6
   font-weight: 700;
   color: var(--nje-textcolor);
   padding: 0px 0 2px 0;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   letter-spacing: 0.5px;
-  border-bottom: 2px solid var(--nje-linecolor);
+  border-bottom: 1px solid var(--nje-linecolor);
   width: var(--nje-section-width, 100%);
   font-family: 'Raleway', sans-serif;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 /*Special cases for spefic ID's regarding nje-contentbox-flex-child 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------*/      
@@ -317,7 +337,7 @@ h1, h2, h3, h4, h5, h6
   position: relative;
   display: block;
   width: var(--nje-section-width, 100%);
-  line-height: 1.2;
+  line-height: 1.4;
   border-bottom: 1px solid var(--nje-linecolor);
 }
 .nje-DCFBCD07-8B5C-4E6B-AFBC-59668C63DB75 { line-height: 1.2;         /*Do not remove*/ }
@@ -495,3 +515,161 @@ Other usefull samples:
 
 /* END Column Grids
 ============================================================================================== */
+
+
+
+/* BEGIN Section Header Help
+============================================================================================== */
+/*
+    By default designed as general 'Help' button for (above) the 'nje-section-header'  class. For other usage, can can adjust the position varaibles
+
+    USAGE (DEFAULT):
+                  <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 60%;--nje-textcolor: #151414; ">Section Title 3</div>   <!-- DEFAULT DEPENDED object -->
+                  <details>
+                      <summary class="nje-box-help-head">Help </summary>
+                          <div class="nje-indent-content-10  nje-box-help-content" ;">Indented content at 80px from left start on same line ass  'Before text' ssdsdsa  ssdds 'Before text' John and Jacob is a well known pair otf...  </div>
+                  </details>
+
+
+*/
+
+
+/*<div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 60%;--nje-textcolor: #151414; ">Section Title 3</div>*/
+
+
+.nje-box {
+  border: 1px solid #999;  
+  /*background: linear-gradient(to right, #f0f0f0 0%, #fff 100%);*/
+  padding: 10px;
+}
+
+details {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+summary {
+  display: block;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+
+.nje-box-help-head {
+  position: relative;
+  z-index: 1;
+
+  background-color:transparent ; /* #dddcdc;*/
+  
+  border: 1px solid rgb(186, 181, 181);
+  padding-top: 3px;
+  padding-bottom:3px;
+  padding-left: 6px;
+  padding-right: 11px;
+  border-radius: 5px;
+  cursor: help;
+  font-weight: bold;
+  list-style: none;
+  width:26%;  /*MUST BE VARIABLE!*/
+  margin-left:195px; /*MUST BE VARIABLE!*/
+  margin-top:-30px /*MUST BE VARIABLE!*/
+  
+}
+.nje-box-help-head::after 
+{
+  content: '\25BC';
+  float: right;
+  font-weight: normal;
+  margin-left:10px;
+}
+details[open] .nje-box-help-head::after 
+{
+  content: '\25B2';  
+}
+
+
+.nje-box-help-content {
+  position: absolute;
+  width: 250px; /* Set a specific width for the text */
+  z-index: 1;
+  white-space: wrap; 
+  background-color: #f0f0f0;
+  border: 1px solid rgb(186, 181, 181);  
+  border-radius: 5px;
+  padding-top: 5px;;
+  padding-left: 10px;;
+  padding-right: 10px;;
+  padding-bottom: 5px;;
+   margin-top:14px;
+}
+
+/* END  Section Header Help
+============================================================================================== */
+
+
+.nje2-box {
+  border: 1px solid #999;    
+  padding: 10px;
+}
+
+
+.nje2-box-help-head {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  top: -20px;
+  
+  background-color: transparent;
+  border: 1px solid rgb(186, 181, 181);
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 6px;
+  padding-right: 11px;
+  border-radius: 5px;
+  margin-top:-2px;
+  cursor: help;
+  font-size:11px;
+  font-weight: normal;
+  list-style: none;
+  width: auto;
+  white-space: nowrap;
+ 
+}
+.nje2-box-help-head::after 
+{
+  color:rgb(142, 142, 142);
+  content: '\25BC';
+  font-weight: normal;
+  margin-left: 10px;
+  
+}
+details[open] .nje2-box-help-head::after 
+{
+   color:green;
+  content: '\25B2';  
+}
+
+
+.nje2-box-help-content {
+  /*color:green;*/
+  
+  font-weight: normal;
+  position: absolute;
+  width: 70%; /* Set a specific width for the text */
+  z-index: 2;
+  white-space: wrap; 
+  background-color: #f0f0f0;
+  border: 1px solid green;
+  border-radius: 5px;
+  padding-top: 5px;;
+  padding-left: 10px;;
+  padding-right: 10px;;
+  padding-bottom: 5px;;
+  right:-2%;
+  
+  top: 33px;
+}

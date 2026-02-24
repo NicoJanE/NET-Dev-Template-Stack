@@ -16,6 +16,8 @@
 !_ViewStart.cshtml
 !_Layout.cshtml
 !_ValidationScriptsPartial.cshtml
+!_ViewHelpModal.cshtml
+!_ClientControl.cshtml
   
 # EXCEPTION  folders _include 
 # !**/_include/
