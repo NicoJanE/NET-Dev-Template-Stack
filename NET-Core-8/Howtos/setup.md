@@ -141,6 +141,8 @@ ls -la                       # List all available scripts
 | `create_webapi.sh` | REST API Service | Backend services, microservices |
 | `create_webapiaot.sh` | High-Performance API | Ultra-fast APIs, cloud-native |
 | `create_mvc.sh` | MVC Web Application | Traditional websites, admin panels |
+| `vscode-templates\mvc\cookiecutter-dotnet-mvc\\create_mvc.sh` | MVC Web Application with **Cookiecutter** template | ***See side note: 'Create Applications with Cookiecutter template***'  |
+| `create_mvc.sh` | MVC Web Application | Traditional websites, admin panels |
 | `create_webapp.sh` | Razor Pages App | Content-heavy sites, blogs |
 | `create_blazorserver.sh` | Blazor Server App | Interactive web apps (server-side) |
 | `create_blazorwasm.sh` | Blazor WebAssembly | Client-side web apps (browser) |
@@ -200,6 +202,38 @@ By default, all applications are created in <span class="nje-cmd-inline-sm">/hos
 Note: For CPU-intensive builds, you can copy projects to the container:
 
 <span class="nje-cmd-inline-sm"> cp -r ./my-app /cworkspace/ </span>
+
+<p align="center" style="padding:20px;">─── ✦ ───</p>
+</details>
+<div class="nje-br4"> </div>
+
+
+
+
+
+
+<div class="nje-br3"> </div>
+<details class="nje-back-box">
+  <summary>Create Applications with Cookiecutter template <span style="color: #0dbf60ff; font-size: 1.0em; "> (Recommended) </span>
+  </summary>
+
+### Using Cookiecutter
+
+Currently, there is one template available that creates an MVC application using **Cookiecutter**. his template provides a complete MVC application GUI. The application is created in the shared Windows Workspace folder, not inside the bash container.
+
+***To Install:***
+
+- Enter the folder: **.\workspace\.vscode-templates\mvc\cookiecutter-dotnet-mvc\\**
+- Read the ***README.md*** file 
+  - Essentially, you just need to ensure **Python** and **Cookiecutter** are installed, then execute the PowerShell script.<br><br>
+  
+  An example of the MVC application is displayed below:
+
+<a href="Sample-mvc.png.jpg" target="_blank">
+  <img src="../../Sample-mvc.png.jpg" alt="MVC template with custom CSS components and usage examples" style="width: 500px; height: auto; border-radius: 8px; cursor: pointer;">
+</a><br><br>
+
+More Cookiecutter templates are planned for the future. The documentation will be updated accordingly to ensure consistency.
 
 <p align="center" style="padding:20px;">─── ✦ ───</p>
 </details>
