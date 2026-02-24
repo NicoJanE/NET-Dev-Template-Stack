@@ -318,7 +318,7 @@ Use the found IP to access the web page on the host. Start your browser on the *
 
 <a id="Projects in VS Code"></a>
 
-## Build Template Projects with Visual Studio Code
+## Use Template Projects with Visual Studio Code
 
 This guide shows how to use Visual Studio Code to develop, build, and debug your .NET applications. Note that you'll need to configure VS Code settings for each application you create.
 
