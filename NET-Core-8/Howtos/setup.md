@@ -9,7 +9,6 @@ TableCont:
  - ^Create-Start .NET container
  - ^Troubleshooting
  - Using Scripts to create Template Apps
- - 
  - Use in VS Code
  - ^Configure VS Code
  - VS Code Build
@@ -118,7 +117,11 @@ dotnet --list-runtimes
 
 ### Creating Template Applications with the Scripts
 
-Assuming that the Docker container has been successfully created and can be started with:<span class="nje-cmd-inline-sm">  docker exec -it net8-service-net-core8-img-1 bash</span> we will show here how you can create a .NET 8.0 Template application with the different scripts that are provided within Docker.
+Assuming that the Docker container has been successfully created and can be started with:<span class="nje-cmd-inline-sm">  docker exec -it net8-service-net-core8-img-1 bash</span> we will show here how you can create a .NET 8.0 Template application with the different scripts that are provided within setup. In general there are three methods that will be described below:
+
+1. Using CookieCutter (easiest)
+2. Using  Alternative Scripts
+3. Old School .NET.
 
 #### 1. Use the Cookiecutter Scripts <span style="color: #0dbf60ff; font-size: 0.8em; "> (Recommended if available) </span>
 
