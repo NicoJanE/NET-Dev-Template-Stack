@@ -372,7 +372,7 @@ This section describes how to configure Visual Studio Code running on the host t
 
 If your application was **not** created using a **Cookiecutter** template script, follow these steps to configure VS Code tasks and launch settings for Docker (Linux) and Windows. (If you used a Cookiecutter template, these steps are not needed, the required configuration files are generated automatically)
 
-<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: Complete this six-step configuration for each application you create without a Cookiecutter template. Most scripts will copy the files for you, but you are still required to check the files and their content.</span>
+<span class="nje-colored-block" style="--nje-bgcolor: #e03f05ff; --nje-textcolor: white; margin-left:3px;">⚠️ Important: Complete this six-step configuration for each template application that you create with the **none** Cookiecutter script. Most scripts will copy the files for you, but you are still required to check the files and their content.</span>
 <br>
 
 
