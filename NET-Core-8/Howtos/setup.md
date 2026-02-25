@@ -368,7 +368,7 @@ This section describes how to configure Visual Studio Code running on the host t
   - VS Code installed on Windows
   - You have created an application, using one of the script commands, and created it in: <span class="nje-cmd-inline-sm">.\workspace\your-app</span>
 
-#### Setup Tasks and Launch Configuration (skip for Cookiecutter templates)
+#### Setup Tasks and Launch Configuration (<span style="color: rgb(191, 13, 13); font-size: 0.8em; ">skip for Cookiecutter script variants</span>)
 
 If your application was **not** created using a **Cookiecutter** template script, follow these steps to configure VS Code tasks and launch settings for Docker (Linux) and Windows. (If you used a Cookiecutter template, these steps are not needed, the required configuration files are generated automatically)
 
