@@ -8,11 +8,11 @@ TableCont:
  - Setup
  - ^Create-Start .NET container
  - ^Troubleshooting
- - Using Scripts to create Sample Apps
- - Creating Applications with .NET
- - Projects in VS Code
+ - Using Scripts to create Template Apps
+ - 
+ - Use in VS Code
  - ^Configure VS Code
- - VS Code Usage
+ - VS Code Build
  - Quick install
 
 --- 
@@ -114,7 +114,7 @@ dotnet --list-runtimes
 
 ---
 
-<a id="Using Scripts to create Sample Apps"></a>
+<a id="Using Scripts to create Template Apps"></a>
 
 ### Creating Template Applications with the Scripts
 
@@ -316,7 +316,7 @@ Use the found IP to access the web page on the host. Start your browser on the *
 
 ---
 
-<a id="Projects in VS Code"></a>
+<a id="Use in VS Code"></a>
 
 ## Use Template Projects with Visual Studio Code
 
@@ -408,7 +408,7 @@ There is a Task in VS Code 'Scaffold CRUD: Controller + Views (no DB)' this enab
 
 ---
 
-<a id="VS Code Usage"></a>
+<a id="VS Code Build"></a>
 
 ### Use the VS Code Build & Debug (Docker & Windows)
 
