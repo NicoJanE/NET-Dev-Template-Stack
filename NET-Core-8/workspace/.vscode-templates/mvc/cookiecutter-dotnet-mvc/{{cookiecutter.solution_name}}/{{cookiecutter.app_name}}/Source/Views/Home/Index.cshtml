@@ -1,7 +1,7 @@
 ﻿@model MainOverviewModel
 
 @{
-    ViewData["Title"] = "Home Page";    
+    ViewData["Title"] = "TEMPLATE Home Page";    
 }
 
 <!-- LICENSE.
@@ -58,31 +58,14 @@
         <div class="nje-layoutbox-flex-parent">            
                     
             <!-- Start Main Placeholder background (block-bkground) ,-->
-            <div Id="block-bkground" class="nje-contentbox-flex-child" style="--nje-width-perc: 100%; --nje-width-max-perc: 100%; --nje-conner-radius:0px ; --nje-bkcolor: var(--nje-bk-color-blue);">
+            <div Id="block-bkground" class="nje-contentbox-flex-child" style=" --nje-conner-radius:0px ; --nje-bkcolor: var(--nje-bk-color-blue);">
 
                 <!-- Toolbar  -->           
                 <div id="toolbar" class="nje-contentbox-flex-child " style="    --nje-width-perc: 99%; --nje-width-max-perc: 99%;  --nje-height: 5.4vh; --nje-overflow: hidden; --nje-conner-radius:5px ;
                                                                                                                      --nje-padding-top: 0px; --nje-padding-bottom: 0px; --nje-bkcolor: var(--nje-bk-color-green); ;"> 
-
-                    <div class="nje-colgrid col3">          <!-- 3 columns each with packed subcolumns -->
-                        <div class="nje-colgrid packed">       
-                            <div>sub 1 Item 1</div>
-                            <div>sub 1 Item 2</div>
-                            <div>sub 1 Item 3</div>                                
-                        </div>              
-                        <div class="nje-colgrid packed">       
-                            <div>sub 2 Item 1</div>
-                            <div>sub 2 Item 2</div>
-                            <div>sub 2 Item 3</div>
-                            <div>Sub 2 Item 4</div>
-                        </div>              
-                        <div class="nje-colgrid packed"> 
-                            <div>sub 3 Item 1</div>
-                            <div>sub 3 Item 2</div>                                
-                        </div>       `                 
-                    </div>
-                     
-                </div> <!-- Toolbar -->
+ 
+                        <div class="nje_header" style="--nje-font-size-header:10px;--nje-font-color-header: #000000">Title  or Toolbar TEMPLATE APP1</div>
+                </div>
 
                  <!-- Start Worksheet parent   -->
                 <div class="nje-layoutbox-flex-parent">           
@@ -121,9 +104,11 @@
 *@                                 
 
                                 <!-- Start second block -->
-                            <div id="ws-block2" class="nje-contentbox-flex-child" style="--nje-header-title: 'Application Name'; --nje-width-perc: 70%; --nje-width-max-perc: 84%; --nje-min-height: 20vh; --nje-max-height: 40vh; --nje-overflow: auto;
+                            <div id="ws-block2" class="nje-contentbox-flex-child" style="--nje-header-title: 'Application Name'; --nje-width-perc: 98%; --nje-width-max-perc: 98%; --nje-min-height: 40vh; --nje-max-height: 45vh; --nje-overflow: auto;
                                                                                                                                 --nje-bkcolor: var(--nje-bk-color-purple);">
 
+                                <button ID="NJE" class="collapsible" data-target="ws-block2-content" style="position: absolute; right: 10px; top: 4px; z-index: 10;">▼</button>                                                                 
+                                <div id="ws-block2-content" class="collapsible-content">
                                        @*
                                                 C2. Help icon workflow:
                                                 1. @Model.Name populates the 'data-model' attribute (server-side)
@@ -131,39 +116,37 @@
                                                 3. JavaScript intercepts click (Called in _layout.cshtml ==> lib\app\app.js see: 'Help JavaScript'), reads 'data-model' value
                                                 4. JavaScript updates #view-HelpText element with the value from 'data-model' in the called view: '_ViewHelpModal,cshtml'            
                                         *@
-
                                         
                                         Sample Help using model, click::                                        
                                         <img src="./Question.png" alt="Helpss"  width="16" height="16"  class="nje_app-help-icon"  data-bs-toggle="modal" data-bs-target="#_ViewHelpModal" data-model="@Model.helptext_1"  />        
-                                    
-
-                                    
+                                                                        
 
                                     <!-- <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 60%;--nje-textcolor: #151414; --nje-linecolor: #ee0d0daa;">Section Title 3</div> -->                                    
-                                    <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 60%;--nje-textcolor: #151414; ">Section Title 3</div>
-                                    Section 3 content                                     
+                                    <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 80%;--nje-textcolor: #151414; ">Section Title 1</div>
+                                    @await Html.PartialAsync("_ListView", Model.FullNameOptions)
 
-                  <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 60%;--nje-textcolor: #151414; ">Section Title 3   <!-- DEFAULT DEPENDED object -->
-                        <details>
-                            <summary class="nje2-box-help-head">Help </summary>
-                            <div class="nje-indent-content-10  nje2-box-help-content" >Inline help content. If  you have any to tell about this do it here please.<br> newline for mare info.  </div>
-                        </details> 
-                  </div>
-                  Your information here <br>
-                  Welcome to...<br />
+                                    <div id="ws-block2-section3" class="nje-section-header" style="--nje-section-width: 80%;--nje-textcolor: #151414; ">Section Title 2   <!-- DEFAULT DEPENDED object -->
+                                            <details>
+                                                <summary class="nje2-box-help-head">Help </summary>
+                                                <div class="nje-indent-content-10  nje2-box-help-content" >Inline help content. If  you have any to tell about this do it here please.<br> newline for mare info.  </div>
+                                            </details> 
+                                    </div>
+                                    Your information here <br>
+                                    Welcome to...<br />
                 
 
 
-
-                            </div>  <!-- ENDt second block -->                          
+                                </div>  <!-- END second content block -->
+                            </div>      <!-- ENDt second block -->                          
                         </div>          <!-- END main container for  workssheet, first  two blocks-->
 
 
                         <!-- Start third block --->                                                    
-                        <div class="nje-contentbox-flex-child" style="--nje-header-title: 'New';  -nje-width-perc: 100%; --nje-width-max-perc:100%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
-                            
+                        <div class="nje-contentbox-flex-child" style="--nje-header-title: 'New';  --nje-width-perc: 98%; --nje-width-max-perc:98%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
+                            <button ID="NJE" class="collapsible" data-target="ws-block3-content" style="position: absolute; right: 10px; top: 4px; z-index: 10;">▼</button>
+
                             <!-- sub container to represent data in different columns.  Using FLEX ROW   because --nje-flex-direction is: row -->   
-                            <div class="nje-layoutbox-flex-parent" style="--nje-flex-direction:row --nje-flex-column-basis:100%; --nje-flex-column-width:100%">
+                            <div id="ws-block3-content" class="collapsible-content nje-layoutbox-flex-parent" style="--nje-flex-direction:row --nje-flex-column-basis:100%; --nje-flex-column-width:100%">
 
                                     <!-- nje-contentbox-flex-item    nje-contentbox-flex-column  -->                                       
                                 <div class="nje-contentbox-flex-child _header-line" style=" --nje-header-title: 'item 1b';   --nje-width-perc: 20%; --nje-width-max-perc:20%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">

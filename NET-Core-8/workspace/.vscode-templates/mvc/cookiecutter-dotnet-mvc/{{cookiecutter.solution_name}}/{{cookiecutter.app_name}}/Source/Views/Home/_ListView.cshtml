@@ -1,0 +1,54 @@
+@model string[]
+<br>
+<div class="nje-table-header">My Data Table</div>
+<div class="nje-table-container">
+    <!-- Set --nje-table-max-height to control how many rows are visible before scrolling
+         Example: style="--nje-table-max-height: 110px;" (for ~3-4 rows)
+         Row height is approximately 30px, so:
+         - 5 rows = 150px         
+         - 10 rows = 300px
+    -->
+    <div class="nje-table-wrapper" style="--nje-table-max-height: 110px;">
+        <table class="nje-table nje-table-actions-enabled">
+            <colgroup>
+                <col style="width: 15%">
+                <col>
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Name</th>                    
+                    <th>Value</th>
+                    <th>Index</th>
+                </tr>
+            </thead>
+        </table>
+        <div class="nje-table-body-scroll">
+            <table class="nje-table">
+                <colgroup>
+                    <col style="width: 15%">
+                    <col>
+                    <col>
+                </colgroup>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item</td>
+                            <td>@item</td>
+                            <td>@Array.IndexOf(Model, item)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Action buttons - Fixed position, always visible, disabled until row is selected -->
+    <div class="nje-table-actions">
+        <button class="nje-table-action-btn add" title="Add" disabled>+</button>
+        <button class="nje-table-action-btn edit" title="Edit" disabled>✎</button>
+        <button class="nje-table-action-btn delete" title="Delete" disabled>✕</button>
+    </div>
+</div>
+

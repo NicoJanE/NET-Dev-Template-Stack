@@ -92,8 +92,8 @@ h1, h2, h3, h4, h5, h6
 /*  CSS variables */
 :root {
   
-  --nje-width-perc: 10%;
-  --nje-width-max-perc:10%;
+  --nje-width-perc: 98%;
+  --nje-width-max-perc:98%;
   --nje-grow-prio: 1;
   --nje-bkcolor: #4f91cf;
   --nje-textcolor: #202023;
@@ -145,7 +145,7 @@ h1, h2, h3, h4, h5, h6
 */              
 
 
-/*1.  Continer holder
+/*1.  Container holder
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .nje-container
 {  
@@ -180,15 +180,15 @@ h1, h2, h3, h4, h5, h6
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /*
   This element decides about the look of the contentbox and is called in a `.nje-layoutbox-flex-parent` and can be customized with variables
-  Note that for width variables we use percentages and for height viewpoints (vh) this is by design
+  Note that for width variables we use percentages and for height viewport units (vh) this is by design
 
-  EXAMPLE call syntaxt for `width` related properties:
+  EXAMPLE call syntax for `width` related properties:
   ********************************************************
 
     Usage 1: size 35% if available else 20%:    <div class="nje-contentbox-flex-child" style="--nje-width-perc: 20%; --nje-width-max-perc: 35%;">
     Usage 2: size 20% NO Grow                      <div class="nje-contentbox-flex-child" style="--nje-width-perc: 20%; --nje-width-max-perc: 20%;">
-    usage 3: This continer has grow priority:   <div class="nje-contentbox-flex-child" style="--nje-width-perc: 20%; --nje-width-max-perc: 40%; --nje-grow-prio:2">
-                   Note default grow priority is 1(-nje-grow-prio:1)
+    Usage 3: This container has grow priority:   <div class="nje-contentbox-flex-child" style="--nje-width-perc: 20%; --nje-width-max-perc: 40%; --nje-grow-prio:2">
+                   Note default grow priority is 1(--nje-grow-prio:1)
   
   ADD HEADER TITLE (Optional):
   ********************************************************
@@ -196,15 +196,29 @@ h1, h2, h3, h4, h5, h6
     <div class="nje-contentbox-flex-child" style="--nje-header-title: 'My Title'; --nje-bkcolor: #b020b0; ...">
     The title will appear at the top with contrasting color/style.
 
+  ADD COLLAPSIBLE CONTENT (Optional):
+  ********************************************************
+    Make content inside the container collapsible while keeping the header visible:
+    
+    <div class="nje-contentbox-flex-child" style="--nje-header-title: 'My Title'; ...">
+        <button class="collapsible" data-target="my-content">Toggle</button>
+        <div id="my-content" class="collapsible-content">
+            <!-- Your content here - this part will collapse/expand -->
+        </div>
+    </div>
+    
+    The header and button stay visible, only the content inside .collapsible-content collapses.
+    Button text automatically changes between original text and 'EXPAND'.
+    Container height automatically adjusts when content is collapsed.
 
-  EXAMPLE call syntaxt for `height` related properties:
+  EXAMPLE call syntax for `height` related properties:
   ********************************************************
     Height 
-    Can not use %. use Viewpoints instead(vh)! 
+    Can not use %. use Viewport units instead(vh)! 
 
     Usage 1b; No height is auto height
     Usage 2b: Set height                                                                      <div class="nje-contentbox-flex-child" style="--nje-width-perc: 100%; --nje-width-max-perc: 100%;  --nje-bkcolor: #b02023;  --nje-height: 80vh; ">
-    Usage 2b: Set height + maxheight(take maxwidth is possible)     <div class="nje-contentbox-flex-child" style="--nje-bkcolor: #b020b0; --nje-width-perc: 50%; --nje-width-max-perc: 50%; -nje-min-height: 20vh; --nje-max-height: 40vh;">
+    Usage 3b: Set height + maxheight(take maxwidth is possible)     <div class="nje-contentbox-flex-child" style="--nje-bkcolor: #b020b0; --nje-width-perc: 50%; --nje-width-max-perc: 50%; --nje-min-height: 20vh; --nje-max-height: 40vh;">
 
     Note optional add:   --nje-overflow: auto;      To enable scrolling
     
@@ -241,12 +255,122 @@ h1, h2, h3, h4, h5, h6
   min-height: var(--nje-min-height, auto);        /* Configurable minimum height */
   max-height: var(--nje-max-height, none);      /* Configurable maximum height */
   overflow-y: var(--nje-overflow, visible);         /* Configurable: visible, auto, scroll */
+  scrollbar-width: thin;                          /* Firefox: only show on hover */
+  /*scrollbar-color: #9a9fa3 rgba(0, 0, 0, 0.15);  */
+  scrollbar-color: #9a9fa3 rgba(111, 111, 111, 0.10);  /* Match header background */
   border-radius: var(--nje-conner-radius);       /* Rounded corners  --nje-conner-radius*/
 
   font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;  
   font-size:  var(--nje-font-size);
   line-height: 1.0;
+  
+  /* Smooth collapse/expand animation */
+  transition: max-height 0.3s ease, overflow 0.3s ease;
 }
+
+/* Collapsed state - hides the element by reducing max-height to 0 */
+.nje-contentbox-flex-child.collapsed {
+  max-height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+/* Hide the ::before pseudo-element when collapsed */
+.nje-contentbox-flex-child.collapsed::before {
+  display: none !important;
+}
+
+/* ============================================================================================
+   COLLAPSIBLE CONTENT SYSTEM
+   ============================================================================================
+   
+   A generic system for making content inside nje-contentbox-flex-child containers collapsible
+   while keeping the header and controls visible.
+   
+   HOW IT WORKS:
+   - Button with class 'collapsible' triggers the toggle
+   - Content with class 'collapsible-content' gets collapsed/expanded  
+   - Parent container automatically adjusts height when content is collapsed
+   - Header (::before pseudo-element) always stays visible
+   
+   USAGE:
+   <div class="nje-contentbox-flex-child" style="--nje-header-title: 'My Section';">
+       <button class="collapsible" data-target="content-id">Toggle</button>
+       <div id="content-id" class="collapsible-content">
+           <!-- Your collapsible content here -->
+       </div>
+   </div>
+   
+   JAVASCRIPT REQUIRED:
+   - site.js handles button clicks and toggling
+   - Button text automatically changes (original ↔ EXPAND)
+   - Use any button text - it will be restored when expanded
+   
+   BROWSER COMPATIBILITY:
+   - Modern browsers: Uses :has() pseudo-selector for automatic parent height adjustment
+   - Fallback: .has-collapsed-content class added by JavaScript for older browsers
+   ============================================================================================ */
+
+/* COLLAPSIBLE BUTTON - Styled like action buttons */
+button.collapsible {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #0066cc;
+  border-radius: 3px;
+  background-color: #87CEEB;
+  color: #003d99;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+  line-height: 1;
+}
+
+/* Collapsible button hover effect */
+button.collapsible:not(:disabled):hover {
+  background-color: #4A90E2;
+  transform: scale(1.14);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Collapsible button active state */
+button.collapsible:not(:disabled):active {
+  transform: scale(0.9);
+}
+
+/* GENERIC: Collapsible content - hides content while keeping container/header visible */
+.collapsible-content {
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+}
+
+.collapsible-content.collapsed {
+  max-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+/* When collapsible content is collapsed, make parent container auto-height */
+.nje-contentbox-flex-child:has(.collapsible-content.collapsed) {
+  min-height: auto !important;
+  max-height: auto !important;
+  height: auto !important;
+}
+
+/* Fallback for browsers that don't support :has() - use a class on the parent */
+.nje-contentbox-flex-child.has-collapsed-content {
+  min-height: auto !important;
+  max-height: auto !important;  
+  height: auto !important;
+}
+
 /* Default header title using CSS variable and ::before pseudo-element */
 /*  - Applies only when NOT using .line modifier */
 .nje-contentbox-flex-child:not(._header-line)::before {  
@@ -282,6 +406,7 @@ h1, h2, h3, h4, h5, h6
   font-family: 'Raleway', sans-serif;
   line-height: 1.3;
 }
+
 /*Special cases for spefic ID's regarding nje-contentbox-flex-child 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------*/      
 #toolbar 
@@ -347,7 +472,7 @@ h1, h2, h3, h4, h5, h6
 /*
  A text followed by ident and other text on the starting same line. Both text can contain <br> which will respect the indentation
   
-  Call syntaxt:
+  Call syntax:
   <div class="nje-text-with-ident">
     <span>Before text</span>
     <div class="nje-indent-content-80">Indented content at 80px from left start on same line as 'Before text'</div>
@@ -724,3 +849,473 @@ details[open] .nje2-box-help-head::after
   
   top: 33px;
 }
+
+
+
+/*
+===============================================================================================
+TABLE STYLING: .nje-table
+===============================================================================================
+
+USAGE:
+A flexible, responsive table with optional headers, vertical scrolling, customizable column 
+widths, and optional action buttons (Add, Edit, Delete). Scrollbar appears only on table 
+body rows (does not cross header).
+
+BASIC EXAMPLE (3 columns, default 33.33% width each):
+---------------------------------------
+<table class="nje-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Index</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>John</td>
+            <td>Data 1</td>
+            <td>0</td>
+        </tr>
+    </tbody>
+</table>
+
+WITH TABLE HEADER (optional title above table):
+---------------------------------------
+<div class="nje-table-header">My Data Table</div>
+<table class="nje-table">
+    ...table content...
+</table>
+
+WITH VERTICAL SCROLLING (scrollbar starts below header):
+---------------------------------------
+Note: Header and body are separate tables to ensure scrollbar doesn't cross header.
+Use <colgroup> in both tables to align columns properly.
+
+<div class="nje-table-wrapper" style="--nje-table-max-height: 210px;">
+    <!-- Header table -->
+    <table class="nje-table">
+        <colgroup>
+            <col style="width: 33.33%">
+            <col style="width: 33.33%">
+            <col style="width: 33.34%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Index</th>
+            </tr>
+        </thead>
+    </table>
+    
+    <!-- Scrollable body -->
+    <div class="nje-table-body-scroll">
+        <table class="nje-table">
+            <colgroup>
+                <col style="width: 33.33%">
+                <col style="width: 33.33%">
+                <col style="width: 33.34%">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Data 1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Jane</td>
+                    <td>Data 2</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+Row heights: ~30px each
+- 5 rows  = 150px
+- 7 rows  = 210px
+- 10 rows = 300px
+
+WITH CUSTOM COLUMN WIDTHS (using colgroup):
+---------------------------------------
+<div class="nje-table-wrapper" style="--nje-table-max-height: 210px;">
+    <table class="nje-table">
+        <colgroup>
+            <col style="width: 15%">
+            <col style="width: 50%">
+            <col style="width: 35%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+    </table>
+    
+    <div class="nje-table-body-scroll">
+        <table class="nje-table">
+            <colgroup>
+                <col style="width: 15%">
+                <col style="width: 50%">
+                <col style="width: 35%">
+            </colgroup>
+            <tbody>
+                ...rows...
+            </tbody>
+        </table>
+    </div>
+</div>
+
+WITH ACTION BUTTONS (Add, Edit, Delete) - POSITIONED RIGHT OF TABLE:
+---------------------------------------
+Note: Action buttons are always visible to the right of the table
+Buttons are disabled by default (greyed out)
+Buttons are enabled only when a row is selected (click a row to enable)
+Buttons are stacked vertically
+
+<div class="nje-table-container">
+    <div class="nje-table-wrapper" style="--nje-table-max-height: 210px;">
+        <table class="nje-table nje-table-actions-enabled">
+            <colgroup>
+                <col style="width: 33.33%">
+                <col style="width: 33.33%">
+                <col style="width: 33.34%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Index</th>
+                </tr>
+            </thead>
+        </table>
+        
+        <div class="nje-table-body-scroll">
+            <table class="nje-table">
+                <colgroup>
+                    <col style="width: 33.33%">
+                    <col style="width: 33.33%">
+                    <col style="width: 33.34%">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>Data 1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Jane</td>
+                        <td>Data 2</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Action buttons - Positioned to the right of table -->
+    <div class="nje-table-actions">
+        <button class="nje-table-action-btn add" title="Add" disabled>+</button>
+        <button class="nje-table-action-btn edit" title="Edit" disabled>✎</button>
+        <button class="nje-table-action-btn delete" title="Delete">✕</button>
+    </div>
+</div>
+
+AVAILABLE CSS VARIABLES:
+---------------------------------------
+--nje-table-max-height : any pixel value (default: none)
+                         Set on .nje-table-wrapper to control when vertical scrolling starts
+                         Example: 210px shows ~7 rows before scrolling
+
+FEATURES:
+---------------------------------------
+✓ Sticky header (stays visible when scrolling)
+✓ Fancy gradient header cells with uppercase text
+✓ Hover effect on rows
+✓ Selected row highlighting (.selected class)
+✓ Scrollbar appears only on body (doesn't cross header)
+✓ Supports multiple columns with custom widths via <colgroup>
+✓ Optional table title/header (above table)
+✓ Optional action buttons (Add, Edit, Delete) - positioned right of table
+✓ Action buttons: Always visible, disabled by default, enabled on row selection
+
+CLASSES:
+---------------------------------------
+.nje-table-container         - Flex container wrapper for table + action buttons
+.nje-table-wrapper           - Wrapper for header table + scrollable body (80% width)
+.nje-table-body-scroll       - Scrollable container for tbody (scrollbar here)
+.nje-table                   - Main table class (use on both header and body tables)
+.nje-table-header            - Optional title/header text above table
+.nje-table-actions-enabled   - Optional class to enable action buttons
+.nje-table-actions           - Container for action buttons (right of table)
+.nje-table-action-btn        - Individual action button
+.nje-table-action-btn.add    - Add button (green)
+.nje-table-action-btn.edit   - Edit button (blue)
+.nje-table-action-btn.delete - Delete button (red)
+
+JAVASCRIPT REQUIREMENTS:
+---------------------------------------
+Row selection and button enable/disable logic is in site.js
+Clicking a row adds .selected class and enables buttons
+Clicking empty space removes selection and disables buttons
+
+===============================================================================================
+*/
+
+
+
+/* Wrapper for table with separate header and scrollable body */
+.nje-table-wrapper {
+  width: 80%;
+  border: 1px solid #ccc;
+}
+
+/* Scrollable body container - scrollbar starts below header */
+.nje-table-body-scroll {
+  max-height: var(--nje-table-max-height, none);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+}
+
+.nje-table {
+  table-layout: fixed;  /* ← This is required */
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  border: none;
+  background-color: #f9f9f9;
+}
+
+/* Optional table title/header above the table */
+.nje-table-header {
+  font-size: 11px;
+  font-weight: 200;
+  color: #3c2f2f;
+  padding-left: 4px;
+  margin-bottom: 3px;
+  letter-spacing: 0.5px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.nje-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #f1f1f1;
+  display: table-header-group;
+}
+
+.nje-table tbody {
+  display: table-row-group;
+}
+
+/* Header cell lines - Fancier styling */
+.nje-table th {
+  padding: 3px 5px;
+  border: 1px solid #999;
+  text-align: left;
+  font-weight: 600;
+  background: linear-gradient(to bottom, #e8e8e8, #d8d8d8);
+  color: #333;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Column width definitions - use CSS variables per column */
+.nje-table th:nth-child(1),
+.nje-table td:nth-child(1) {
+  width: var(--nje-col-1-width, 33.33%);
+}
+
+.nje-table th:nth-child(2),
+.nje-table td:nth-child(2) {
+  width: var(--nje-col-2-width, 33.33%);
+}
+
+.nje-table th:nth-child(3),
+.nje-table td:nth-child(3) {
+  width: var(--nje-col-3-width, 33.33%);
+}
+
+.nje-table th:nth-child(4),
+.nje-table td:nth-child(4) {
+  width: var(--nje-col-4-width, 25%);
+}
+
+.nje-table th:nth-child(5),
+.nje-table td:nth-child(5) {
+  width: var(--nje-col-5-width, 25%);
+}
+
+.nje-table th:nth-child(6),
+.nje-table td:nth-child(6) {
+  width: var(--nje-col-6-width, 25%);
+}
+
+.nje-table th:nth-child(7),
+.nje-table td:nth-child(7) {
+  width: var(--nje-col-7-width, 14.28%);
+}
+
+.nje-table th:nth-child(8),
+.nje-table td:nth-child(8) {
+  width: var(--nje-col-8-width, 12.5%);
+}
+
+.nje-table th:nth-child(9),
+.nje-table td:nth-child(9) {
+  width: var(--nje-col-9-width, 11.11%);
+}
+
+.nje-table th:nth-child(10),
+.nje-table td:nth-child(10) {
+  width: var(--nje-col-10-width, 10%);
+}
+
+/* Normal cell lines */
+.nje-table td {
+  padding-left: 5px;
+  border: 1px solid #dddddd;
+  text-align: left;
+}
+
+.nje-table tr:hover {
+  background-color: #e8e8e8;
+}
+
+.nje-table .selected {
+  background-color: #d1d1d1;
+}
+
+/* ACTION BUTTONS STYLING
+   ============================================================================================== */
+/* Container for the table - positions action buttons */
+.nje-table-container {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  width: 100%;
+}
+
+/* Action buttons container - Positioned next to table naturally */
+.nje-table-actions {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0;
+  margin-top:15px;
+  margin-left:3px;
+  background-color: transparent;
+  border: none;
+  flex-shrink: 0;
+}
+
+/* Individual action buttons - Small buttons stacked vertically */
+.nje-table-action-btn {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #666;
+  border-radius: 3px;
+  background-color: #e8e8e8;
+  color: #333;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+  line-height: 1;
+}
+
+/* Disabled state - greyed out */
+.nje-table-action-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: #cccccc;
+}
+
+/* Disabled buttons don't respond to hover */
+.nje-table-action-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+  background-color: #cccccc;
+}
+
+/* Enabled state hover effect */
+.nje-table-action-btn:not(:disabled):hover {
+  transform: scale(1.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.nje-table-action-btn:not(:disabled):active {
+  transform: scale(0.9);
+}
+
+/* Add button - Green */
+.nje-table-action-btn.add {
+  background-color: #90EE90;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.nje-table-action-btn.add:not(:disabled):hover {
+  background-color: #66BB6A;
+}
+
+/* Disabled add button */
+.nje-table-action-btn.add:disabled {
+  background-color: #cccccc !important;
+  border-color: #999;
+  color: #666;
+}
+
+/* Edit button - Blue */
+.nje-table-action-btn.edit {
+  background-color: #87CEEB;
+  border-color: #0066cc;
+  color: #003d99;
+}
+
+.nje-table-action-btn.edit:not(:disabled):hover {
+  background-color: #4A90E2;
+}
+
+/* Disabled edit button */
+.nje-table-action-btn.edit:disabled {
+  background-color: #cccccc !important;
+  border-color: #999;
+  color: #666;
+}
+
+/* Delete button - Red */
+.nje-table-action-btn.delete {
+  background-color: #FFB6B6;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+.nje-table-action-btn.delete:not(:disabled):hover {
+  background-color: #FF6B6B;
+}
+
+/* Disabled delete button */
+.nje-table-action-btn.delete:disabled {
+  background-color: #cccccc !important;
+  border-color: #999;
+  color: #666;
+}
+
+/* END ACTION BUTTONS STYLING
+   ============================================================================================== */
