@@ -19,6 +19,8 @@
 !_ViewHelpModal.cshtml
 !_ClientControl.cshtml
 !_ListView.cshtml
+!_Sample.cshtml
+!_StatusBar.cshtml
 
 # EXCEPTION  folders _include 
 # !**/_include/

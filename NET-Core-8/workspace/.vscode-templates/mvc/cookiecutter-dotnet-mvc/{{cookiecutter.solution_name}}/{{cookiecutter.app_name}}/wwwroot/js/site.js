@@ -80,6 +80,7 @@ actionButtons.forEach((btn) =>
     - For CSS class: nje-contentbox-flex-child 
  =====================================================================*/
  document.addEventListener('DOMContentLoaded', RegisterCollapsibleButtons);  
+ document.addEventListener('DOMContentLoaded', InitSidePanel );
  window.addEventListener('load', initWasm);
 
 
@@ -140,6 +141,45 @@ function Toggle(elementId, button) {
 
 /* END Collapse
  =====================================================================*/
+
+
+
+/* BEGIN Side Panel Toggle
+   Separate from the generic collapsible system
+   =====================================================================*/
+function InitSidePanel() 
+{
+    //const panel = document.getElementById('panel');
+    const panel = document.querySelector('.panel');
+    const btn = panel ? panel.querySelector('.panel-toggle') : null;
+    const arrow = btn ? btn.querySelector('.panel-arrow') : null;
+
+    if (!panel || !btn || !arrow) {
+        console.warn('Side panel elements not found');
+        return;
+    }
+
+    btn.addEventListener('click', function (event) 
+    {
+        event.stopPropagation();
+        const collapsed = panel.classList.toggle('collapsed');
+        
+        if (collapsed) 
+        {
+            arrow.innerHTML = '&#8594;'; // Right arrow
+            btn.setAttribute('aria-label', 'Expand panel');
+        } 
+        else 
+        {
+            arrow.innerHTML = '&#8592;'; // Left arrow
+            btn.setAttribute('aria-label', 'Collapse panel');
+        }
+    });
+}
+/* END Side Panel Toggle
+   =====================================================================*/
+
+  
 
 
 

@@ -58,53 +58,49 @@
         <div class="nje-layoutbox-flex-parent">            
                     
             <!-- Start Main Placeholder background (block-bkground) ,-->
-            <div Id="block-bkground" class="nje-contentbox-flex-child" style=" --nje-conner-radius:0px ; --nje-bkcolor: var(--nje-bk-color-blue);">
+            <div Id="block-bkground" class="nje-contentbox-flex-child" style=" --nje-conner-radius:0px ; --nje-bkcolor: var(--nje-bk-color-blue);  --nje-width-perc: 99%; --nje-width-max-perc: 99%;">
 
-                <!-- Toolbar  -->           
-                <div id="toolbar" class="nje-contentbox-flex-child " style="    --nje-width-perc: 99%; --nje-width-max-perc: 99%;  --nje-height: 5.4vh; --nje-overflow: hidden; --nje-conner-radius:5px ;
-                                                                                                                     --nje-padding-top: 0px; --nje-padding-bottom: 0px; --nje-bkcolor: var(--nje-bk-color-green); ;"> 
- 
-                        <div class="nje_header" style="--nje-font-size-header:10px;--nje-font-color-header: #000000">Title  or Toolbar TEMPLATE APP1</div>
-                </div>
+
+                <!-- Branding & Toolbar container - flex row to place toolbars side by side -->
+                <div class="nje-layoutbox-flex-parent" style="--nje-flex-direction: row; gap: 0px; margin-bottom: 0px;margin-left:8px">
+                
+                    <div id="Brandingr-left" class="nje-contentbox-flex-child" style="--nje-width-perc: 10%; --nje-width-max-perc: 10%; --nje-height: 5.4vh; --nje-overflow: hidden; --nje-conner-radius:5px;
+                                                                                                                          --nje-bkcolor: var(--nje-bk-color-green); margin-bottom: 0px;"> 
+                            <div class="nje_header" style="--nje-font-size-header:10px;--nje-font-color-header: #000000">Branding</div>
+                    </div>
+
+                    <div id="toolbar" class="nje-contentbox-flex-child" style="--nje-width-perc: 89.3%; --nje-width-max-perc: 89.3%; --nje-height: 5.4vh; --nje-overflow: hidden; --nje-conner-radius:5px;
+                                                                                                                         --nje-bkcolor: var(--nje-bk-color-green); margin-bottom: -10px;"> 
+     
+                            <div class="nje_header" style="--nje-font-size-header:10px;--nje-font-color-header: #000000">Title  or Toolbar items</div>
+                    </div>
+                
+                </div> <!-- END  Branding & Toolbar container - flex row to place toolbars side by side -->
+
 
                  <!-- Start Worksheet parent   -->
                 <div class="nje-layoutbox-flex-parent">           
 
-                    <!-- Green  control panel\Menu contentbox -->   
-                    <div id="panel" class="nje-contentbox-flex-child" style=" --nje-width-perc: 10%; --nje-width-max-perc: 10%; --nje-header-title: 'Menu ';--nje-font-size-header:12px; --nje-conner-radius:5px ; --nje-bkcolor: var(--nje-bk-color-green); ">
-                
+                    <!-- Side Panel -->   
+                    <div id="panel_1" class="nje-contentbox-flex-child panel" style="   --nje-width-perc: 10%; --nje-width-max-perc: 10%; --nje-header-title: 'Menu ';--nje-font-size-header:12px; --nje-conner-radius:5px ; 
+                                                                                                                                --nje-bkcolor: var(--nje-bk-color-red); position: relative;  --nje-override-top-margin:0px">
+                        <button class="panel-toggle" style="position: absolute; right: 4px; top: 14px; z-index: 10;" aria-label="Collapse panel"><span class="panel-arrow">&#8592;</span></button>
+                        <div class="panel-content">Side panel</div>
                     </div>
 
-                    <!-- Start main worksheet  -->   
-                    <!-- <div class="nje-contentbox-flex-child" style="--nje-header-title: 'Header Title 1 ';  --nje-width-perc: 100%; --nje-width-max-perc: 100%;  --nje-bkcolor: var(--nje-bk-color-red);;  --nje-height: 80vh; --nje-overflow: auto; "> -->
-                    <div id="worksheet" class="nje-contentbox-flex-child" style=" --nje-width-perc: 88.6%; --nje-width-max-perc: 88.6%; --nje-height: 80vh; --nje-overflow: auto; --nje-conner-radius:7px ;--nje-bkcolor: var(--nje-bk-color-red); ">
 
-
-                        <!-- Start main container for  workssheet, first  two blocks-->
+                            
+                    <!-- Start main worksheet  -->                       
+                    <div id="worksheet" class="nje-contentbox-flex-child" style="flex: 1 1 0; min-width: 0;; --nje-height: 80vh; --nje-overflow: auto; --nje-conner-radius:7px ;--nje-bkcolor: var(--nje-bk-color-red); ">
+                
+                        <!-- START MAIN  CONTAINER  for  worksheet for:  'General' block and 'Details' block  -->
                         <div class="nje-layoutbox-flex-parent">  
 
-@*
-                                <!-- Main container. Using FLEX COLUMN to add a layout box and the option to add normal data in second column at the next row ( because default --nje-flex-direction is column  -->                                                            
-                            <div class="nje-layoutbox-flex-column-parent" style="--nje-flex-column-basis:20%; --nje-flex-column-width:20%">
+                            <!-- Commented advanced Sample  -->
+                            @*      @await Html.PartialAsync("_sample")  *@                                 
 
-                                <!-- First colum all, using all space-->
-                                <div id="ws-block1" class="nje-contentbox-flex-child" style="--nje-header-title: 'Quck Settings '; --nje-width-perc: 100%; --nje-width-max-perc: 100%;  --nje-min-height: 10vh; --nje-max-height: 10vh; --nje-overflow: auto; 
-                                                                                        --nje-bkcolor: var(--nje-bk-color-purple);">
-                                    New <br>
-                                    Content 1                    
-                                </div>
-
-                                <!-- Second column on next row -->
-                                <div id="ws-block1-below-" style="color: #202023; padding: 6px;">
-                                    Your text here! <br>
-                                    This appears in the red area.  dd  sds sds
-                                </div>
-
-                            </div>  <!-- End FLEX COLUMN -->
-*@                                 
-
-                                <!-- Start second block -->
-                            <div id="ws-block2" class="nje-contentbox-flex-child" style="--nje-header-title: 'Application Name'; --nje-width-perc: 98%; --nje-width-max-perc: 98%; --nje-min-height: 40vh; --nje-max-height: 45vh; --nje-overflow: auto;
+                            <!-- START 'Application Name'  block -->
+                            <div id="ws-block2" class="nje-contentbox-flex-child" style="--nje-header-title: 'General'; --nje-width-perc: 98%; --nje-width-max-perc: 98%; --nje-min-height: 40vh; --nje-max-height: 45vh; --nje-overflow: auto;
                                                                                                                                 --nje-bkcolor: var(--nje-bk-color-purple);">
 
                                 <button ID="NJE" class="collapsible" data-target="ws-block2-content" style="position: absolute; right: 10px; top: 4px; z-index: 10;">▼</button>                                                                 
@@ -141,8 +137,8 @@
                         </div>          <!-- END main container for  workssheet, first  two blocks-->
 
 
-                        <!-- Start third block --->                                                    
-                        <div class="nje-contentbox-flex-child" style="--nje-header-title: 'New';  --nje-width-perc: 98%; --nje-width-max-perc:98%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
+                        <!-- START 'Details' block --->                                                    
+                        <div class="nje-contentbox-flex-child" style="--nje-header-title: 'Details';  --nje-width-perc: 98%; --nje-width-max-perc:98%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
                             <button ID="NJE" class="collapsible" data-target="ws-block3-content" style="position: absolute; right: 10px; top: 4px; z-index: 10;">▼</button>
 
                             <!-- sub container to represent data in different columns.  Using FLEX ROW   because --nje-flex-direction is: row -->   
@@ -183,34 +179,13 @@
                     </div>              <!-- ENDt main worksheet  -->    
                 
                 </div>                  <!--  END Worksheet parent   -->
-
-                <!-- </div>              -- END Worksheet parent   -->
-                
-                 <!--   Start Status bar -->
-                <div class="nje-text-with-ident" style="color:white">    
-                    <div class="nje-indent-content-10" style= "color:rgb(235, 235, 29)" ">Status:</div>
-                    <div class="nje-indent-content-10" style= "color:rgb(5, 207, 120)" ">Ready!</div>
-
-                    <div class="nje-indent-content-60" style= "color:rgb(235, 235, 29)" ">Expected:</div>
-                    <div class="nje-indent-content-10" style= "color:rgb(5, 207, 120)" ">Your password!</div> 
-
-                    <div class="nje-indent-content-60" style= "color:rgb(191, 186, 178)" ">Last Warning:</div>
-                    <div class="nje-indent-content-10" style= "color:rgb(219, 174, 76)" >Invalid Password!</div>                 
-                </div>      <!--   END Status bar -->
+             
+                 @await Html.PartialAsync("_StatusBar")
 
 
             </div> <!-- END Main Placeholder background (block-bkground) ,-->
         </div><!-- END parent Main Placeholder background  ,-->
     </div> <!--  Main container END-->
-
-<!--  Default ms
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-
-    font-size: calc(var(--nje-font-size) - 1px); /* This works if --nje-font-size is a number, not '12px' */
-</div>
--->
 
 
 
