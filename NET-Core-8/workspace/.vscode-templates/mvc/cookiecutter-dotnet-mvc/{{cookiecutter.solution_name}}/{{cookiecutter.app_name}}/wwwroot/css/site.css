@@ -334,6 +334,10 @@ button.collapsible {
   transition: all 0.15s ease;
   outline: none;
   line-height: 1;
+  position: absolute; 
+  right: 10px;
+   top: 4px; 
+   z-index: 10;
 }
 
 /* Collapsible button hover effect */
@@ -740,7 +744,7 @@ Other usefull samples:
     grid-template-columns: var(--nje-col1, 3fr)  var(--nje-col2, 3fr)   var(--nje-col3, 4fr) ;    
     margin-left: var(--nje-margin-left,0px);    
     margin-bottom: var(--nje-margin-bottom,0px);    
-    margin-top: var(--nje-margin-top,10px);    
+    margin-top: var(--nje-margin-top,2px);    
     font-size: calc(var(--nje-font-size)  -1px); 
     line-height: 1.1;
 }
@@ -752,7 +756,7 @@ Other usefull samples:
     grid-template-columns: var(--nje-col1, 2.5fr)  var(--nje-col2, 2.5fr)   var(--nje-col3, 2.5fr)  var(--nje-col4, 2.5fr) ;
     margin-left: var(--nje-margin-left,0px);    
     margin-bottom: var(--nje-margin-bottom,0px);
-    margin-top: var(--nje-margin-top,10px);        
+    margin-top: var(--nje-margin-top,2px);        
     font-size: calc(var(--nje-font-size)  -1px); 
     line-height: 1.1;
 }
@@ -763,7 +767,7 @@ Other usefull samples:
     grid-template-columns: var(--nje-col1, 2fr)  var(--nje-col2, 2fr)   var(--nje-col3, 2fr)  var(--nje-col4, 2fr)  var(--nje-col5, 2fr) ;
     margin-left: var(--nje-margin-left,0px);    
     margin-bottom: var(--nje-margin-bottom,0px);
-    margin-top: var(--nje-margin-top,10px);        
+    margin-top: var(--nje-margin-top 2px);        
     font-size: calc(var(--nje-font-size)  -1px); 
     line-height: 1.1;
 }
@@ -774,7 +778,7 @@ Other usefull samples:
     grid-template-columns: var(--nje-col1, 1.667fr)  var(--nje-col2, 1.667fr)   var(--nje-col3, 1.667fr)  var(--nje-col4, 1.667fr)  var(--nje-col5, 1.667fr) var(--nje-col6, 1.667fr) ;
     margin-left: var(--nje-margin-left,0px);    
     margin-bottom: var(--nje-margin-bottom,0px);
-    margin-top: var(--nje-margin-top,10px);        
+    margin-top: var(--nje-margin-top,2px);        
     font-size: calc(var(--nje-font-size)  -1px); 
     line-height: 1.1;
 }
