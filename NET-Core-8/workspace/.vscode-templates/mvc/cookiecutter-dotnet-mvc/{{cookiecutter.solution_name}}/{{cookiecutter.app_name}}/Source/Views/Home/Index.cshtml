@@ -82,13 +82,7 @@
                 <div class="nje-layoutbox-flex-parent">           
 
                     <!-- Side Panel -->   
-                    <div id="panel_1" class="nje-contentbox-flex-child panel" style="   --nje-width-perc: 10%; --nje-width-max-perc: 10%; --nje-header-title: 'Menu ';--nje-font-size-header:12px; --nje-conner-radius:5px ; 
-                                                                                                                                --nje-bkcolor: var(--nje-bk-color-red); position: relative;  --nje-override-top-margin:0px">
-                        <button class="panel-toggle" style="position: absolute; right: 4px; top: 14px; z-index: 10;" aria-label="Collapse panel"><span class="panel-arrow">&#8592;</span></button>
-                        <div class="panel-content">Side panel</div>
-                    </div>
-
-
+                     @await Html.PartialAsync("_SidePanel") 
                             
                     <!-- Start main worksheet  -->                       
                     <div id="worksheet" class="nje-contentbox-flex-child" style="flex: 1 1 0; min-width: 0;; --nje-height: 80vh; --nje-overflow: auto; --nje-conner-radius:7px ;--nje-bkcolor: var(--nje-bk-color-red); ">
@@ -139,7 +133,7 @@
 
                         <!-- START 'Details' block --->                                                    
                         <div class="nje-contentbox-flex-child" style="--nje-header-title: 'Details';  --nje-width-perc: 98%; --nje-width-max-perc:98%;  --nje-min-height: 30vh; --nje-max-height: 30vh; --nje-overflow: auto;--nje-bkcolor: var(--nje-bk-color-orange);">
-                            <button ID="NJE" class="collapsible" data-target="ws-block3-content" >▼</button>
+                            <button ID="NJE" class="collapsible" data-target="ws-block3-content" style="position: absolute; right: 10px; top: 4px; z-index: 10;">▼</button>
 
                             <!-- sub container to represent data in different columns.  Using FLEX ROW   because --nje-flex-direction is: row -->   
                             <div id="ws-block3-content" class="collapsible-content nje-layoutbox-flex-parent" style="--nje-flex-direction:row --nje-flex-column-basis:100%; --nje-flex-column-width:100%">

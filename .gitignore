@@ -21,6 +21,7 @@
 !_ListView.cshtml
 !_Sample.cshtml
 !_StatusBar.cshtml
+!_SidePanel.cshtml
 
 # EXCEPTION  folders _include 
 # !**/_include/
